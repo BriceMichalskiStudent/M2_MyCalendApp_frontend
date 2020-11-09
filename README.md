@@ -13,12 +13,13 @@
 <p align="center">
   <a href="https://github.com/MyCalendApp/frontend/commits/master" alt="LastCommit"><img src="https://img.shields.io/github/last-commit/MyCalendApp/frontend?style=flat-square" /></a>
   <a href="http://hits.dwyl.com/MyCalendApp/frontend" alt="HitCount"><img src="http://hits.dwyl.com/MyCalendApp/frontend.svg" /></a>
+  <a href="https://app.netlify.com/sites/stupefied-bell-565036/deploys" alt="Netlify Status"><img src="https://api.netlify.com/api/v1/badges/c305d44b-4576-4434-899e-db4bc101b8c4/deploy-status" /></a>
 </p>
 
 # My CalendApp
 > An app to deal with event
 
-Deploy with heroku available at : 
+Deploy with netlify available at : https://stupefied-bell-565036.netlify.app/
 
 ## Built With
 
