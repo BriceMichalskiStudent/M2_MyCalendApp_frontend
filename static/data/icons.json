@@ -1,0 +1,140 @@
+[
+  {
+    "id": 0,
+    "name": "icon-api-platforme",
+    "content": "e913"
+  },
+  {
+    "id": 1,
+    "name": "icon-nuxt-dot-js",
+    "content": "e935"
+  },
+  {
+    "id": 2,
+    "name": "icon-codecov",
+    "content": "e902",
+    "color": "#f01f7a"
+  },
+  {
+    "id": 3,
+    "name": "icon-dev-dot-to",
+    "content": "e903"
+  },
+  {
+    "id": 4,
+    "name": "icon-digg",
+    "content": "e904"
+  },
+  {
+    "id": 5,
+    "name": "icon-docker",
+    "content": "e905",
+    "color": "#1488c6"
+  },
+  {
+    "id": 6,
+    "name": "icon-drone",
+    "content": "e906"
+  },
+  {
+    "id": 7,
+    "name": "icon-github",
+    "content": "e907"
+  },
+  {
+    "id": 8,
+    "name": "icon-google",
+    "content": "e908",
+    "color": "#4285f4"
+  },
+  {
+    "id": 9,
+    "name": "icon-ionic",
+    "content": "e909",
+    "color": "#3880ff"
+  },
+  {
+    "id": 10,
+    "name": "icon-mega",
+    "content": "e90a",
+    "color": "#d9272e"
+  },
+  {
+    "id": 11,
+    "name": "icon-messenger",
+    "content": "e90b",
+    "color": "#d9272e"
+  },
+  {
+    "id": 12,
+    "name": "icon-microsoftword",
+    "content": "e90c",
+    "color": "#2b579a"
+  },
+  {
+    "id": 13,
+    "name": "icon-mozillafirefox",
+    "content": "e90d",
+    "color": "#ff7139"
+  },
+  {
+    "id": 14,
+    "name": "icon-file_copy",
+    "content": "e90e"
+  },
+  {
+    "id": 15,
+    "name": "icon-table_chart",
+    "content": "e900"
+  },
+  {
+    "id": 16,
+    "name": "icon-filter_center_focus",
+    "content": "e901"
+  },
+  {
+    "id": 17,
+    "name": "icon-home",
+    "content": "e90F"
+  },
+  {
+    "id": 18,
+    "name": "icon-search",
+    "content": "e910"
+  },
+  {
+    "id": 19,
+    "name": "icon-line_style",
+    "content": "e911"
+  },
+  {
+    "id": 20,
+    "name": "icon-emoji_symbols",
+    "content": "e912"
+  },
+  {
+    "id": 21,
+    "name": "icon-symfony",
+    "content": "e936"
+  },
+  {
+    "id": 22,
+    "name": "icon-vue-dot-js",
+    "content": "e937"
+  },
+  {
+    "id": 23,
+    "name": "icon-info",
+    "content": "e938"
+  },
+  {
+    "id": 24,
+    "name": "icon-log-out",
+    "content": "e939"
+  },
+  {
+    "id": 25,
+    "name": "icon-power",
+    "content": "e940"
+  }
+]
