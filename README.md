@@ -1,7 +1,4 @@
 <p align="center">
-  <img src="https://github.com/MyCalendApp/frontend/blob/master/home.png" alt="screen"/>
-</p>
-<p align="center">
   <a href="https://mergify.io" alt="mergify-status"><img src="https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/MyCalendApp/frontend&style=flat" /></a>
   <a href="https://david-dm.org/MyCalendApp/frontend" alt="Dependencies"><img src="https://david-dm.org/MyCalendApp/frontend.svg" /></a>
   <a href="http://www.gnu.org/licenses/gpl-3.0" alt="License: GPL v3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" /></a>
@@ -62,9 +59,9 @@ $ yarn sass-watch
 
 ## Authors
 
-Alban PIERSON – pro.pierson.alban@gmail.com
-Brice MICHALSKI – brice.michalski@ynov.com
-Benjamin L'HONNEN – benjamin.lhonnen@ynov.com
+Alban PIERSON – pro.pierson.alban@gmail.com  
+Brice MICHALSKI – brice.michalski@ynov.com  
+Benjamin L'HONNEN – benjamin.lhonnen@ynov.com  
 
 
 ## License
