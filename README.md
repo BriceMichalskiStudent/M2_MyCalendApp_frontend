@@ -5,7 +5,7 @@
 </p>
 <p align="center">
   <a href="https://snyk.io/test/github/MyCalendApp/frontend" alt="Known Vulnerabilities"><img src="https://snyk.io/test/github/MyCalendApp/frontend/badge.svg" /></a>
-  <a href="https://codeclimate.com/github/Zalbani/my-front/maintainability" alt="Maintainability"><img src="https://api.codeclimate.com/v1/badges/db92dbcfec4dfc407995/maintainability" /></a>
+  <a href="https://codeclimate.com/github/Zalbani/MyCalendAPP/maintainability" alt="Maintainability"><img src="https://api.codeclimate.com/v1/badges/db92dbcfec4dfc407995/maintainability" /></a>
 </p>
 <p align="center">
   <a href="https://github.com/MyCalendApp/frontend/commits/master" alt="LastCommit"><img src="https://img.shields.io/github/last-commit/MyCalendApp/frontend?style=flat-square" /></a>
