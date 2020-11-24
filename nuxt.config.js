@@ -43,16 +43,33 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    'nuxt-clipboard2'
+    'nuxt-clipboard2',
+    '@nuxtjs/auth'
   ],
   styleResources: {
     scss: [
       '@/assets/variables.scss'
     ]
   },
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:3011'
+  },
+
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'token', method: 'post', propertyName: 'token' },
+          user: { url: 'user/5fbd1ada33d99df4c373f7cf', method: 'get', propertyName: 'false' },
+          logout: false
+        }
+      }
+    }
+  },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    transpile: ['@nuxtjs/auth'],
     extend (config, ctx) {
       // Exécuter ESLint lors de la sauvegarde
       if (ctx.isDev && ctx.isClient) {
