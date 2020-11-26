@@ -2,7 +2,7 @@
 
 > An app to deal with event
 
-Deploy with netlify available at : <https://stupefied-bell-565036.netlify.app/>
+Deploy with heroku available at : <https://mycalendapp.herokuapp.com/>
 
 ## Built With
 
