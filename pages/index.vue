@@ -12,13 +12,13 @@
         >
           Admin Panel
         </nuxt-link>
-        <nuxt-link
-          to="https://github.com/MyCalendApp/frontend"
+        <a
+          href="https://github.com/MyCalendApp/frontend"
           target="_blank"
           class="button--grey"
         >
           GitHub
-        </nuxt-link>
+        </a>
       </div>
     </div>
   </div>

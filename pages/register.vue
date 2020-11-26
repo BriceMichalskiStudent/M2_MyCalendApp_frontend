@@ -11,13 +11,40 @@
 
           <form method="post" @submit.prevent="register">
             <div class="field">
-              <label class="label">Username</label>
+              <label class="label">Prénom</label>
               <div class="control">
                 <input
-                  v-model="username"
+                  v-model="firstName"
                   type="text"
                   class="input"
                   name="username"
+                  placeholder="Prénom"
+                  required
+                >
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Nom</label>
+              <div class="control">
+                <input
+                  v-model="lastName"
+                  type="text"
+                  class="input"
+                  name="username"
+                  placeholder="Nom"
+                  required
+                >
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Telephone</label>
+              <div class="control">
+                <input
+                  v-model="phone"
+                  type="text"
+                  class="input"
+                  name="username"
+                  placeholder="06 78 78 78 78"
                   required
                 >
               </div>
@@ -26,10 +53,10 @@
               <label class="label">Email</label>
               <div class="control">
                 <input
-                  v-model="email"
-                  type="email"
+                  v-model="mail"
+                  type="mail"
                   class="input"
-                  name="email"
+                  name="mail"
                   required
                 >
               </div>
@@ -75,9 +102,11 @@ export default {
 
   data () {
     return {
-      username: '',
-      email: '',
+      firstName: '',
+      lastName: '',
+      mail: '',
       password: '',
+      phone: '',
       error: null
     }
   },
@@ -86,16 +115,16 @@ export default {
     async register () {
       try {
         await this.$axios.post('user', {
-          firstName: this.username,
-          mail: this.email,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          mail: this.mail,
           password: this.password,
-          lastName: this.username,
-          phone: '06 12 34 56 78'
+          phone: this.phone
         })
 
         await this.$auth.loginWith('local', {
           data: {
-            mail: this.email,
+            mail: this.mail,
             password: this.password
           }
         })
