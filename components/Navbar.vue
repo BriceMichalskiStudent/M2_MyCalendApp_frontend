@@ -12,22 +12,22 @@
     <ul>
       <li>
         <nuxt-link to="/">
-          <span class="icon-home" /> Home
+          Home
         </nuxt-link>
       </li>
       <li v-if="isAuthenticated">
         <nuxt-link to="/profile">
-          <span class="icon-home" /> {{ loggedInUser.firstName }}
+          {{ loggedInUser.firstName }}
         </nuxt-link>
       </li>
       <li v-else>
         <nuxt-link to="/login">
-          <span class="icon-line_style" /> Connexion
+          Connexion
         </nuxt-link>
       </li>
       <li v-if="isAuthenticated">
         <a @click="logout">
-          <span class="icon-home" /> Déconnexion
+          Déconnexion
         </a>
       </li>
     </ul>
@@ -70,28 +70,23 @@ $hamburgerLineBorderRadius: 4px;
 $navAnimationDuration: 0.7s;
 $navAnimationTiming: ease-out;
 
-/* Icons Colors */
-
-span {
-  &[class*=icon-] {
-    color: $default;
-  }
-  &.icon-home {
-    color: $primary;
-  }
-  &.icon-line_style {
-    color: $pink;
-  }
-  &.icon-emoji_symbols{
-    color: $orange;
-  }
-  &.icon-table_chart{
-    color: $teal;
-  }
+nav {
+  height: 60px;
+  width: 90%;
+  position: fixed;
+  transition-duration: $navAnimationDuration;
+  transition-timing-function: $navAnimationTiming;
+  background-color: transparent;
+  overflow: hidden;
+  z-index: 1;
+  right: 5%;
+  backdrop-filter: blur(10px);
+  border-radius: 0 0 10px 10px;
 }
 
-/* Burger MENU */
-
+/* For mobile only */
+@media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+  /* Burger MENU */
 .hamburger{
   z-index: 1;
   padding: $hamburgerBoxPadding;
@@ -117,7 +112,7 @@ span {
   &:hover{
     opacity: 0.7;
     .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after{
-      background-color: #000;
+      background-color: white;
     }
   }
 }
@@ -137,7 +132,7 @@ span {
 .hamburger-inner,.hamburger-inner::before, .hamburger-inner::after{
   width: $hamburgerBoxWidth;
   height: $hamburgerLineThickness;
-  background-color: #000;
+  background-color: white;
   border-radius: $hamburgerLineBorderRadius;
   position: absolute;
   transition-property: transform;
@@ -200,18 +195,12 @@ span {
 nav {
   height: 60px;
   width: 100%;
-  position: fixed;
-  transition-duration: $navAnimationDuration;
-  transition-timing-function: $navAnimationTiming;
-  background-color: white;
-  box-shadow: 0 0 2rem 0 rgba(136,152,170,.15);
-  border-color: rgba(0,0,0,.05);
-  overflow: hidden;
-  z-index: 1;
+  background-color: #F5C107;
+  backdrop-filter: none;
+  border-radius: unset;
   right: 0;
   &.active {
     height: 100vh;
-
     ul li, ul li.selected, ul p {
       color: white;
     }
@@ -229,21 +218,13 @@ nav {
       display: flex;
       width: 100%;
       margin: 5px 0;
-      color: black;
+      color: #F0F0F5;
       position: relative;
-      background-color: white;
       border-radius: 8px;
       transition-duration: 0.5s;
       transition-timing-function: ease;
       font-size: .9375rem;
       white-space: nowrap;
-      span{
-        transition-duration: 0.5s;
-        transition-timing-function: ease;
-      }
-      &:hover {
-        background-color: #F0F0F5;
-      }
 
       a {
         text-decoration: none;
@@ -271,33 +252,8 @@ nav {
           }
         }
       }
-
-      span {
-        color: black;
-        font-size: 1rem;
-        padding: 3px 20px 0 1px;
-        span{
-          padding: 0;
-        }
-        &.icon-api-platforme{
-          padding: 2px 18px 0 0;
-          margin-left: -4px;
-        }
-      }
-    }
-    p {
-      color: #8898aa;
-      text-align: left;
-      text-transform: capitalize;
-      width: 100%;
-      padding-left: 14px;
-      transition-duration: 0.5s;
-      transition-timing-function: ease;
-
-      &::first-letter {
-        color: #8898aa;
-      }
     }
   }
+}
 }
 </style>
