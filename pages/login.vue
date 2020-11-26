@@ -18,6 +18,7 @@
                   type="email"
                   class="input"
                   name="mail"
+                  placeholder="test@mail.com"
                 >
               </div>
             </div>

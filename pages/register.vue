@@ -57,6 +57,7 @@
                   type="mail"
                   class="input"
                   name="mail"
+                  placeholder="test@mail.com"
                   required
                 >
               </div>
