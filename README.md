@@ -1,27 +1,12 @@
-<p align="center">
-  <a href="https://mergify.io" alt="mergify-status"><img src="https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/MyCalendApp/frontend&style=flat" /></a>
-  <a href="https://david-dm.org/MyCalendApp/frontend" alt="Dependencies"><img src="https://david-dm.org/MyCalendApp/frontend.svg" /></a>
-  <a href="http://www.gnu.org/licenses/gpl-3.0" alt="License: GPL v3"><img src="https://img.shields.io/badge/License-GPL%20v3-blue.svg" /></a>
-</p>
-<p align="center">
-  <a href="https://snyk.io/test/github/MyCalendApp/frontend" alt="Known Vulnerabilities"><img src="https://snyk.io/test/github/MyCalendApp/frontend/badge.svg" /></a>
-  <a href="https://codeclimate.com/github/Zalbani/MyCalendAPP/maintainability" alt="Maintainability"><img src="https://api.codeclimate.com/v1/badges/db92dbcfec4dfc407995/maintainability" /></a>
-</p>
-<p align="center">
-  <a href="https://github.com/MyCalendApp/frontend/commits/master" alt="LastCommit"><img src="https://img.shields.io/github/last-commit/MyCalendApp/frontend?style=flat-square" /></a>
-  <a href="http://hits.dwyl.com/MyCalendApp/frontend" alt="HitCount"><img src="http://hits.dwyl.com/MyCalendApp/frontend.svg" /></a>
-  <a href="https://app.netlify.com/sites/stupefied-bell-565036/deploys" alt="Netlify Status"><img src="https://api.netlify.com/api/v1/badges/c305d44b-4576-4434-899e-db4bc101b8c4/deploy-status" /></a>
-</p>
-
 # My CalendApp
+
 > An app to deal with event
 
-Deploy with netlify available at : https://stupefied-bell-565036.netlify.app/
+Deploy with netlify available at : <https://stupefied-bell-565036.netlify.app/>
 
 ## Built With
 
 * [Nuxt.JS](https://github.com/nuxt/nuxt.js) - The vue framework for front developpement
-
 
 ## Installation
 
@@ -55,14 +40,13 @@ $ yarn sass-watch
 ## Release History
 
 * 0.0.1
-    * Work in progress
+  * Work in progress
 
 ## Authors
 
 Alban PIERSON – pro.pierson.alban@gmail.com  
 Brice MICHALSKI – brice.michalski@ynov.com  
 Benjamin L'HONNEN – benjamin.lhonnen@ynov.com  
-
 
 ## License
 
