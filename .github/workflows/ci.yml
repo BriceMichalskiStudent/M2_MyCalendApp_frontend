@@ -15,4 +15,53 @@ jobs:
       - name: Lint > Run Super-Linter
         uses: github/super-linter@v3
         env:
+          VALIDATE_JSON: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_JAVASCRIPT_ES: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build: 
+    name: Assert project can build
+    runs-on:  ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 13.x, 14.x, 15.x]
+
+    steps:
+      - name: Build > Checkout Code
+        uses: actions/checkout@v2
+      
+      - name: Build > Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: Build > Install yarn
+        run: npm install -g yarn
+
+      - name: Build > yarn generate
+        run: yarn generate 
+
+  security:
+    name: Dependency Security Audit
+    runs-on:  ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 13.x, 14.x, 15.x]
+
+    steps:
+      - name: Security > Checkout Code
+        uses: actions/checkout@v2
+    
+      - name: Security > Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+        
+      - name: Build > Install yarn
+        run: npm install -g yarn
+
+      - name: Security > npm audit
+        run: yarn audit
