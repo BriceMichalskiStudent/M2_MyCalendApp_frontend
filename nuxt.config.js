@@ -52,7 +52,7 @@ export default {
     ]
   },
   axios: {
-    baseURL: 'http://localhost:3011'
+    baseURL: process.env.backend_url || 'http://localhost:3001'
   },
 
   auth: {
