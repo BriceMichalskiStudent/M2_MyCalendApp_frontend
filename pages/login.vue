@@ -76,7 +76,11 @@ export default {
             password: this.password
           }
         })
-        this.$router.push('/')
+        await this.$axios.post('token', {
+          mail: this.mail,
+          password: this.password
+        }).then((response) => { this.$auth.setUser(response.data.user) })
+        await this.$router.push('/profile')
       } catch (e) {
         this.error = e.response.data.message
       }
