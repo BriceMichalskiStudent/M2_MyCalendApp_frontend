@@ -16,6 +16,7 @@ import componentSideMenu from '@/components/admin/SideMenu'
 import componentTopBar from '@/components/admin/TopBar'
 
 export default {
+  middleware: 'admin',
   components: {
     componentSideMenu,
     componentTopBar
