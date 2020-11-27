@@ -20,6 +20,11 @@
     ><tspan x="-36.674" y="0">Calend</tspan><tspan x="-30.352" y="12" xml:space="preserve">   App</tspan></text>
   </svg>
 </template>
+<style>
+#logo{
+  max-width: 100%;
+}
+</style>
 <script>
 export default {
   props: {

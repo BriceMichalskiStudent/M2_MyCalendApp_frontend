@@ -69,7 +69,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$topDivHeight: 0px;
 $hamburgerBoxWidth: 20px;
 $hamburgerBoxHeight: 20px;
 $hamburgerBoxPadding: 20px;
@@ -80,6 +79,9 @@ $hamburgerLineBorderRadius: 4px;
 $navAnimationDuration: 0.7s;
 $navAnimationTiming: ease-out;
 
+.hamburger{
+  display: none;
+}
 nav {
   height: 100px;
   width: 90%;
@@ -160,6 +162,42 @@ nav {
 
 /* For mobile only */
 @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+
+  /* nav placement */
+  nav {
+    height: 80px;
+    width: 100%;
+    background-color: $bg-color;
+    backdrop-filter: none;
+    border-radius: unset;
+    right: 0;
+    overflow: hidden;
+    padding: 40px;
+    &.active {
+      height: 100vh;
+    }
+    ul {
+      height: calc(100vh - 500px);
+      margin: 250px 0;
+      flex-direction: column;
+      justify-content: space-between;
+      li {
+        width: 100%;
+        margin: 5px 0;
+        text-transform: uppercase;
+        &:first-of-type{
+          text-transform: none;
+          width: auto;
+          height: 75px;
+          margin-top:10px;
+          position: fixed;
+          top: 0;
+          left: 20px;
+        }
+      }
+    }
+  }
+
   /* Burger MENU */
 .hamburger{
   z-index: 1;
@@ -172,13 +210,14 @@ nav {
   font: inherit;
   color: inherit;
   text-transform: none;
-  background-color: transparent;
   border: 0;
-  margin: 0;
   overflow: visible;
   position: absolute;
   top: 0;
   right: 0;
+  border-radius: 50%;
+  margin: 10px 20px;
+  background-color: black;
   //right: calc((( #{$hamburgerBoxPadding} * 2 ) + #{$hamburgerBoxWidth}) * -1)
   &:hover{
     opacity: 0.7;
@@ -196,6 +235,7 @@ nav {
   height: $hamburgerBoxHeight;
   display: inline-block;
   position: relative;
+  margin-top: -2px;
 }
 .hamburger-inner{
   display: block;
@@ -228,6 +268,8 @@ nav {
 
 /* Collapse Animation */
 .hamburger--collapse {
+  width: 60px;
+  height: 60px;
   .hamburger-inner {
     top: auto;
     bottom: 0;
@@ -245,6 +287,9 @@ nav {
     }
   }
   &.active {
+    .hamburger-box{
+      margin-top: 0px;
+    }
     .hamburger-inner {
       transform: translate3d(0, -10px, 0) rotate(-45deg);
       transition-delay: 0.22s;
@@ -260,70 +305,6 @@ nav {
         top: 0;
         transform: rotate(-90deg);
         transition: top 0.1s 0.16s cubic-bezier(0.33333, 0, 0.66667, 0.33333), transform 0.13s 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
-      }
-    }
-  }
-}
-
-/* nav placement */
-nav {
-  height: 60px;
-  width: 100%;
-  background-color: #F5C107;
-  backdrop-filter: none;
-  border-radius: unset;
-  right: 0;
-  &.active {
-    height: 100vh;
-    ul li, ul li.selected, ul p {
-      color: white;
-    }
-  }
-  ul {
-    display: flex;
-    align-items: center;
-    margin: 0;
-    height: calc(100vh - #{$topDivHeight});
-    flex-direction: column;
-    justify-content: center;
-    padding: 0;
-
-    li {
-      display: flex;
-      width: 100%;
-      margin: 5px 0;
-      color: #F0F0F5;
-      position: relative;
-      border-radius: 8px;
-      transition-duration: 0.5s;
-      transition-timing-function: ease;
-      font-size: .9375rem;
-      white-space: nowrap;
-      a {
-        text-decoration: none;
-        color: inherit;
-        display: inherit;
-        width: 100%;
-        padding: 10px;
-        position: relative;
-        &:before {
-          content: '';
-          position: absolute;
-          width: 0;
-          left: -10px;
-          top: 0;
-          border-radius: 0 2px 2px 0;
-          height: 40px;
-          background-color: white;
-          transition-duration: 0.4s;
-          transition-timing-function: ease;
-        }
-        &.exact-active-link{
-          &:before {
-            background-color: $primary!important;
-            width: 4px;
-          }
-        }
       }
     }
   }
