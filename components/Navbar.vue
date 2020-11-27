@@ -36,9 +36,7 @@
         </a>
       </li>
       <li>
-        <nuxt-link to="/">
-          Cree mon évènement
-        </nuxt-link>
+        <Button link="/" anchor="Cree mon évènement" type="primary" />
       </li>
     </ul>
   </nav>
@@ -46,8 +44,10 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import Button from '@/components/Button'
 
 export default {
+  components: { Button },
   data () {
     return {
       isActive: false,
