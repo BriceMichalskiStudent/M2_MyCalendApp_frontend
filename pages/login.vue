@@ -56,6 +56,7 @@
 import Notification from '~/components/Notification'
 
 export default {
+  layout: 'form',
   components: {
     Notification
   },
