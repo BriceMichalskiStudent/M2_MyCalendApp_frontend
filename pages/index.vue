@@ -1,7 +1,7 @@
 <template>
   <div class="center-here">
     <div>
-      <Logo />
+      <Logo height="300px" width="auto" />
       <h1 class="title">
         MyCalendAPP
       </h1>

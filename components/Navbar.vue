@@ -12,7 +12,12 @@
     <ul>
       <li>
         <nuxt-link to="/">
-          Home
+          <Logo height="40px" width="auto" />
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/">
+          Évènements
         </nuxt-link>
       </li>
       <li v-if="isAuthenticated">
@@ -29,6 +34,11 @@
         <a @click="logout">
           Déconnexion
         </a>
+      </li>
+      <li>
+        <nuxt-link to="/">
+          Cree mon évènement
+        </nuxt-link>
       </li>
     </ul>
   </nav>
@@ -71,7 +81,7 @@ $navAnimationDuration: 0.7s;
 $navAnimationTiming: ease-out;
 
 nav {
-  height: 60px;
+  height: 100px;
   width: 90%;
   position: fixed;
   transition-duration: $navAnimationDuration;
@@ -82,6 +92,70 @@ nav {
   right: 5%;
   backdrop-filter: blur(10px);
   border-radius: 0 0 10px 10px;
+  &.active {
+    height: 100vh;
+    ul li, ul li.selected, ul p {
+      color: black;
+    }
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 100px;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0;
+    position: relative;
+    li {
+      display: flex;
+      width: auto;
+      margin: 5px 20px;
+      color: black;
+      position: relative;
+      border-radius: 8px;
+      transition-duration: 0.5s;
+      transition-timing-function: ease;
+      font-size: .9375rem;
+      white-space: nowrap;
+      a {
+        text-decoration: none;
+        color: inherit;
+        display: inherit;
+        width: 100%;
+        padding: 10px;
+        position: relative;
+        &:before {
+          content: '';
+          position: absolute;
+          height: 15px;
+          width: 0;
+          bottom: 5px;
+          left: -5px;
+          background-color: white;
+          transition-duration: 0.4s;
+          transition-timing-function: ease;
+        }
+        &.exact-active-link{
+          &:before {
+            width: 60%;
+            bottom: 5px;
+            z-index: -1;
+            background-color: $primary!important;
+          }
+        }
+      }
+      &:first-of-type{
+        position: absolute;
+        left: 0;
+      }
+    }
+    li:first-of-type, li:last-of-type{
+      a.exact-active-link:before {
+        display: none;
+      }
+    }
+  }
 }
 
 /* For mobile only */
@@ -225,7 +299,6 @@ nav {
       transition-timing-function: ease;
       font-size: .9375rem;
       white-space: nowrap;
-
       a {
         text-decoration: none;
         color: inherit;
