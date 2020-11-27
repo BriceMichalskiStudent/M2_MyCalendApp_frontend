@@ -58,22 +58,6 @@
     </ul>
   </nav>
 </template>
-<script>
-export default {
-  data () {
-    return {
-      isActive: false,
-      test: true
-    }
-  },
-  methods: {
-    myFilter () {
-      this.isActive = !this.isActive
-    }
-  }
-}
-</script>
-
 <style lang="scss" scoped>
 $topDivHeight: 0px;
 $hamburgerBoxWidth: 20px;
@@ -338,3 +322,18 @@ span {
     }
   }
 </style>
+<script>
+export default {
+  data () {
+    return {
+      isActive: false,
+      test: true
+    }
+  },
+  methods: {
+    myFilter () {
+      this.isActive = !this.isActive
+    }
+  }
+}
+</script>

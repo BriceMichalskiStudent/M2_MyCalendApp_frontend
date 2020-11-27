@@ -1,12 +1,39 @@
 <template>
-  <nav :class="{active: isActive}">
-    <div
-      :class="{active: isActive}"
-      class="hamburger hamburger--collapse"
-      @click="myFilter"
-    >
-      <div class="hamburger-box">
-        <div class="hamburger-inner" />
+  <nav class="navbar is-light">
+    <div class="container">
+      <div class="navbar-brand">
+        <nuxt-link class="navbar-item" to="/">
+          Home
+        </nuxt-link>
+        <button class="button navbar-burger">
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-end">
+          <div v-if="isAuthenticated" class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              {{ loggedInUser.firstName }}
+            </a>
+            <div class="navbar-dropdown">
+              <nuxt-link class="navbar-item" to="/profile">
+                My Profile
+              </nuxt-link>
+              <hr class="navbar-divider">
+              <a class="navbar-item" @click="logout">Logout</a>
+            </div>
+          </div>
+          <template v-else>
+            <nuxt-link class="navbar-item" to="/register">
+              Register
+            </nuxt-link>
+            <nuxt-link class="navbar-item" to="/login">
+              Log In
+            </nuxt-link>
+          </template>
+        </div>
       </div>
     </div>
     <ul>
@@ -60,9 +87,6 @@ export default {
   methods: {
     async logout () {
       await this.$auth.logout()
-    },
-    myFilter () {
-      this.isActive = !this.isActive
     }
   }
 }
