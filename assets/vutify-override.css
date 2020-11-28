@@ -1,11 +1,18 @@
-.container.container--fluid.admin {
+.container.container--fluid.form {
+  padding-top: 100px;
+  min-height: calc(100vh - 100px);
+}
+.container.container--fluid.default {
+  padding-top: 100px;
+  min-height: calc(100vh - 100px);
+}
+.container.container--fluid .container.container--fluid.admin {
   background-color: #f8f9fe;
   margin: 80px 0 0 60px;
   width: calc(100% - 60px);
   min-height: 100vh;
 }
-
-.v-sheet.v-card:not(.v-sheet--outlined) {
+.container.container--fluid .v-sheet.v-card:not(.v-sheet--outlined) {
   box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15);
   border-radius: 0.375rem;
 }

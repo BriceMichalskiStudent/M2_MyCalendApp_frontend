@@ -97,6 +97,7 @@ import Notification from '~/components/Notification'
 
 export default {
   middleware: 'guest',
+  layout: 'form',
   components: {
     Notification
   },

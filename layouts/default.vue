@@ -1,10 +1,11 @@
 <template>
   <v-app>
+    <Navbar />
     <v-container
       fluid
       tag="main"
+      class="default"
     >
-      <Navbar />
       <Nuxt />
     </v-container>
   </v-app>

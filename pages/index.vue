@@ -1,7 +1,7 @@
 <template>
   <div class="center-here">
     <div>
-      <Logo />
+      <Logo height="300px" width="auto" />
       <h1 class="title">
         MyCalendAPP
       </h1>
@@ -46,8 +46,7 @@ export default {
 
 <style scoped>
 .center-here {
-  background-color: #f8f9fe ;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   display: flex;
   justify-content: center;
   align-items: center;
