@@ -35,11 +35,78 @@ h1 {
   font-size: 50px;
   line-height: 60px;
 }
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 35px;
+    line-height: 40px;
+  }
+}
 
 h2 {
-  font-family: "Montserrat", serif;
-  font-size: 50px;
-  line-height: 60px;
+  font-family: "Times New Roman Bold", sans-serif;
+  font-size: 30px;
+  line-height: 40px;
+}
+
+h3 {
+  font-family: "Times New Roman Bold", sans-serif;
+  font-size: 25px;
+  line-height: 35px;
+}
+
+h4, h5, h6 {
+  font-family: "Times New Roman Bold", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+}
+@media only screen and (max-width: 768px) {
+  p {
+    font-size: 16px;
+    line-height: 26px;
+  }
+}
+
+p.big {
+  font-family: "Montserrat Bold", sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+}
+@media only screen and (max-width: 768px) {
+  p.big {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+p.small {
+  font-family: "Montserrat Italic", sans-serif;
+  font-size: 12px;
+  line-height: 22px;
+}
+@media only screen and (max-width: 768px) {
+  p.small {
+    font-size: 14px;
+    line-height: 24px;
+  }
+}
+
+a {
+  text-decoration: none;
+  font-family: "Montserrat Bold", sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+}
+@media only screen and (max-width: 768px) {
+  a {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
 
 .opacity-enter-active {
