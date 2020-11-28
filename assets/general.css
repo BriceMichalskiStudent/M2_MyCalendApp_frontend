@@ -1,3 +1,47 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Montserrat Bold";
+  src: url("fonts/Montserrat/Montserrat-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Montserrat Italic";
+  src: url("fonts/Montserrat/Montserrat-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Montserrat Bold Italic";
+  src: url("fonts/Montserrat/Montserrat-BoldItalic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Times New Roman";
+  src: url("fonts/TimesNewRoman/TimesNewRoman-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Times New Roman Bold";
+  src: url("fonts/TimesNewRoman/TimesNewRoman-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Times New Roman Italic";
+  src: url("fonts/TimesNewRoman/TimesNewRoman-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Times New Roman Bold Italic";
+  src: url("fonts/TimesNewRoman/TimesNewRoman-BoldItalic.ttf") format("truetype");
+}
+h1 {
+  font-family: "Times New Roman Bold", serif;
+  font-size: 50px;
+  line-height: 60px;
+}
+
+h2 {
+  font-family: "Montserrat", serif;
+  font-size: 50px;
+  line-height: 60px;
+}
+
 .opacity-enter-active {
   animation: opacity-in 0.6s;
 }
