@@ -2,9 +2,12 @@
   <div class="center-here">
     <div>
       <Logo height="300px" width="auto" />
-      <h1 class="title">
+      <h1>
         MyCalendAPP
       </h1>
+      <h2>
+        Test H2
+      </h2>
       <div class="links">
         <nuxt-link
           to="/admin"
@@ -51,24 +54,6 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
 }
 
 .subtitle {
