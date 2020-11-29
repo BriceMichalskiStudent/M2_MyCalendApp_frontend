@@ -83,14 +83,8 @@ form{
   label{
     display: none;
   }
-  input{
-    width: 100%;
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 10px;
-    border: 1px solid rgba(0,0,0,0.3);
-  }
   button{
+    margin: 20px 0;
     display: inline-block;
   }
 }
@@ -100,6 +94,9 @@ form{
   flex-direction: column;
   justify-content: center;
   height: 62vh;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+    height: 92vh;
+  }
   a{
     text-decoration: underline;
     align-self: flex-end;

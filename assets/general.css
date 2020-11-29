@@ -35,7 +35,7 @@
   font-size: 50px;
   line-height: 60px;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 960px) {
   .v-application h1 {
     font-size: 35px;
     line-height: 40px;
@@ -62,7 +62,7 @@
   line-height: 24px;
   color: black;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 960px) {
   .v-application p {
     font-size: 16px;
     line-height: 26px;
@@ -73,7 +73,7 @@
   font-size: 12px;
   line-height: 22px;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 960px) {
   .v-application p.small {
     font-size: 14px;
     line-height: 24px;
@@ -84,24 +84,40 @@
   font-size: 16px;
   line-height: 26px;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 960px) {
   .v-application p.big {
     font-size: 18px;
     line-height: 28px;
   }
 }
-.v-application a {
+.v-application a, .v-application button {
   text-decoration: none;
   font-family: "Montserrat Bold", sans-serif;
   font-size: 16px;
   line-height: 26px;
   color: #ff645f;
 }
-@media only screen and (max-width: 768px) {
-  .v-application a {
+@media only screen and (max-width: 960px) {
+  .v-application a, .v-application button {
     font-size: 18px;
     line-height: 28px;
   }
+}
+.v-application hr {
+  border: none;
+  height: 2px;
+  margin: 10px 0;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.v-application form label {
+  display: none;
+}
+.v-application form input {
+  width: 100%;
+  padding: 20px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .opacity-enter-active {

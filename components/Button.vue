@@ -32,7 +32,7 @@ export default {
 <style lang="scss" scoped>
 .button{
   z-index: 2;
-  padding: 10px 20px;
+  padding: 10px 30px;
   background-color: $secondary!important;
   color: white;
   border-radius: 10px;
