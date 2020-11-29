@@ -23,6 +23,7 @@ import { mapGetters } from 'vuex'
 
 export default {
   middleware: 'auth',
+  transition: 'opacity',
   computed: {
     ...mapGetters(['loggedInUser'])
   }

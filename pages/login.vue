@@ -38,7 +38,7 @@ import Button from '@/components/Button'
 export default {
   components: { Button },
   layout: 'form',
-
+  transition: 'opacity',
   data () {
     return {
       mail: '',
