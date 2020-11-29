@@ -36,7 +36,7 @@
         </a>
       </li>
       <li>
-        <Button link="/" anchor="Cree mon évènement" type="primary" />
+        <Button link="/" anchor="Cree mon évènement" color="primary" />
       </li>
     </ul>
   </nav>

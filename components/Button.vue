@@ -1,7 +1,10 @@
 <template>
-  <nuxt-link :to="link" :class="[type, 'button']">
+  <nuxt-link v-if="type === null" :to="link" :class="[color, 'button']">
     {{ anchor }}
   </nuxt-link>
+  <button v-else :class="[color, 'button']" :type="[type]">
+    {{ anchor }}
+  </button>
 </template>
 
 <script>
@@ -17,13 +20,18 @@ export default {
     },
     type: {
       type: String,
+      default: null
+    },
+    color: {
+      type: String,
       default: 'default'
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-a.button{
+.button{
+  z-index: 1;
   padding: 10px 20px;
   background-color: $secondary!important;
   color: white;
@@ -50,7 +58,7 @@ a.button{
     }
   }
 }
-a.primary{
+.primary{
   background-color: $primary!important;
   &::after{
     background-color: $primary!important;;

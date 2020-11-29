@@ -1,65 +1,43 @@
 <template>
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column is-4 is-offset-4">
-          <h2 class="title has-text-centered">
-            Welcome back!
-          </h2>
-
-          <Notification v-if="error" :message="error" />
-
-          <form method="post" @submit.prevent="login">
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control">
-                <input
-                  v-model="mail"
-                  type="email"
-                  class="input"
-                  name="mail"
-                  placeholder="test@mail.com"
-                >
-              </div>
-            </div>
-            <div class="field">
-              <label class="label">Password</label>
-              <div class="control">
-                <input
-                  v-model="password"
-                  type="password"
-                  class="input"
-                  name="password"
-                >
-              </div>
-            </div>
-            <div class="control">
-              <button type="submit" class="button is-dark is-fullwidth">
-                Log In
-              </button>
-            </div>
-          </form>
-          <div class="has-text-centered" style="margin-top: 20px">
-            <p>
-              Don't have an account? <nuxt-link to="/register">
-                Register
-              </nuxt-link>
-            </p>
-          </div>
-        </div>
-      </div>
+  <div>
+    <h1>
+      Se connecter
+    </h1>
+    <div class="form-container">
+      <form method="post" @submit.prevent="login">
+        <label class="label">Email</label>
+        <input
+          v-model="mail"
+          type="email"
+          name="mail"
+          placeholder="test@mail.com"
+        >
+        <label class="label">Password</label>
+        <input
+          v-model="password"
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+        >
+        <Button anchor="Se connecter" type="submit" />
+      </form>
+      <hr>
+      <p>
+        Vous n'avez pas encore de compte ?
+      </p>
+      <nuxt-link to="/register">
+        Se cree un compte
+      </nuxt-link>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import Notification from '~/components/Notification'
+import Button from '@/components/Button'
 
 export default {
+  components: { Button },
   layout: 'form',
-  components: {
-    Notification
-  },
 
   data () {
     return {
@@ -90,3 +68,39 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  form{
+    text-align: right;
+    label{
+      display: none;
+    }
+    input{
+      width: 100%;
+      padding: 20px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.3);
+    }
+    button{
+      display: inline-block;
+    }
+  }
+
+  .form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 60vh;
+    a{
+      text-decoration: underline;
+      align-self: flex-end;
+    }
+  }
+h1{
+  width: 100%;
+  height: calc(10vh - 24px);
+  text-align: center;
+  align-self: flex-start;
+}
+
+</style>

@@ -30,80 +30,75 @@
   font-family: "Times New Roman Bold Italic";
   src: url("fonts/TimesNewRoman/TimesNewRoman-BoldItalic.ttf") format("truetype");
 }
-h1 {
+.v-application h1 {
   font-family: "Times New Roman Bold", serif;
   font-size: 50px;
   line-height: 60px;
 }
 @media only screen and (max-width: 768px) {
-  h1 {
+  .v-application h1 {
     font-size: 35px;
     line-height: 40px;
   }
 }
-
-h2 {
+.v-application h2 {
   font-family: "Times New Roman Bold", sans-serif;
   font-size: 30px;
   line-height: 40px;
 }
-
-h3 {
+.v-application h3 {
   font-family: "Times New Roman Bold", sans-serif;
   font-size: 25px;
   line-height: 35px;
 }
-
-h4, h5, h6 {
+.v-application h4, .v-application h5, .v-application h6 {
   font-family: "Times New Roman Bold", sans-serif;
   font-size: 20px;
   line-height: 30px;
 }
-
-p {
+.v-application p {
   font-family: "Montserrat", sans-serif;
   font-size: 14px;
   line-height: 24px;
+  color: black;
 }
 @media only screen and (max-width: 768px) {
-  p {
+  .v-application p {
     font-size: 16px;
     line-height: 26px;
   }
 }
-
-p.big {
-  font-family: "Montserrat Bold", sans-serif;
-  font-size: 16px;
-  line-height: 26px;
-}
-@media only screen and (max-width: 768px) {
-  p.big {
-    font-size: 18px;
-    line-height: 28px;
-  }
-}
-
-p.small {
+.v-application p.small {
   font-family: "Montserrat Italic", sans-serif;
   font-size: 12px;
   line-height: 22px;
 }
 @media only screen and (max-width: 768px) {
-  p.small {
+  .v-application p.small {
     font-size: 14px;
     line-height: 24px;
   }
 }
-
-a {
-  text-decoration: none;
+.v-application p.big {
   font-family: "Montserrat Bold", sans-serif;
   font-size: 16px;
   line-height: 26px;
 }
 @media only screen and (max-width: 768px) {
-  a {
+  .v-application p.big {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+.v-application a {
+  text-decoration: none;
+  font-family: "Montserrat Bold", sans-serif;
+  font-size: 16px;
+  line-height: 26px;
+  color: #ff645f;
+}
+@media only screen and (max-width: 768px) {
+  .v-application a {
     font-size: 18px;
     line-height: 28px;
   }
