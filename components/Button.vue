@@ -31,7 +31,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .button{
-  z-index: 1;
+  z-index: 2;
   padding: 10px 20px;
   background-color: $secondary!important;
   color: white;

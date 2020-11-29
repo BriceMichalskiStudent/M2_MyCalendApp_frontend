@@ -3,7 +3,7 @@
     <h1>
       Se connecter
     </h1>
-    <div class="form-container">
+    <div class="login-container">
       <form method="post" @submit.prevent="login">
         <label class="label">Email</label>
         <input
@@ -69,38 +69,41 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  form{
-    text-align: right;
-    label{
-      display: none;
-    }
-    input{
-      width: 100%;
-      padding: 20px;
-      margin: 10px 0;
-      border-radius: 10px;
-      border: 1px solid rgba(0,0,0,0.3);
-    }
-    button{
-      display: inline-block;
-    }
-  }
-
-  .form-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 60vh;
-    a{
-      text-decoration: underline;
-      align-self: flex-end;
-    }
-  }
 h1{
   width: 100%;
-  height: calc(10vh - 24px);
+  height: calc(8vh - 24px);
   text-align: center;
   align-self: flex-start;
+  font-size: 30px;
+  line-height: 40px;
+  padding-top: 10px;
+}
+form{
+  text-align: right;
+  label{
+    display: none;
+  }
+  input{
+    width: 100%;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.3);
+  }
+  button{
+    display: inline-block;
+  }
+}
+
+.login-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 62vh;
+  a{
+    text-decoration: underline;
+    align-self: flex-end;
+  }
 }
 
 </style>

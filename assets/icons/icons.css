@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?l7jylh');
-  src:  url('fonts/icomoon.eot?l7jylh#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?l7jylh') format('truetype'),
-    url('fonts/icomoon.woff?l7jylh') format('woff'),
-    url('fonts/icomoon.svg?l7jylh#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?slb47c');
+  src:  url('fonts/icomoon.eot?slb47c#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?slb47c') format('truetype'),
+    url('fonts/icomoon.woff?slb47c') format('woff'),
+    url('fonts/icomoon.svg?slb47c#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -267,11 +267,29 @@
   content: "\e937";
   color: #4fc08d;
 }
+.icon-sort:before {
+  content: "\e93b";
+}
 .icon-file_copy:before {
   content: "\e90e";
 }
+.icon-storage:before {
+  content: "\e93c";
+}
 .icon-table_chart:before {
   content: "\e900";
+}
+.icon-keyboard_arrow_down:before {
+  content: "\e93d";
+}
+.icon-keyboard_arrow_left:before {
+  content: "\e93e";
+}
+.icon-keyboard_arrow_right:before {
+  content: "\e93f";
+}
+.icon-keyboard_arrow_up:before {
+  content: "\e940";
 }
 .icon-filter_center_focus:before {
   content: "\e901";
@@ -288,6 +306,9 @@
 .icon-emoji_symbols:before {
   content: "\e912";
 }
+.icon-location_pin:before {
+  content: "\e941";
+}
 .icon-info:before {
   content: "\e938";
 }
@@ -296,4 +317,40 @@
 }
 .icon-power:before {
   content: "\e93a";
+}
+.icon-close:before {
+  content: "\f00d";
+}
+.icon-remove:before {
+  content: "\f00d";
+}
+.icon-times:before {
+  content: "\f00d";
+}
+.icon-arrow-left:before {
+  content: "\f060";
+}
+.icon-arrow-right:before {
+  content: "\f061";
+}
+.icon-arrow-up:before {
+  content: "\f062";
+}
+.icon-arrow-down:before {
+  content: "\f063";
+}
+.icon-calendar:before {
+  content: "\f073";
+}
+.icon-upload:before {
+  content: "\f093";
+}
+.icon-bars:before {
+  content: "\f0c9";
+}
+.icon-navicon:before {
+  content: "\f0c9";
+}
+.icon-reorder:before {
+  content: "\f0c9";
 }
