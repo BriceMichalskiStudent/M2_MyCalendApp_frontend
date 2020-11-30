@@ -2,45 +2,48 @@ pull_request_rules:
   - name: automatic merge for Dependabot pull requests
     conditions:
       - author~=^dependabot(|-preview)\[bot\]$
-      - "status-success=Continuous Integration / Assert project can build (15.x) (push)"
-      - "status-success=Continuous Integration / Dependency Security Audit (15.x) (push)"
-      - "status-success=--> Linted: JAVASCRIPT_ES"
-      - "status-success=--> Linted: JSON"
-      - "status-success=--> Linted: MARKDOWN"
+      - check-success=Lint code base
+      - check-success=Assert project can build (12.x)
+      - check-success=Assert project can build (13.x)
+      - check-success=Assert project can build (14.x)
+      - check-success=Assert project can build (15.x)
+      - check-success=Dependency Security Audit (12.x)
+      - check-success=Dependency Security Audit (13.x)
+      - check-success=Dependency Security Audit (14.x)
+      - check-success=Dependency Security Audit (15.x)
+      - check-success=WIP
     actions:
       merge:
         method: merge
   - name: automatic merge for ImgBot pull requests
     conditions:
       - author=imgbot[bot]
-      - "status-success=Continuous Integration / Assert project can build (15.x) (push)"
-      - "status-success=Continuous Integration / Dependency Security Audit (15.x) (push)"
-      - "status-success=--> Linted: JAVASCRIPT_ES"
-      - "status-success=--> Linted: JSON"
-      - "status-success=--> Linted: MARKDOWN"
-    actions:
-      merge:
-        method: merge
-  - name: automatic merge for Snyk bot pull requests
-    conditions:
-      - author=snyk-bot[bot]
-      - "status-success=Continuous Integration / Assert project can build (15.x) (push)"
-      - "status-success=Continuous Integration / Dependency Security Audit (15.x) (push)"
-      - "status-success=--> Linted: JAVASCRIPT_ES"
-      - "status-success=--> Linted: JSON"
-      - "status-success=--> Linted: MARKDOWN"
+      - check-success=Lint code base
+      - check-success=Assert project can build (12.x)
+      - check-success=Assert project can build (13.x)
+      - check-success=Assert project can build (14.x)
+      - check-success=Assert project can build (15.x)
+      - check-success=Dependency Security Audit (12.x)
+      - check-success=Dependency Security Audit (13.x)
+      - check-success=Dependency Security Audit (14.x)
+      - check-success=Dependency Security Audit (15.x)
+      - check-success=WIP
     actions:
       merge:
         method: merge
   - name: Automatic merge ⬇️ on approval ✔
     conditions:
       - "#approved-reviews-by>=2"
-      - "status-success=Continuous Integration / Assert project can build (15.x) (push)"
-      - "status-success=Continuous Integration / Dependency Security Audit (15.x) (push)"
-      - "status-success=--> Linted: JAVASCRIPT_ES"
-      - "status-success=--> Linted: JSON"
-      - "status-success=--> Linted: MARKDOWN"
-      - "status-success=WIP"
+      - check-success=Lint code base
+      - check-success=Assert project can build (12.x)
+      - check-success=Assert project can build (13.x)
+      - check-success=Assert project can build (14.x)
+      - check-success=Assert project can build (15.x)
+      - check-success=Dependency Security Audit (12.x)
+      - check-success=Dependency Security Audit (13.x)
+      - check-success=Dependency Security Audit (14.x)
+      - check-success=Dependency Security Audit (15.x)
+      - check-success=WIP
     actions:
       merge:
         method: merge
