@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  transition: 'opacity',
   data () {
     return {
       title: 'Page index',
@@ -42,8 +43,7 @@ export default {
         { hid: 'description', name: 'description', content: this.meta_desc }
       ]
     }
-  },
-  transition: 'opacity'
+  }
 }
 </script>
 
