@@ -1,5 +1,15 @@
 @import "variables.scss";
 
+.v-application .primary {
+  background-color: $primary !important;
+  border-color: $primary !important;
+}
+
+.v-application .secondary {
+  background-color: $secondary !important;
+  border-color: $secondary !important;
+}
+
 .container.container--fluid{
   &.default{
     padding-top: 100px;

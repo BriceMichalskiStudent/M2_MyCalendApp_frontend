@@ -1,3 +1,13 @@
+.v-application .primary {
+  background-color: #f7c109 !important;
+  border-color: #f7c109 !important;
+}
+
+.v-application .secondary {
+  background-color: #ff645f !important;
+  border-color: #ff645f !important;
+}
+
 .container.container--fluid.default {
   padding-top: 100px;
   min-height: calc(100vh - 100px);
