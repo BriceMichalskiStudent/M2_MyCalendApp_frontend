@@ -1,8 +1,8 @@
 <template>
-  <nuxt-link v-if="type === null" :to="link" :class="[color, 'button']">
+  <nuxt-link v-if="type === null" :to="link" :class="[custom, 'button']">
     {{ anchor }}
   </nuxt-link>
-  <button v-else :class="[color, 'button']" :type="[type]">
+  <button v-else :class="[custom, 'button']" :type="[type]">
     {{ anchor }}
   </button>
 </template>
@@ -22,7 +22,7 @@ export default {
       type: String,
       default: null
     },
-    color: {
+    custom: {
       type: String,
       default: 'default'
     }
@@ -63,5 +63,8 @@ export default {
   &::after{
     background-color: $primary!important;;
   }
+}
+.large{
+  padding: 10px 10%;
 }
 </style>
