@@ -25,9 +25,14 @@
           {{ loggedInUser.firstName }}
         </nuxt-link>
       </li>
-      <li v-else>
+      <li v-if="!isAuthenticated">
         <nuxt-link to="/login">
           Connexion
+        </nuxt-link>
+      </li>
+      <li v-if="!isAuthenticated">
+        <nuxt-link to="/register">
+          Inscription
         </nuxt-link>
       </li>
       <li v-if="isAuthenticated">
@@ -36,7 +41,7 @@
         </a>
       </li>
       <li>
-        <Button link="/" anchor="Cree mon évènement" color="primary" />
+        <Button link="/" anchor="Cree mon évènement" custom="primary" />
       </li>
     </ul>
   </nav>

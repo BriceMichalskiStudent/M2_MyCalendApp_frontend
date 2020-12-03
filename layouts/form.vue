@@ -9,7 +9,7 @@
         <nuxt-link to="/" class="to-home">
           <span class="icon-close" />
         </nuxt-link>
-        <Nuxt class="content" />
+        <Nuxt />
       </div>
     </v-container>
   </v-app>
@@ -25,6 +25,10 @@
   position: relative;
   height: 100vh;
   overflow: hidden;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+    height: auto;
+    overflow: unset;
+  }
   &::after{
     overflow: hidden;
     z-index: 0;
@@ -61,7 +65,7 @@
   }
 }
 
-.form-container{
+.form-container {
   z-index: 1;
   display: flex;
   align-items: center;
@@ -71,30 +75,23 @@
   border-radius: 10px;
   flex-direction: column;
   position: relative;
-  @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
     border-radius: 0;
     margin: 0;
     height: 100vh;
   }
-  .to-home{
+
+  .to-home {
     position: absolute;
     top: 20px;
     right: 40px;
-    @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
       top: 25px;
       right: 10%;
     }
-    span{
+    span {
       font-size: 30px;
     }
-  }
-}
-.content{
-  width: 40%;
-  margin: 0 auto;
-  @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
-    width: 90%;
-    margin: 0 auto;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section class="content">
     <h1>
       Se connecter
     </h1>
@@ -19,7 +19,7 @@
           name="password"
           placeholder="Mot de passe"
         >
-        <Button anchor="Se connecter" type="submit" />
+        <Button anchor="Se connecter" type="submit" custom="large" />
       </form>
       <hr>
       <p>
@@ -29,7 +29,7 @@
         Se cree un compte
       </nuxt-link>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -69,6 +69,13 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.content{
+  width: 40%;
+  margin: 0 auto;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+    width: 90%;
+  }
+}
 h1{
   width: 100%;
   height: calc(8vh - 24px);
@@ -77,12 +84,13 @@ h1{
   font-size: 30px;
   line-height: 40px;
   padding-top: 10px;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+    min-height: calc(8vh - 24px);
+    height: auto;
+  }
 }
 form{
   text-align: right;
-  label{
-    display: none;
-  }
   button{
     margin: 20px 0;
     display: inline-block;
@@ -95,7 +103,9 @@ form{
   justify-content: center;
   height: 62vh;
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
-    height: 92vh;
+    min-height: calc(92vh - 40px);
+    height: auto;
+    margin: 20px 0;
   }
   a{
     text-decoration: underline;
