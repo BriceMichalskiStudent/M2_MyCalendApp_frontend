@@ -45,7 +45,7 @@ export default {
     top:0;
     left: 0;
     background-color: $secondary!important;;
-    opacity: 35%;
+    opacity: 0.35;
     z-index: -1;
     border-radius: 10px;
     transform: rotate(0);
