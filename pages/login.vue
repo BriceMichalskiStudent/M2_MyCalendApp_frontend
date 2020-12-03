@@ -60,9 +60,17 @@ export default {
           mail: this.mail,
           password: this.password
         }).then((response) => { this.$auth.setUser(response.data.user) })
+        await this.$store.commit('sendNotification', {
+          status: 'success',
+          message: 'Vous etes désormais connecter !'
+        })
         await this.$router.push('/profile')
       } catch (e) {
-        this.error = e.response.data.message
+        this.$store.commit('sendNotification', {
+          status: 'error',
+          message: e
+        })
+        this.$router.push('/login')
       }
     }
   }

@@ -1,10 +1,11 @@
 <template>
   <v-app>
+    <Notification />
     <Navbar />
     <v-container
       fluid
       tag="main"
-      class="default"
+      class="default-layout"
     >
       <Nuxt />
     </v-container>
@@ -71,10 +72,12 @@ html {
 </style>
 <script>
 import Navbar from '~/components/Navbar'
+import Notification from '~/components/Notification'
 
 export default {
   components: {
-    Navbar
+    Navbar,
+    Notification
   }
 }
 </script>
