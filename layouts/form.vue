@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <Notification />
     <v-container
       fluid
       tag="main"
@@ -14,7 +15,15 @@
     </v-container>
   </v-app>
 </template>
+<script>
+import Notification from '~/components/Notification'
 
+export default {
+  components: {
+    Notification
+  }
+}
+</script>
 <style lang="scss" scoped>
 /*Problème css order. Impossible to override vutify, this is the only way : (https://stackoverflow.com/questions/56665934/nuxt-vuetify-how-to-control-the-order-in-which-css-files-are-loaded) */
 @import "assets/vutify-override.css";
