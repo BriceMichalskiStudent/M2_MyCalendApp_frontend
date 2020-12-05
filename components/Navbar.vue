@@ -20,10 +20,8 @@
           Évènements
         </nuxt-link>
       </li>
-      <li v-if="isAuthenticated">
-        <nuxt-link to="/profile">
-          {{ loggedInUser.firstName }}
-        </nuxt-link>
+      <li v-if="!isAuthenticated">
+        <ProfileSystem />
       </li>
       <li v-if="!isAuthenticated">
         <nuxt-link to="/login">
@@ -35,11 +33,6 @@
           Inscription
         </nuxt-link>
       </li>
-      <li v-if="isAuthenticated">
-        <a @click="logout">
-          Déconnexion
-        </a>
-      </li>
       <li>
         <Button link="/" anchor="Cree mon évènement" custom="primary" />
       </li>
@@ -50,9 +43,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import Button from '@/components/Button'
+import ProfileSystem from '@/components/ProfileSystem'
 
 export default {
-  components: { Button },
+  components: { Button, ProfileSystem },
   data () {
     return {
       isActive: false,
@@ -63,9 +57,6 @@ export default {
     ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
   methods: {
-    async logout () {
-      await this.$auth.logout()
-    },
     myFilter () {
       this.isActive = !this.isActive
     }
@@ -94,7 +85,6 @@ nav {
   transition-duration: $navAnimationDuration;
   transition-timing-function: $navAnimationTiming;
   background-color: transparent;
-  overflow: hidden;
   z-index: 1;
   right: 5%;
   backdrop-filter: blur(10px);
