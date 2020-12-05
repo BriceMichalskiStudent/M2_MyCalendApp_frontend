@@ -1,11 +1,13 @@
 <template>
   <section class="profile">
-    <img src="/img/placeholder-profile.jpg">
-    <div class="data">
-      <p>Alban Pierson</p>
-      <p><span>2</span> évènements a venir</p>
+    <div class="in-bar" @click="triggerProfile">
+      <img src="/img/placeholder-profile.jpg">
+      <div class="data">
+        <p>Alban Pierson</p>
+        <p><span>2</span> évènements a venir</p>
+      </div>
     </div>
-    <div class="action">
+    <div :class="['action', {active : profileActivate}]">
       <ul>
         <li>
           <nuxt-link to="/profile">
@@ -28,17 +30,32 @@
 </template>
 <script>
 export default {
+  data () {
+    return {
+      profileActivate: false
+    }
+  },
   methods: {
     async logout () {
       await this.$auth.logout()
+    },
+    triggerProfile () {
+      this.profileActivate = !this.profileActivate
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.profile{
+@media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+  .profile {
+    height: auto;
+    background-color: #c3c3c3;
+    border-radius: 6px;
+    width: 100%;
+  }
+}
+.in-bar{
   height: 50px;
-  border: 1px solid rgba(0,0,0,0.1);
   position: relative;
   img{
     width: 40px;
@@ -71,6 +88,8 @@ export default {
   }
 }
 .action{
+  opacity: 0;
+  transition-duration: 0.6s;
   height: auto;
   background-color: #c3c3c3;
   border-radius: 6px;
@@ -79,37 +98,50 @@ export default {
   left: -10px;
   bottom: -158px;
   width: 100%;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+    opacity: 1;
+    position: unset;
+    left: unset;
+    bottom: unset;
+    background-color: unset;
+    margin: 0;
+  }
+  &.active{
+    opacity: 1;
+  }
   ul{
     padding: 0;
     li{
       list-style: none;
-      height: 44px;
-      padding: 10px 15px;
-      position: relative;
       a{
+        height: 44px;
+        padding: 10px 15px;
+        position: relative;
+        width: 100%;
         font-size: 14px;
         line-height: 24px;
         color: black;
+        display: inline-block;
+        &:after{
+          opacity: 0;
+          transition-duration: 0.4s;
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 0;
+          top: 15px;
+          right: 20px;
+          border-top: 7px solid transparent;
+          border-bottom: 7px solid transparent;
+          border-right: 11px solid $secondary;
+          border-radius: 2px;
+        }
+        &:hover:after{
+          opacity: 1;
+        }
       }
       &:last-of-type{
         border-top: solid 1px black;
-      }
-      &:after{
-        opacity: 0;
-        transition-duration: 0.4s;
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 0;
-        top: 15px;
-        right: 20px;
-        border-top: 7px solid transparent;
-        border-bottom: 7px solid transparent;
-        border-right: 11px solid $secondary;
-        border-radius: 2px;
-      }
-      &:hover:after{
-        opacity: 1;
       }
     }
   }
