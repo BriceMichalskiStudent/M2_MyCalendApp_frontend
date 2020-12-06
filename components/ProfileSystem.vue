@@ -3,7 +3,7 @@
     <div v-click-outside="externalClick" class="in-bar" @click="triggerProfile">
       <img src="/img/placeholder-profile.jpg">
       <div class="data">
-        <p>Alban Pierson</p>
+        <p>{{ loggedInUser.firstName }} {{ loggedInUser.lastName }}</p>
         <p><span>2</span> évènements a venir</p>
       </div>
     </div>
@@ -30,6 +30,7 @@
 </template>
 <script>
 import vClickOutside from 'v-click-outside'
+import { mapGetters } from 'vuex'
 
 export default {
   directives: {
@@ -39,6 +40,9 @@ export default {
     return {
       profileActivate: false
     }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser'])
   },
   methods: {
     async logout () {
@@ -57,7 +61,8 @@ export default {
 @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
   .profile {
     height: auto;
-    background-color: #c3c3c3;
+    background-color: white;
+    box-shadow: -3px 6px 25px -5px rgba(195,195,195,0.76);
     border-radius: 6px;
     width: 100%;
   }

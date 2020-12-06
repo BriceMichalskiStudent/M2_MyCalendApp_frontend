@@ -5,7 +5,7 @@
     <v-container
       fluid
       tag="main"
-      class="admin"
+      class="admin-layout"
     >
       <Nuxt />
     </v-container>

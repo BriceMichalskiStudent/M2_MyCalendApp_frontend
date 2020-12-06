@@ -11,6 +11,7 @@
           type="email"
           name="mail"
           placeholder="test@mail.com"
+          required
         >
         <label class="label">Password</label>
         <input
@@ -18,6 +19,7 @@
           type="password"
           name="password"
           placeholder="Mot de passe"
+          required
         >
         <Button anchor="Se connecter" type="submit" custom="large" />
       </form>

@@ -3,7 +3,7 @@
     <div
       :class="{active: isActive}"
       class="hamburger hamburger--collapse"
-      @click="myFilter"
+      @click="triggerMenu"
     >
       <div class="hamburger-box">
         <div class="hamburger-inner" />
@@ -11,29 +11,29 @@
     </div>
     <ul>
       <li>
-        <nuxt-link to="/">
+        <nuxt-link to="/" @click="triggerMenu">
           <Logo height="40px" width="auto" />
         </nuxt-link>
       </li>
-      <li>
+      <li @click="triggerMenu">
         <nuxt-link to="/">
           Évènements
         </nuxt-link>
       </li>
-      <li v-if="!isAuthenticated">
+      <li v-if="isAuthenticated" @click="triggerMenu">
         <ProfileSystem />
       </li>
-      <li v-if="!isAuthenticated">
+      <li v-if="!isAuthenticated" @click="triggerMenu">
         <nuxt-link to="/login">
           Connexion
         </nuxt-link>
       </li>
-      <li v-if="!isAuthenticated">
+      <li v-if="!isAuthenticated" @click="triggerMenu">
         <nuxt-link to="/register">
           Inscription
         </nuxt-link>
       </li>
-      <li>
+      <li @click="triggerMenu">
         <Button link="/" anchor="Cree mon évènement" custom="primary" />
       </li>
     </ul>
@@ -57,7 +57,7 @@ export default {
     ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
   methods: {
-    myFilter () {
+    triggerMenu () {
       this.isActive = !this.isActive
     }
   }
@@ -149,7 +149,7 @@ nav {
       }
     }
     li:first-of-type, li:last-of-type{
-      a.exact-active-link:before {
+      a:before {
         display: none;
       }
     }
@@ -174,8 +174,8 @@ nav {
       height: 100vh;
     }
     ul {
-      height: calc(100vh - 500px);
-      margin: 250px 0;
+      height: calc(100vh - 400px);
+      margin: 200px 0;
       flex-direction: column;
       justify-content: space-between;
       li {
