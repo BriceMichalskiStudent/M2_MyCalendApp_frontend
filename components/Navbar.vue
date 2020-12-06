@@ -132,15 +132,16 @@ nav {
           background-color: white;
           transition-duration: 0.4s;
           transition-timing-function: ease;
+          z-index: -1;
         }
-        &.exact-active-link{
-          &:before {
+        &:hover:before{
+          width: 60%;
+          background-color: $primary!important;
+        }
+        &.exact-active-link:before {
             width: 60%;
-            bottom: 5px;
-            z-index: -1;
             background-color: $primary!important;
           }
-        }
       }
       &:first-of-type{
         position: absolute;

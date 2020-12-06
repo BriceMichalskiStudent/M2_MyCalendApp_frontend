@@ -1,6 +1,6 @@
 <template>
   <section class="profile">
-    <div class="in-bar" @click="triggerProfile">
+    <div v-click-outside="externalClick" class="in-bar" @click="triggerProfile">
       <img src="/img/placeholder-profile.jpg">
       <div class="data">
         <p>Alban Pierson</p>
@@ -29,7 +29,12 @@
   </section>
 </template>
 <script>
+import vClickOutside from 'v-click-outside'
+
 export default {
+  directives: {
+    clickOutside: vClickOutside.directive
+  },
   data () {
     return {
       profileActivate: false
@@ -41,6 +46,9 @@ export default {
     },
     triggerProfile () {
       this.profileActivate = !this.profileActivate
+    },
+    externalClick (event) {
+      this.profileActivate = false
     }
   }
 }
@@ -55,8 +63,16 @@ export default {
   }
 }
 .in-bar{
+  cursor: pointer;
   height: 50px;
   position: relative;
+  box-shadow: none;
+  transition-duration: 0.6s;
+  border-radius: 4px;
+  padding: 0 10px;
+  &:hover{
+    background-color: rgba(247, 193, 9, 0.5);
+  }
   img{
     width: 40px;
     height: 40px;
@@ -91,13 +107,14 @@ export default {
   opacity: 0;
   transition-duration: 0.6s;
   height: auto;
-  background-color: #c3c3c3;
   border-radius: 6px;
   position: absolute;
   margin: 10px;
   left: -10px;
   bottom: -158px;
   width: 100%;
+  background-color: white;
+  box-shadow: -3px 6px 25px -5px rgba(195,195,195,0.76);
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
     opacity: 1;
     position: unset;
@@ -141,7 +158,7 @@ export default {
         }
       }
       &:last-of-type{
-        border-top: solid 1px black;
+        border-top: solid 1px #c3c3c3;
       }
     }
   }
