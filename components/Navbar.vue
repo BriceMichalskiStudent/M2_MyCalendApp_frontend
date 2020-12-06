@@ -89,10 +89,13 @@ nav {
   right: 5%;
   backdrop-filter: blur(10px);
   border-radius: 0 0 10px 10px;
-  &.active {
-    height: 100vh;
-    ul li, ul li.selected, ul p {
-      color: black;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    &.active {
+      height: 100vh;
+
+      ul li, ul li.selected, ul p {
+        color: black;
+      }
     }
   }
   ul {
