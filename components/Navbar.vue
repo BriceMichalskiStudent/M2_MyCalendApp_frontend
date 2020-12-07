@@ -3,7 +3,7 @@
     <div
       :class="{active: isActive}"
       class="hamburger hamburger--collapse"
-      @click="myFilter"
+      @click="triggerMenu"
     >
       <div class="hamburger-box">
         <div class="hamburger-inner" />
@@ -11,36 +11,29 @@
     </div>
     <ul>
       <li>
-        <nuxt-link to="/">
+        <nuxt-link to="/" @click="triggerMenu">
           <Logo height="40px" width="auto" />
         </nuxt-link>
       </li>
-      <li>
+      <li @click="triggerMenu">
         <nuxt-link to="/">
           Évènements
         </nuxt-link>
       </li>
-      <li v-if="isAuthenticated">
-        <nuxt-link to="/profile">
-          {{ loggedInUser.firstName }}
-        </nuxt-link>
+      <li v-if="isAuthenticated" @click="triggerMenu">
+        <ProfileSystem />
       </li>
-      <li v-if="!isAuthenticated">
+      <li v-if="!isAuthenticated" @click="triggerMenu">
         <nuxt-link to="/login">
           Connexion
         </nuxt-link>
       </li>
-      <li v-if="!isAuthenticated">
+      <li v-if="!isAuthenticated" @click="triggerMenu">
         <nuxt-link to="/register">
           Inscription
         </nuxt-link>
       </li>
-      <li v-if="isAuthenticated">
-        <a @click="logout">
-          Déconnexion
-        </a>
-      </li>
-      <li>
+      <li @click="triggerMenu">
         <Button link="/" anchor="Cree mon évènement" custom="primary" />
       </li>
     </ul>
@@ -50,9 +43,10 @@
 <script>
 import { mapGetters } from 'vuex'
 import Button from '@/components/Button'
+import ProfileSystem from '@/components/ProfileSystem'
 
 export default {
-  components: { Button },
+  components: { Button, ProfileSystem },
   data () {
     return {
       isActive: false,
@@ -63,10 +57,7 @@ export default {
     ...mapGetters(['isAuthenticated', 'loggedInUser'])
   },
   methods: {
-    async logout () {
-      await this.$auth.logout()
-    },
-    myFilter () {
+    triggerMenu () {
       this.isActive = !this.isActive
     }
   }
@@ -94,15 +85,17 @@ nav {
   transition-duration: $navAnimationDuration;
   transition-timing-function: $navAnimationTiming;
   background-color: transparent;
-  overflow: hidden;
   z-index: 1;
   right: 5%;
   backdrop-filter: blur(10px);
   border-radius: 0 0 10px 10px;
-  &.active {
-    height: 100vh;
-    ul li, ul li.selected, ul p {
-      color: black;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    &.active {
+      height: 100vh;
+
+      ul li, ul li.selected, ul p {
+        color: black;
+      }
     }
   }
   ul {
@@ -142,15 +135,16 @@ nav {
           background-color: white;
           transition-duration: 0.4s;
           transition-timing-function: ease;
+          z-index: -1;
         }
-        &.exact-active-link{
-          &:before {
+        &:hover:before{
+          width: 60%;
+          background-color: $primary!important;
+        }
+        &.exact-active-link:before {
             width: 60%;
-            bottom: 5px;
-            z-index: -1;
             background-color: $primary!important;
           }
-        }
       }
       &:first-of-type{
         position: absolute;
@@ -158,7 +152,7 @@ nav {
       }
     }
     li:first-of-type, li:last-of-type{
-      a.exact-active-link:before {
+      a:before {
         display: none;
       }
     }
@@ -183,8 +177,8 @@ nav {
       height: 100vh;
     }
     ul {
-      height: calc(100vh - 500px);
-      margin: 250px 0;
+      height: calc(100vh - 400px);
+      margin: 200px 0;
       flex-direction: column;
       justify-content: space-between;
       li {
