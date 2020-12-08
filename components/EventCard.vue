@@ -5,7 +5,7 @@
     </p>
     <img :src="event.image">
     <p class="big">
-      {{ event.dateStart | moment("MMM D") }}
+      {{ $moment(event.dateStart).format("MMM D") }}
     </p>
     <p> {{ event.description }}</p>
     <h3> {{ event.name }}</h3>
@@ -49,3 +49,14 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+.event-card{
+  width: 200px;
+  height: 400px;
+  border: 1px solid rgba(0,0,0,0.1);
+  overflow: hidden;
+  img{
+    width: 100%;
+  }
+}
+</style>

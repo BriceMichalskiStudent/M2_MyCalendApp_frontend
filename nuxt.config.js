@@ -26,10 +26,7 @@ export default {
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [
-    { src: '@/plugins/vClickOutside', ssr: false },
-    { src: '@/plugins/vueMoment', ssr: false }
-  ],
+  plugins: [{ src: '@/plugins/vClickOutside', ssr: false }],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -37,8 +34,12 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     '@nuxtjs/vuetify',
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/moment'
   ],
+  moment: {
+    locales: ['fr']
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
