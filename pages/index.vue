@@ -1,13 +1,10 @@
 <template>
   <div class="center-here">
     <div>
-      <Logo height="300px" width="auto" />
-      <h1>
-        MyCalendAPP
-      </h1>
-      <h2>
-        Test H2
-      </h2>
+      <EventCard />
+      <br>
+      <br>
+      <br>
       <div class="links">
         <nuxt-link
           to="/admin"
@@ -28,7 +25,10 @@
 </template>
 
 <script>
+import EventCard from '~/components/EventCard'
+
 export default {
+  components: { EventCard },
   transition: 'opacity',
   data () {
     return {
