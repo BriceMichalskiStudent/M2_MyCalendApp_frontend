@@ -84,11 +84,11 @@ nav {
   position: fixed;
   transition-duration: $navAnimationDuration;
   transition-timing-function: $navAnimationTiming;
-  background-color: transparent;
+  background-color: rgba(255,255,255,0.4);
   z-index: 1;
   right: 5%;
   backdrop-filter: blur(10px);
-  border: 2px solid transparent;
+  border: 4px solid transparent;
   border-radius: 0 0 10px 10px;
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
     &.active {
