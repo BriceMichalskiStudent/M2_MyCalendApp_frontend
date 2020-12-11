@@ -22,7 +22,7 @@ export default {
   components: { EventCard },
   props: {
     events: {
-      type: Object,
+      type: Array,
       default () {
         return [
           {
