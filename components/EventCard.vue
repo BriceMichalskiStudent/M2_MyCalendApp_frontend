@@ -7,7 +7,7 @@
     <div class="event-image" :style="{ backgroundImage: 'url(' + event.image + ')' }" />
     <section class="event-info">
       <p class="event-date">
-        {{ $moment(event.dateStart).format("MMM D") }}
+        {{ $moment(event.dateStart).format("MMM DD") }}
       </p>
       <div class="event-summary">
         <h3> {{ event.name }}</h3>
@@ -26,6 +26,7 @@ export default {
       type: Object,
       default () {
         return {
+          id: 0,
           name: 'Soirée D&D',
           description: 'Grosser soirée D&D Rdv Musée d\'art contemporain, villeurbanne wjbxsakm dewjdksxb scjkwbcwb jckcwe we dwe od',
           dateEnd: '2020-02-24 2:00',
