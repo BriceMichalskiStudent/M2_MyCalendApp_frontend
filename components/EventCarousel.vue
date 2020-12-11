@@ -5,7 +5,7 @@
         <template #prevArrow class="slick-arrow arrow-prev">
           <span class="icon-arrow-left" />
         </template>
-        <div v-for="i in 5" :key="i" class="img-wrapper">
+        <div v-for="i in 12" :key="i" class="img-wrapper">
           <EventCard />
         </div>
         <template #nextArrow class="slick-arrow arrow-next">
@@ -25,23 +25,25 @@ export default {
       slickOptions: {
         slidesToShow: 3,
         arrows: true,
-        responsive: [{
-
-          breakpoint: 960,
-          settings: {
-            slidesToShow: 2,
-            arrows: true
+        infinite: false,
+        responsive: [
+          {
+            breakpoint: 960,
+            settings: {
+              slidesToShow: 2,
+              arrows: true,
+              infinite: false
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1,
+              arrows: true,
+              infinite: false
+            }
           }
-
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 1,
-            arrows: true
-          }
-
-        }]
+        ]
       }
     }
   }
@@ -51,8 +53,7 @@ export default {
 <style lang="scss">
 .carousel-container{
   width: 100%;
-  overflow: hidden;
-  padding: 40px 0;
+  padding: 10px 0 60px;
   position: relative;
 }
 .carousel-wrapper {
@@ -68,15 +69,15 @@ export default {
   span.slick-arrow{
     position: absolute;
     color: black;
-    font-size: 28px;
-    line-height: 38px;
+    font-size: 35px;
+    line-height: 45px;
     &.slick-prev{
       bottom: 0;
-      left: 20px;
+      left: 0;
     }
     &.slick-next{
       bottom: 0;
-      right: 20px;
+      right: 0;
     }
   }
 }

@@ -11,6 +11,7 @@
 .container.container--fluid.default-layout {
   padding: 100px 0 0;
   min-height: calc(100vh - 100px);
+  overflow: hidden;
 }
 .container.container--fluid.admin-layout {
   background-color: #f8f9fe;

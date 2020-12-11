@@ -1,5 +1,13 @@
 <template>
-  <EventCarousel />
+  <div class="col-md-8 offset-md-2">
+    <h2>Wow ! Nice slider !</h2>
+    <EventCarousel />
+    <br>
+    <br>
+    <br>
+    <h2>OMG ! An other one !</h2>
+    <EventCarousel />
+  </div>
 </template>
 
 <script>

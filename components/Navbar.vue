@@ -168,13 +168,12 @@ nav {
     height: 80px;
     width: 100%;
     background: transparent;
-    backdrop-filter: blur(0px);
-    border-radius: unset;
+    border: unset;
     right: 0;
     overflow: hidden;
     padding: 40px;
     &.active {
-      backdrop-filter: blur(10px);
+      border-radius: unset;
       height: 100vh;
     }
     ul {

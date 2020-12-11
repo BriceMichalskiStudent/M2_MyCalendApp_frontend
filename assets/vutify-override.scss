@@ -14,6 +14,7 @@
   &.default-layout{
     padding: 100px 0 0;
     min-height: calc(100vh - 100px);
+    overflow: hidden;
   }
 
   // @override vutify property
