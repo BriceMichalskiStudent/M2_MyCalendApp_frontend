@@ -21,12 +21,13 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    'vue-slick-carousel/dist/vue-slick-carousel.css',
     '@/assets/general.css',
     '@/assets/icons/icons.css'
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [{ src: '@/plugins/vClickOutside', ssr: false }],
+  plugins: [{ src: '@/plugins/vClickOutside', ssr: false }, { src: './plugins/vSlickCarousel.js' }],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,

@@ -1,34 +1,12 @@
 <template>
-  <div class="center-here">
-    <div>
-      <EventCard />
-      <br>
-      <br>
-      <br>
-      <div class="links">
-        <nuxt-link
-          to="/admin"
-          class="button--green"
-        >
-          Admin Panel
-        </nuxt-link>
-        <a
-          href="https://github.com/MyCalendApp/frontend"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
-  </div>
+  <EventCarousel />
 </template>
 
 <script>
-import EventCard from '~/components/EventCard'
+import EventCarousel from '~/components/EventCarousel'
 
 export default {
-  components: { EventCard },
+  components: { EventCarousel },
   transition: 'opacity',
   data () {
     return {
