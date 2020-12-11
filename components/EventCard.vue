@@ -69,6 +69,10 @@ export default {
   -webkit-box-shadow: -2px 2px 25px 0px rgba(0,0,0,0.2);
   -moz-box-shadow: -2px 2px 25px 0px rgba(0,0,0,0.2);
   box-shadow: -2px 2px 35px 0px rgba(0,0,0,0.2);
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    width: 250px;
+    height: 320px;
+  }
   span.icon-arrow-right{
     position: absolute;
     right: 15px;
@@ -88,6 +92,14 @@ export default {
     font-size: 24px;
     border-radius: 10px;
     transition-duration: 0.6s;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+      width: 36px;
+      height: 36px;
+      right: 15px;
+      top: calc(190px - 55px);
+      font-size: 20px;
+      border-radius: 4px;
+    }
   }
   &:hover span.icon-arrow-right{
     -webkit-box-shadow: 0 0 0 -1px $secondary;
@@ -108,11 +120,19 @@ export default {
     border-radius: 0 6px 6px 0;
     top: 20px;
     left: 0;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+      width: 100%;
+      top: 0;
+      border-radius: unset;
+    }
   }
   .event-info {
     height: 130px;
     display: flex;
-
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+      height: auto;
+      padding: 10px 0;
+    }
     .event-date {
       box-sizing: border-box;
       margin: 0;
@@ -123,6 +143,12 @@ export default {
       font-size: 30px;
       line-height: 40px;
       align-self: center;
+      @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+        width: 35%;
+        font-size: 25px;
+        line-height: 35px;
+        padding: 5px;
+      }
     }
 
     .event-summary {
@@ -133,6 +159,15 @@ export default {
       overflow: hidden;
       position: relative;
       margin-bottom: 10px;
+      @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+        width: 65%;
+        margin: 0;
+        padding: 5px 10px;
+        align-content: center;
+        justify-content: center;
+        height: auto;
+        display: flex;
+      }
       &::after{
         content: '';
         position: absolute;
@@ -142,17 +177,29 @@ export default {
         text-align: center;
         margin: 0; padding: 30px 0;
         background-image: linear-gradient(to bottom, transparent, #ffffff);
+        @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+          display: none;
+        }
       }
       h3{
         padding: 10px 0;
         color: black;
         font-size: 27px;
         line-height: 37px;
+        @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+          font-size: 25px;
+          line-height: 35px;
+          padding: 5px 0;
+          align-self: center;
+        }
       }
       p{
         padding-bottom: 10px;
         font-size: 14px;
         line-height: 18px;
+        @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+          display: none;
+        }
       }
     }
   }
@@ -164,12 +211,22 @@ export default {
     line-height: 24px;
     font-family: "Times New Roman", sans-serif;
     margin: 0;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+      font-size: 12px;
+      line-height: 19px;
+      padding: 0 5px;
+    }
     span{
       color: $primary;
       font-size: 20px;
       line-height: 20px;
       vertical-align: baseline;
       padding: 0 2px;
+      @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+        font-size: 18px;
+        line-height: 18px;
+        padding: 0;
+      }
     }
   }
   .event-image{
@@ -178,6 +235,9 @@ export default {
     height: 230px;
     background-position: 50% 50%;
     background-size: cover;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+      height: 190px;
+    }
   }
 }
 </style>
