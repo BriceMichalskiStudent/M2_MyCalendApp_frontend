@@ -72,7 +72,7 @@ export default {
   box-shadow: -2px 2px 35px 0px rgba(0,0,0,0.2);
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
     width: 250px;
-    height: 320px;
+    height: 340px;
   }
   span.icon-arrow-right{
     position: absolute;
@@ -208,19 +208,19 @@ export default {
     width: 100%;
     padding: 0 10px;
     text-align: right;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 25px;
     font-family: "Times New Roman", sans-serif;
     margin: 0;
     @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
-      font-size: 12px;
-      line-height: 19px;
-      padding: 0 5px;
+      font-size: 18px;
+      line-height: 23px;
+      padding: 10px 5px;
     }
     span{
       color: $primary;
-      font-size: 20px;
-      line-height: 20px;
+      font-size: 25px;
+      line-height: 25px;
       vertical-align: baseline;
       padding: 0 2px;
       @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {

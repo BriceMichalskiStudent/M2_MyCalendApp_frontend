@@ -175,7 +175,7 @@ nav {
     border: unset;
     right: 0;
     overflow: hidden;
-    padding: 40px;
+    padding: 20px;
     &.active {
       border-radius: unset;
       height: 100vh;

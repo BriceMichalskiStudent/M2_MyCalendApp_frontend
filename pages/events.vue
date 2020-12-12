@@ -85,7 +85,7 @@ export default {
           dateEnd: '2020-02-24 2:00',
           dateStart: '2020-02-23 21:00',
           image: 'img/placeholder-animation-banner.jpg',
-          address: 'Musée d\'art contemporain, villeurbanne',
+          address: 'villeurbanne',
           posts: [
             { '{Post}': '{Post}' }
           ],
@@ -154,10 +154,19 @@ export default {
   z-index: 0;
   height: 390px;
   margin-bottom: 80px;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    height: 300px;
+  }
   h1{
-    font-size: 60px;
-    line-height: 70px;
+    font-size: 58px;
+    line-height: 68px;
     z-index: 1;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+      font-size: 45px;
+      line-height: 55px;
+      border-radius: 6px;
+      background-color: rgba(255,255,255,0.4);
+    }
   }
   img{
     width: 150%;
@@ -168,6 +177,10 @@ export default {
     max-height: 300px;
     object-fit: cover;
     object-position: 0 20%;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+      top: 60px;
+      height: 200px;
+    }
   }
   .search{
     background-color: white;
