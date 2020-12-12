@@ -79,13 +79,13 @@ export default {
           }
         },
         {
-          id: 3,
-          name: 'Road to 2021',
-          description: 'Go se bourer la gueule mais toujours dans le respect des geste barrière, confiner ensemble toutes la sainte journee !!!',
-          dateEnd: '2020-12-31 12:00',
-          dateStart: '2021-01-02 00:00',
-          image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-          address: 'Chez, la gouinfre',
+          id: 2,
+          name: 'Soirée D&D',
+          description: 'Grosser soirée D&D Rdv Musée d\'art contemporain, villeurbanne wjbxsakm dewjdksxb scjkwbcwb jckcwe we dwe od',
+          dateEnd: '2020-02-24 2:00',
+          dateStart: '2020-02-23 21:00',
+          image: 'img/placeholder-animation-banner.jpg',
+          address: 'Musée d\'art contemporain, villeurbanne',
           posts: [
             { '{Post}': '{Post}' }
           ],
@@ -94,8 +94,12 @@ export default {
           },
           tags: [
             {
-              code: 'ALCOOL',
-              name: 'Biere'
+              code: 'KITCHEN',
+              name: 'Cuisine'
+            },
+            {
+              code: 'SPORT',
+              name: 'PISCINE'
             }
           ],
           localization: {
@@ -103,13 +107,13 @@ export default {
           }
         },
         {
-          id: 1,
-          name: 'Road to 2021',
-          description: 'Go se bourer la gueule mais toujours dans le respect des geste barrière, confiner ensemble toutes la sainte journee !!!',
-          dateEnd: '2020-12-31 12:00',
-          dateStart: '2021-01-02 00:00',
-          image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-          address: 'Chez, la gouinfre',
+          id: 3,
+          name: 'Oupla',
+          description: 'Grosser dossier lo',
+          dateEnd: '2020-07-02 2:00',
+          dateStart: '2020-07-02 21:00',
+          image: 'https://images.unsplash.com/photo-1572914339448-b0479ad30fd5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+          address: 'Chez, moi',
           posts: [
             { '{Post}': '{Post}' }
           ],
@@ -118,8 +122,12 @@ export default {
           },
           tags: [
             {
-              code: 'ALCOOL',
-              name: 'Biere'
+              code: 'KITCHEN',
+              name: 'Fiesta'
+            },
+            {
+              code: 'SPORT',
+              name: 'PISCINE'
             }
           ],
           localization: {
@@ -189,13 +197,13 @@ export default {
     text-align: center;
     max-width: 200px;
     float: right;
-    top: 27px;
+    top: 20px;
     @media only screen and (max-width: map-get($grid-breakpoints, 'sm')) {
-      display: inline-block;
       padding: 10px 0;
       font-size: 17px;
       line-height: 27px;
       width: 38%;
+      top:25px
     }
   }
 }

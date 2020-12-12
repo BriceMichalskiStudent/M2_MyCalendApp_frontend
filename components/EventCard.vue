@@ -4,7 +4,7 @@
       {{ event.tags[0].name }}
     </p>
     <span class="icon-arrow-right" />
-    <div class="event-image" :style="{ backgroundImage: 'url(' + event.image + ')' }" />
+    <img class="event-image" :src="event.image">
     <section class="event-info">
       <p class="event-date">
         {{ $moment(event.dateStart).format("MMM DD") }}
@@ -234,8 +234,7 @@ export default {
     width: 100%;
     margin: 0;
     height: 230px;
-    background-position: 50% 50%;
-    background-size: cover;
+    object-fit: fill;
     @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
       height: 190px;
     }
