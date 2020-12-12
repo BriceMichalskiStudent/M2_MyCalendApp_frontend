@@ -90,7 +90,7 @@ nav {
   transition-duration: $navAnimationDuration;
   transition-timing-function: $navAnimationTiming;
   background-color: rgba(255,255,255,0.4);
-  z-index: 1;
+  z-index: 100;
   right: 5%;
   backdrop-filter: blur(10px);
   border: 4px solid transparent;

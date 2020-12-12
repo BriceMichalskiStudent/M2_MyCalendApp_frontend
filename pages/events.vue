@@ -178,12 +178,25 @@ export default {
   h2{
     display: inline-block;
     padding: 30px 0;
-    width: 79%;
+    width: 73%;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'sm')) {
+      width: 60%;
+    }
   }
   a{
     display: inline-block;
-    width: 20%;
+    width: 27%;
     text-align: center;
+    max-width: 200px;
+    float: right;
+    top: 27px;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'sm')) {
+      display: inline-block;
+      padding: 10px 0;
+      font-size: 17px;
+      line-height: 27px;
+      width: 38%;
+    }
   }
 }
 </style>
