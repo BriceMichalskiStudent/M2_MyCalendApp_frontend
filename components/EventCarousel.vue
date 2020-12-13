@@ -120,6 +120,7 @@ export default {
   width: 100%;
   padding: 10px 0 60px;
   position: relative;
+  margin-bottom: 60px;
 }
 .carousel-wrapper {
   width: 1200px;

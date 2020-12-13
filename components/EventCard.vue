@@ -4,7 +4,7 @@
       {{ event.tags[0].name }}
     </p>
     <span class="icon-arrow-right" />
-    <div class="event-image" :style="{ backgroundImage: 'url(' + event.image + ')' }" />
+    <img class="event-image" :src="event.image">
     <section class="event-info">
       <p class="event-date">
         {{ $moment(event.dateStart).format("MMM DD") }}
@@ -72,7 +72,7 @@ export default {
   box-shadow: -2px 2px 35px 0px rgba(0,0,0,0.2);
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
     width: 250px;
-    height: 320px;
+    height: 340px;
   }
   span.icon-arrow-right{
     position: absolute;
@@ -208,19 +208,19 @@ export default {
     width: 100%;
     padding: 0 10px;
     text-align: right;
-    font-size: 14px;
-    line-height: 24px;
+    font-size: 20px;
+    line-height: 25px;
     font-family: "Times New Roman", sans-serif;
     margin: 0;
     @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
-      font-size: 12px;
-      line-height: 19px;
-      padding: 0 5px;
+      font-size: 18px;
+      line-height: 23px;
+      padding: 10px 5px;
     }
     span{
       color: $primary;
-      font-size: 20px;
-      line-height: 20px;
+      font-size: 25px;
+      line-height: 25px;
       vertical-align: baseline;
       padding: 0 2px;
       @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
@@ -234,8 +234,7 @@ export default {
     width: 100%;
     margin: 0;
     height: 230px;
-    background-position: 50% 50%;
-    background-size: cover;
+    object-fit: fill;
     @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
       height: 190px;
     }

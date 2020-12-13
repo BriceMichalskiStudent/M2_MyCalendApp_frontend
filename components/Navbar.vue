@@ -17,6 +17,11 @@
       </li>
       <li @click="triggerMenu">
         <nuxt-link to="/">
+          Accueil
+        </nuxt-link>
+      </li>
+      <li @click="triggerMenu">
+        <nuxt-link to="/events">
           Évènements
         </nuxt-link>
       </li>
@@ -85,7 +90,7 @@ nav {
   transition-duration: $navAnimationDuration;
   transition-timing-function: $navAnimationTiming;
   background-color: rgba(255,255,255,0.4);
-  z-index: 1;
+  z-index: 100;
   right: 5%;
   backdrop-filter: blur(10px);
   border: 4px solid transparent;
@@ -111,7 +116,7 @@ nav {
     li {
       display: flex;
       width: auto;
-      margin: 5px 20px;
+      margin: 5px 10px;
       color: black;
       position: relative;
       border-radius: 8px;
@@ -167,11 +172,10 @@ nav {
   nav {
     height: 80px;
     width: 100%;
-    background: transparent;
     border: unset;
     right: 0;
     overflow: hidden;
-    padding: 40px;
+    padding: 20px;
     &.active {
       border-radius: unset;
       height: 100vh;
