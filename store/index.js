@@ -1,3 +1,11 @@
+export const state = () => ({
+  notification: false,
+  notificationStatus: 'info',
+  notificationMessage: 'Bye Bye !',
+  notificationOutAnimation: false,
+  isAdmin: false
+})
+
 export const getters = {
   isAuthenticated (state) {
     return state.auth.loggedIn
@@ -5,15 +13,12 @@ export const getters = {
 
   loggedInUser (state) {
     return state.auth.user
+  },
+
+  isAdmin (state) {
+    return state.isAdmin
   }
 }
-
-export const state = () => ({
-  notification: false,
-  notificationStatus: 'info',
-  notificationMessage: 'Bye Bye !',
-  notificationOutAnimation: false
-})
 
 export const mutations = {
   sendNotification (state, object) {
@@ -30,5 +35,8 @@ export const mutations = {
   },
   endOutAnimation (state) {
     state.notificationOutAnimation = false
+  },
+  setIsAdmin (state, boolean) {
+    state.isAdmin = boolean
   }
 }
