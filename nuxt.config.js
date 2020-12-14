@@ -48,17 +48,30 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
     'nuxt-clipboard2',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    ['nuxt-gmaps', {
+      key: process.env.API_KEY_Gmap
+  }]
   ],
+
   styleResources: {
     scss: [
       '@/assets/variables.scss'
     ]
   },
+  vuetify: {
+    theme: {
+      light: true,
+      themes: {
+        light: {
+          primary: '#f7c109'
+        }
+      }
+    }
+  },
   axios: {
     baseURL: process.env.backend_url || 'http://localhost:3001'
   },
-
   auth: {
     strategies: {
       local: {

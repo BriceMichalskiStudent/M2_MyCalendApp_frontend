@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link to="/" class="event-card">
+  <nuxt-link :to="{ path: '/event/' + event.id }" class="event-card">
     <p class="event-tag">
       {{ event.tags[0].name }}
     </p>

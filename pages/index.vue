@@ -1,7 +1,7 @@
 <template>
   <section class="col-md-10 offset-md-1 row">
     <div class="col-md-8 home-content">
-      <h1>Trouvez et <br>partagez les évènements <br>qui vous interesse !</h1>
+      <h1>Trouvez et <br>partagez les évènements <br>qui vous interesse&nbsp;!</h1>
       <Button anchor="Découvrir !" link="/events" custom="primary" />
       <p class="col-md-8">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores blanditiis commodi dicta doloremque
@@ -228,15 +228,23 @@ img{
 .light-red-bg{
   position: fixed;
   top: 3vh;
-  right: -5%;
+  right: -100px;
   height: 110vh;
   z-index: 1;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    height: 120vh;
+    top: 0;
+  }
 }
 .red-bg{
   position: fixed;
   top: 12vh;
-  right: -7%;
+  right: -120px;
   height: 90vh;
   z-index: 2;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    height: 100vh;
+    top: 80px;
+  }
 }
 </style>
