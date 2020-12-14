@@ -185,8 +185,10 @@ export default {
 <style lang="scss">
 
 .GMap__Wrapper {
-  position: fixed;
   width: 100%;
   height: 80vh;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    height: 50vh;
+  }
 }
 </style>

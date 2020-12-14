@@ -34,6 +34,9 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    flex-direction: column;
+  }
 }
 span{
   font-size: 20px;

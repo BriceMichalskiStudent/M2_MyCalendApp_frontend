@@ -71,15 +71,20 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+  .row {
+    margin: 0;
+  }
+}
 .single-event-content{
   h1{
-    padding: 40px 0;
+    padding: 30px 0;
   }
   img{
     padding: 0;
     object-fit: cover;
     width: 100%;
-    height: 200px;
+    height: 300px;
     margin: 20px 0;
   }
   button{
@@ -91,5 +96,8 @@ export default {
 .event-map{
   position: fixed;
   right: 40px;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    position: unset;
+  }
 }
 </style>
