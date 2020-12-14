@@ -93,7 +93,6 @@ nav {
   z-index: 100;
   right: 5%;
   backdrop-filter: blur(10px);
-  border: 4px solid transparent;
   border-radius: 0 0 10px 10px;
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
     &.active {

@@ -20,6 +20,20 @@
       <Button link="/" anchor="Voir tous" custom="primary" />
       <EventCarousel :events="events" />
     </div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="light-red-bg" viewBox="0 0 1319.759 1132.776">
+      <path
+        id="Tracé_5"
+        data-name="Tracé 5"
+        d="M2089.641,987.721c-161.613-17.437-201.809-140.686-510,0s-540.3-107.648-567.215,526.084,111.236,251.554,435.392,350.794,285.339,91.413,626.433-42.09S2089.641,987.721,2089.641,987.721Z"
+        transform="matrix(0.995, 0.105, -0.105, 0.995, -801.68, -1021.573)"
+        fill="#ff645f"
+        opacity="0.246"
+      />
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="red-bg" height="892.492" viewBox="0 0 1015.433 892.492">
+      <path id="Tracé_4" data-name="Tracé 4" d="M1967.52,979.7c-142.152-15.337-177.507-123.745-448.591,0s-517.509,15.967-422.76,362.518-56.431,327.389,228.692,414.679,329.1,74.5,629.119-42.932S1967.52,979.7,1967.52,979.7Z" transform="translate(-1075.492 -921.135)" fill="#ff645f" />
+    </svg>
   </section>
 </template>
 
@@ -147,6 +161,7 @@ export default {
 .home-content{
   display: flex;
   flex-direction: column;
+  z-index: 3;
   a{
     align-self: center;
     width: 300px;
@@ -175,12 +190,14 @@ h1{
 img{
   padding: 40px;
   object-fit: scale-down;
+  z-index: 3;
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
     display: none;
   }
 }
 .home-discover{
   margin-top: 100px;
+  z-index: 3;
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
     margin-top: 0;
   }
@@ -207,5 +224,19 @@ img{
       top:25px
     }
   }
+}
+.light-red-bg{
+  position: fixed;
+  top: 3vh;
+  right: -5%;
+  height: 110vh;
+  z-index: 1;
+}
+.red-bg{
+  position: fixed;
+  top: 12vh;
+  right: -7%;
+  height: 90vh;
+  z-index: 2;
 }
 </style>
