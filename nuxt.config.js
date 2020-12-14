@@ -77,7 +77,7 @@ export default {
       local: {
         endpoints: {
           login: { url: 'token', method: 'post', propertyName: 'token' },
-          user: false,
+          user: { url: 'user/current', method: 'get', propertyName: '' },
           logout: false
         }
       }
