@@ -1,13 +1,13 @@
 <template>
   <div class="col-md-10 offset-md-1 container">
-    <section class="head">
+    <section class="events-head">
       <img src="/img/event-banner.png">
       <h1 class="col-md-6">
         Trouvez <br> l'évènement <br>qui vous interesse&nbsp;!
       </h1>
       <div class="search" />
     </section>
-    <section class="content col-md-10">
+    <section class="events-content col-md-10">
       <h2>Wow ! Nice slider !</h2>
       <Button link="/" anchor="Voir tous" custom="primary" />
       <EventCarousel :events="events" />
@@ -149,7 +149,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.head{
+.events-head{
   position: relative;
   z-index: 0;
   height: 390px;
@@ -177,6 +177,7 @@ export default {
     max-height: 300px;
     object-fit: cover;
     object-position: 0 20%;
+    background-color: $primary;
     @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
       top: 60px;
       height: 200px;
@@ -194,7 +195,7 @@ export default {
     left: 15%;
   }
 }
-.content{
+.events-content{
   margin-top: 100px;
   h2{
     display: inline-block;

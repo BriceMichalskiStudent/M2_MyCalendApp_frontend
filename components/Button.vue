@@ -37,6 +37,7 @@ export default {
   color: white;
   border-radius: 10px;
   position: relative;
+  text-align: center;
   &::after{
     content: '';
     width: 100%;

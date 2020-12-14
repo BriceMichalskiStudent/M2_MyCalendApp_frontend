@@ -1,20 +1,46 @@
 <template>
-  <div class="col-md-8 offset-md-2">
-    <h2>Wow ! Nice slider !</h2>
-    <EventCarousel :events="events" />
-    <br>
-    <br>
-    <br>
-    <h2>OMG ! An other one !</h2>
-    <EventCarousel />
-  </div>
+  <section class="col-md-10 offset-md-1 row">
+    <div class="col-md-8 home-content">
+      <h1>Trouvez et <br>partagez les évènements <br>qui vous interesse !</h1>
+      <Button anchor="Découvrir !" link="/events" custom="primary" />
+      <p class="col-md-8">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores blanditiis commodi dicta doloremque
+        ducimus eaque eius harum inventore, iure nostrum quam quidem repudiandae, sed, sit unde ut velit vitae voluptatum.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores blanditiis commodi dicta doloremque
+        ducimus eaque eius harum inventore, iure nostrum quam quidem repudiandae, sed, sit unde ut velit vitae voluptatum.
+        <br>
+        <br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores blanditiis commodi dicta doloremque
+        ducimus eaque eius harum inventore, iure nostrum quam quidem repudiandae, sed, sit unde ut velit vitae voluptatum.
+      </p>
+    </div>
+    <img class="col-md-4" src="/img/mobie-home.png">
+    <div class="col-md-10 home-discover">
+      <h2>Futurs évènements !</h2>
+      <Button link="/" anchor="Voir tous" custom="primary" />
+      <EventCarousel :events="events" />
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="light-red-bg" viewBox="0 0 1319.759 1132.776">
+      <path
+        id="Tracé_5"
+        data-name="Tracé 5"
+        d="M2089.641,987.721c-161.613-17.437-201.809-140.686-510,0s-540.3-107.648-567.215,526.084,111.236,251.554,435.392,350.794,285.339,91.413,626.433-42.09S2089.641,987.721,2089.641,987.721Z"
+        transform="matrix(0.995, 0.105, -0.105, 0.995, -801.68, -1021.573)"
+        fill="#ff645f"
+        opacity="0.246"
+      />
+    </svg>
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="red-bg" height="892.492" viewBox="0 0 1015.433 892.492">
+      <path id="Tracé_4" data-name="Tracé 4" d="M1967.52,979.7c-142.152-15.337-177.507-123.745-448.591,0s-517.509,15.967-422.76,362.518-56.431,327.389,228.692,414.679,329.1,74.5,629.119-42.932S1967.52,979.7,1967.52,979.7Z" transform="translate(-1075.492 -921.135)" fill="#ff645f" />
+    </svg>
+  </section>
 </template>
 
 <script>
-import EventCarousel from '~/components/EventCarousel'
-
+import Button from '~/components/Button'
 export default {
-  components: { EventCarousel },
+  components: { Button },
   transition: 'opacity',
   data () {
     return {
@@ -131,24 +157,86 @@ export default {
 }
 </script>
 
-<style scoped>
-.center-here {
-  min-height: calc(100vh - 100px);
+<style scoped lang="scss">
+.home-content{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  flex-direction: column;
+  z-index: 3;
+  a{
+    align-self: center;
+    width: 300px;
+    margin: 30px auto;
+  }
+  p{
+    margin: 40px 0;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+      margin: 10px 0;
+    }
+  }
 }
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+h1{
+  font-size: 90px;
+  line-height: 100px;
+  padding: 60px 20px;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    font-size: 50px;
+    line-height: 60px;
+    padding: 40px 10px;
+    br{
+      display: none;
+    }
+  }
 }
-
-.links {
-  padding-top: 15px;
+img{
+  padding: 40px;
+  object-fit: scale-down;
+  z-index: 3;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    display: none;
+  }
+}
+.home-discover{
+  margin-top: 100px;
+  z-index: 3;
+  @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
+    margin-top: 0;
+  }
+  h2{
+    display: inline-block;
+    padding: 30px 0;
+    width: 73%;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'sm')) {
+      width: 60%;
+    }
+  }
+  a{
+    display: inline-block;
+    width: 27%;
+    text-align: center;
+    max-width: 200px;
+    float: right;
+    top: 20px;
+    @media only screen and (max-width: map-get($grid-breakpoints, 'sm')) {
+      padding: 10px 0;
+      font-size: 17px;
+      line-height: 27px;
+      width: 38%;
+      top:25px
+    }
+  }
+}
+.light-red-bg{
+  position: fixed;
+  top: 3vh;
+  right: -5%;
+  height: 110vh;
+  z-index: 1;
+}
+.red-bg{
+  position: fixed;
+  top: 12vh;
+  right: -7%;
+  height: 90vh;
+  z-index: 2;
 }
 </style>

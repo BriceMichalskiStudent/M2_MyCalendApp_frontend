@@ -67,6 +67,7 @@ export default {
   position: relative;
   overflow: hidden;
   margin: 0;
+  background-color: white;
   -webkit-box-shadow: -2px 2px 25px 0px rgba(0,0,0,0.2);
   -moz-box-shadow: -2px 2px 25px 0px rgba(0,0,0,0.2);
   box-shadow: -2px 2px 35px 0px rgba(0,0,0,0.2);
