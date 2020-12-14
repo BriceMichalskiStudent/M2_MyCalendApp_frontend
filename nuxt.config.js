@@ -55,10 +55,19 @@ export default {
       '@/assets/variables.scss'
     ]
   },
+  vuetify: {
+    theme: {
+      light: true,
+      themes: {
+        light: {
+          primary: '#f7c109'
+        }
+      }
+    }
+  },
   axios: {
     baseURL: process.env.backend_url || 'http://localhost:3001'
   },
-
   auth: {
     strategies: {
       local: {
