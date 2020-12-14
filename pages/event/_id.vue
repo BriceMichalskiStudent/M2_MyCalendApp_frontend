@@ -1,8 +1,8 @@
 <template>
   <section class="col-md-10 offset-md-1 row">
     <div class="col-md-6 single-event-content">
-      <h1>{{ event.name }}</h1>
-      <EventInfoBar />
+      <h1>{{ event.name }} - Id:{{ event_id }}</h1>
+      <EventInfoBar :place="event.address" :tag="event.tags[0].name" :date="$moment(event.dateStart).format(&quot;DD / MM / YYYY&quot;)" />
       <img :src="event.image">
       <h2>Exemple de sous-titre - h2 </h2>
       <p>
@@ -10,20 +10,24 @@
       </p>
       <Button anchor="S'inscrire !" custom="primary" type="submit" />
     </div>
-    <div class="col-md-6 single-event-map" />
+    <div class="col-md-5 event-map">
+      <Maps :location="event.localization" />
+    </div>
   </section>
 </template>
 
 <script>
 import Button from '~/components/Button'
 import EventInfoBar from '~/components/EventInfoBar'
+import Maps from '~/components/Maps'
 export default {
-  components: { EventInfoBar, Button },
+  components: { Button, EventInfoBar, Maps },
   transition: 'opacity',
   data () {
     return {
       title: 'Page index',
       meta_desc: 'Je suis le magnifique content',
+      event_id: 0,
       event:
         {
           id: 0,
@@ -46,10 +50,15 @@ export default {
             }
           ],
           localization: {
-            '2DSPHERE': '2DSPHERE'
+            lat: 45.7137185,
+            lng: 5.1291016,
+            name: 'Montcul'
           }
         }
     }
+  },
+  mounted () {
+    this.event_id = parseInt(this.$route.params.id)
   },
   head () {
     return {
@@ -78,5 +87,9 @@ export default {
     float: right;
     width: 200px;
   }
+}
+.event-map{
+  position: fixed;
+  right: 40px;
 }
 </style>

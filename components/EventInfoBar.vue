@@ -1,16 +1,32 @@
 <template>
   <section class="info-bar">
     <p class="big">
-      <span class="icon-calendar" /> 01 / 10 / 2020
+      <span class="icon-calendar" /> {{ date }}
     </p><p class="big">
-      <span class="icon-location_pin" /> Villeurbanne
+      <span class="icon-location_pin" /> {{ place }}
     </p>
     <p class="big">
-      <span class="icon-bars" /> Sport & Loisir
+      <span class="icon-bars" /> {{ tag }}
     </p>
   </section>
 </template>
 <script>
+export default {
+  props: {
+    date: {
+      type: String,
+      default: '01 / 10 / 2020'
+    },
+    place: {
+      type: String,
+      default: 'Villeurbanne'
+    },
+    tag: {
+      type: String,
+      default: 'No tag'
+    }
+  }
+}
 
 </script>
 <style lang="scss" scoped>
