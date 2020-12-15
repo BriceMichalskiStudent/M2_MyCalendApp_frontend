@@ -253,7 +253,7 @@ export default {
     },
 
     grantItemConfirm () {
-      const idAdmin = '5fa6a6239a28712fcc4a3e71'
+      const idAdmin = '5fa6a6239a28712fcc4a3e70'
       let alreadyAdmin = false
       for (let i = 0; i < this.editedItem.Roles.length; i++) {
         if (this.editedItem.Roles[i] === idAdmin) {
@@ -268,13 +268,18 @@ export default {
       } else {
         this.editedItem.Roles.push(idAdmin)
         this.$axios
-          .patch('/user/' + this.editedItem._id, this.editedItem.Roles
-          )
+          .patch('/user/' + this.editedItem._id, this.editedItem)
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
               message: 'l\'utilisateur est maintenant administrateur !'
             }))
+          .catch((error) => {
+            this.$store.commit('sendNotification', {
+              status: 'error',
+              message: error
+            })
+          })
       }
       this.closeGrant()
     },
