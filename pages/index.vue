@@ -52,7 +52,6 @@ export default {
     await this.$axios
       .get('/event')
       .then(response => (this.events = response.data))
-    console.log(this.events)
   },
   data () {
     return {
