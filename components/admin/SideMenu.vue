@@ -12,7 +12,7 @@
     <ul>
       <li>
         <nuxt-link to="/">
-          <span class="icon-home" /> Home
+          <span class="icon-home" /> Accueil
         </nuxt-link>
       </li>
       <hr>
@@ -24,7 +24,7 @@
       </li>
       <li>
         <nuxt-link to="/admin/user">
-          <span class="icon-user" /> User
+          <span class="icon-user" /> Utilisateur
         </nuxt-link>
       </li>
       <li>
@@ -34,19 +34,19 @@
       </li>
       <li>
         <nuxt-link to="/admin/icons">
-          <span class="icon-emoji_symbols" /> Icons
+          <span class="icon-emoji_symbols" /> Icones
         </nuxt-link>
       </li>
       <li>
         <nuxt-link to="/admin/vutify-test">
-          <span class="icon-table_chart" /> Data tables
+          <span class="icon-table_chart" /> Tables examples
         </nuxt-link>
       </li>
       <hr>
       <p>Documentation</p>
       <li>
-        <a href="">
-          <span class="icon-nuxt-dot-js" /> Getting started
+        <a href="https://mycalendapp.github.io/Wiki/">
+          <span class="icon-nuxt-dot-js" /> Docs
         </a>
       </li>
       <li>
