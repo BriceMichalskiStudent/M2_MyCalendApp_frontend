@@ -234,8 +234,8 @@ export default {
   },
 
   methods: {
-    async initialize () {
-      await this.$axios
+    initialize () {
+      this.$axios
         .get('/user')
         .then(response => (this.users = response.data))
     },

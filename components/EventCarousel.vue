@@ -5,7 +5,7 @@
         <template #prevArrow class="slick-arrow arrow-prev">
           <span class="icon-arrow-left" />
         </template>
-        <div v-for="event in events" :key="event.id" class="img-wrapper">
+        <div v-for="event in events" :key="event._id" class="img-wrapper">
           <EventCard :event="event" />
         </div>
         <template #nextArrow class="slick-arrow arrow-next">
