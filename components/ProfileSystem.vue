@@ -85,7 +85,7 @@ export default {
     border-radius: 50%;
     margin: 5px;
     display: inline-block;
-    object-fit: contain;
+    object-fit: cover;
   }
   .data{
     display: inline-block;
