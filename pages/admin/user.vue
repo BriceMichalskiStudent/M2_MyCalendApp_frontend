@@ -6,6 +6,24 @@
       sort-by="firstName"
       class="elevation-1"
     >
+      <template v-slot:item.imgUrl="{ item }">
+        <v-img
+          v-if="item.imgUrl !== ''"
+          :src="item.imgUrl"
+          contain
+          class="img_preview"
+          height="70px"
+          width="70px"
+        />
+        <v-img
+          v-else
+          src="/img/placeholder-profile.png"
+          contain
+          class="img_preview"
+          height="70px"
+          width="70px"
+        />
+      </template>
       <template v-slot:top>
         <v-toolbar
           flat
@@ -191,6 +209,7 @@ export default {
     dialogDelete: false,
     dialogGrant: false,
     headers: [
+      { text: 'Profile picture', value: 'imgUrl' },
       { text: 'Name', value: 'lastName' },
       { text: 'Surname', value: 'firstName' },
       { text: 'Email', value: 'mail' },
@@ -204,13 +223,15 @@ export default {
       lastName: '',
       mail: '',
       phone: '',
-      password: ''
+      password: '',
+      imgUrl: ''
     },
     defaultItem: {
       firstName: '',
       lastName: '',
       mail: '',
-      phone: ''
+      phone: '',
+      imgUrl: ''
     }
   }),
 
