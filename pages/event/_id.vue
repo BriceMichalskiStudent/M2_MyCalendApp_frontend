@@ -50,7 +50,6 @@ export default {
     await this.$axios
       .get('/event/' + this.event_id)
       .then(response => (this.event = response.data))
-    console.log(this.event.location)
   },
   data () {
     return {
