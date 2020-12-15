@@ -51,6 +51,13 @@
           type="password"
           name="passwordConfirmation"
           placeholder="Confirmer le mots de passe"
+          required
+        >
+        <input
+          type="file"
+          name="imag"
+          placeholder="Confirmer le mots de passe"
+          @change="onFileChange"
         >
         <Button anchor="S'inscrire" type="submit" custom="large" />
       </form>
@@ -80,11 +87,17 @@ export default {
       password: '',
       passwordConfirmation: '',
       phone: '',
+      profilePict: null,
       error: null
     }
   },
 
   methods: {
+    onFileChange (e) {
+      const files = e.target.files || e.dataTransfer.files
+      if (!files.length) { return }
+      this.profilePict = files[0]
+    },
     async register () {
       if (this.password !== this.passwordConfirmation) {
         await this.$store.commit('sendNotification', {
@@ -93,14 +106,21 @@ export default {
         })
       } else {
         try {
-          await this.$axios.post('user', {
+          const user = {
             firstName: this.firstName,
             lastName: this.lastName,
             mail: this.mail,
             password: this.password,
             phone: this.phone
+          }
+          const formData = new FormData()
+          formData.append('img', this.profilePict)
+          formData.append('user', JSON.stringify(user))
+          await this.$axios.post('user', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
           })
-
           await this.$auth.loginWith('local', {
             data: {
               mail: this.mail,
