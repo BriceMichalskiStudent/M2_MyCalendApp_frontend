@@ -68,7 +68,6 @@
 <script>
 import Button from '@/components/Button'
 export default {
-  middleware: 'guest',
   layout: 'form',
   transition: 'opacity',
   components: { Button },
@@ -87,24 +86,38 @@ export default {
 
   methods: {
     async register () {
-      try {
-        await this.$axios.post('user', {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          mail: this.mail,
-          password: this.password,
-          phone: this.phone
+      if (this.password !== this.passwordConfirmation) {
+        await this.$store.commit('sendNotification', {
+          status: 'error',
+          message: 'Les mots de passe que vous avez renseigner ne sont pas identique  !'
         })
-
-        await this.$auth.loginWith('local', {
-          data: {
+      } else {
+        try {
+          await this.$axios.post('user', {
+            firstName: this.firstName,
+            lastName: this.lastName,
             mail: this.mail,
-            password: this.password
-          }
-        })
-        this.$router.push('/profile')
-      } catch (e) {
-        this.error = e.response.data.message
+            password: this.password,
+            phone: this.phone
+          })
+
+          await this.$auth.loginWith('local', {
+            data: {
+              mail: this.mail,
+              password: this.password
+            }
+          })
+          await this.$store.commit('sendNotification', {
+            status: 'success',
+            message: 'Vous vous etes désormais inscrit a MyCalendApp  !'
+          })
+          this.$router.push('/profile')
+        } catch (e) {
+          await this.$store.commit('sendNotification', {
+            status: 'error',
+            message: e.response.data.message
+          })
+        }
       }
     }
   }

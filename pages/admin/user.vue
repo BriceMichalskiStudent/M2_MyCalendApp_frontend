@@ -117,7 +117,7 @@
           <v-dialog v-model="dialogDelete" max-width="800px">
             <v-card>
               <v-card-title class="headline">
-                <b>Cet action est irreversible.</b>
+                <b>Cet action est irreversible.</b><br>
                 Etes-vous sur de vouloir supprimer ?
               </v-card-title>
               <v-card-actions>

@@ -58,7 +58,7 @@ export default {
             password: this.password
           }
         })
-        await this.$store.commit('sendNotification', {
+        this.$store.commit('sendNotification', {
           status: 'success',
           message: 'Vous etes désormais connecter !'
         })

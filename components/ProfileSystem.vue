@@ -1,7 +1,8 @@
 <template>
   <section class="profile">
     <div v-click-outside="externalClick" class="in-bar" @click="triggerProfile">
-      <img src="/img/placeholder-profile.jpg">
+      <img v-if="loggedInUser.imgUrl !== undefined && loggedInUser.imgUrl !== ''" :src="loggedInUser.imgUrl">
+      <img v-else src="/img/placeholder-profile.png">
       <div class="data">
         <p>{{ loggedInUser.firstName }} {{ loggedInUser.lastName }}</p>
         <p><span>2</span> évènements a venir</p>
@@ -84,6 +85,7 @@ export default {
     border-radius: 50%;
     margin: 5px;
     display: inline-block;
+    object-fit: contain;
   }
   .data{
     display: inline-block;
