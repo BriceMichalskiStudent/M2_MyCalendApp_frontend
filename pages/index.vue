@@ -246,5 +246,9 @@ img{
     height: 100vh;
     top: 80px;
   }
+  //@media only screen and (max-width: map-get($grid-breakpoints, 'sm')) {
+  //  position: absolute;
+  //  height: 54vh;
+  //}
 }
 </style>
