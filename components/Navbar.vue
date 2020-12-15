@@ -25,6 +25,11 @@
           Évènements
         </nuxt-link>
       </li>
+      <li v-if="isAuthenticated && isAdmin" @click="triggerMenu">
+        <nuxt-link to="/admin">
+          Admin
+        </nuxt-link>
+      </li>
       <li v-if="isAuthenticated" @click="triggerMenu">
         <ProfileSystem />
       </li>
@@ -59,7 +64,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isAuthenticated', 'loggedInUser'])
+    ...mapGetters(['isAuthenticated', 'loggedInUser', 'isAdmin'])
   },
   methods: {
     triggerMenu () {
@@ -90,7 +95,7 @@ nav {
   transition-duration: $navAnimationDuration;
   transition-timing-function: $navAnimationTiming;
   background-color: rgba(255,255,255,0.4);
-  z-index: 100;
+  z-index: 5;
   right: 5%;
   backdrop-filter: blur(10px);
   border-radius: 0 0 10px 10px;

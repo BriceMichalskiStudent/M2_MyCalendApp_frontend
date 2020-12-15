@@ -1,7 +1,7 @@
 <template>
-  <nuxt-link :to="{ path: '/event/' + event.id }" class="event-card">
-    <p class="event-tag">
-      {{ event.tags[0].name }}
+  <nuxt-link :to="{ path: '/event/' + event._id }" class="event-card">
+    <p v-if="event.tags !== 'undefined' && event.tags.length !== 0 " class="event-tag">
+      {{ event.tags[0] }}
     </p>
     <span class="icon-arrow-right" />
     <img class="event-image" :src="event.image">
@@ -10,7 +10,7 @@
         {{ $moment(event.dateStart).format("MMM DD") }}
       </p>
       <div class="event-summary">
-        <h3> {{ event.name }}</h3>
+        <h3> {{ event.title }}</h3>
         <p> {{ event.description }}</p>
       </div>
     </section>

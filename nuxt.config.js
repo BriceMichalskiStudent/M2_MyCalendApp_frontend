@@ -64,7 +64,8 @@ export default {
       light: true,
       themes: {
         light: {
-          primary: '#f7c109'
+          primary: '#f7c109',
+          secondary: '#ff645f'
         }
       }
     }
@@ -77,7 +78,7 @@ export default {
       local: {
         endpoints: {
           login: { url: 'token', method: 'post', propertyName: 'token' },
-          user: false,
+          user: { url: 'user/current', method: 'get', propertyName: '' },
           logout: false
         }
       }

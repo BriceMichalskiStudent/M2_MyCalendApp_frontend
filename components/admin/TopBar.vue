@@ -14,19 +14,17 @@
         </div>
       </form>
     </div>
-    <div class="bottom-element" />
   </div>
 </template>
 <style lang="scss" scoped>
 .top-element{
   position: absolute;
   top: 0;
-  height: 80px;
+  height: 160px;
   z-index: 0;
   width: calc(100% - 60px);
   margin-left: 60px;
-  border-bottom: 1px solid #e9ecef;
-  padding: 1rem 1rem;
+  padding-bottom: 70px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -52,24 +50,11 @@
       }
       input{
         padding: 0.5rem 0.5rem;
-        width: 100%;
+        width: 80%;
+        border: none;
       }
     }
   }
-}
-.bottom-element{
-  position: absolute;
-  top: 80px;
-  height: 120px;
-  z-index: 0;
-  width: calc(100% - 60px);
-  margin-left: 60px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: $primary;
-  color: white;
 }
 </style>
 <script>

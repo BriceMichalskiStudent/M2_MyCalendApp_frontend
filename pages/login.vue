@@ -58,15 +58,11 @@ export default {
             password: this.password
           }
         })
-        await this.$axios.post('token', {
-          mail: this.mail,
-          password: this.password
-        }).then((response) => { this.$auth.setUser(response.data.user) })
         await this.$store.commit('sendNotification', {
           status: 'success',
           message: 'Vous etes désormais connecter !'
         })
-        await this.$router.push('/profile')
+        this.$router.push('/profile')
       } catch (e) {
         this.$store.commit('sendNotification', {
           status: 'error',

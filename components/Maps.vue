@@ -1,12 +1,12 @@
 <template>
   <GMap
     ref="gMap"
-    :center="{lat: location.lat, lng: location.lng}"
+    :center="{lat: location.coordinates[0], lng: location.coordinates[1]}"
     :options="{fullscreenControl: false, streetViewControl: false, mapTypeControl: false, zoomControl: true, gestureHandling: 'cooperative', styles: mapStyle}"
     :zoom="10"
   >
     <GMapMarker
-      :position="{lat: location.lat, lng: location.lng}"
+      :position="{lat: location.coordinates[0], lng: location.coordinates[1]}"
       :options="{icon: pins.selected}"
     >
       <GMapInfoWindow :options="{maxWidth: 800}">
@@ -14,9 +14,9 @@
         <br>
         <br>
         <code>
-          Lat: {{ location.lat }},
+          Lat: {{ location.coordinates[0] }},
           <br>
-          Lng: {{ location.lng }}
+          Lng: {{ location.coordinates[1] }}
         </code>
       </GMapInfoWindow>
     </GMapMarker>
@@ -30,9 +30,11 @@ export default {
       type: Object,
       default () {
         return {
-          lat: 45.81444,
-          lng: 15.97798,
-          name: 'Zagreb'
+          coordinates: [
+            45.7137185,
+            5.1291016
+          ],
+          type: 'Point'
         }
       }
     }

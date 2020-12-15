@@ -3,7 +3,7 @@
     <div
       :class="{active: !isActive}"
       class="hamburger hamburger--emphatic"
-      @click="myFilter"
+      @click="triggerMenu"
     >
       <div class="hamburger-box">
         <div class="hamburger-inner" />
@@ -20,6 +20,11 @@
       <li>
         <nuxt-link to="/admin">
           <span class="icon-home" /> Dashboard
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/admin/user">
+          <span class="icon-user" /> User
         </nuxt-link>
       </li>
       <li>
@@ -326,12 +331,12 @@ span {
 export default {
   data () {
     return {
-      isActive: false,
+      isActive: true,
       test: true
     }
   },
   methods: {
-    myFilter () {
+    triggerMenu () {
       this.isActive = !this.isActive
     }
   }

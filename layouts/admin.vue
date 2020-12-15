@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <Notification />
     <component-side-menu />
     <component-top-bar />
     <v-container
@@ -14,12 +15,14 @@
 <script>
 import componentSideMenu from '@/components/admin/SideMenu'
 import componentTopBar from '@/components/admin/TopBar'
+import Notification from '~/components/Notification'
 
 export default {
-  middleware: 'admin',
+  middleware: ['connected', 'admin'],
   components: {
     componentSideMenu,
-    componentTopBar
+    componentTopBar,
+    Notification
   }
 }
 </script>
