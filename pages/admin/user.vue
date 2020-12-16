@@ -109,6 +109,17 @@
                         type="password"
                       />
                     </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="12"
+                    >
+                      <v-file-input
+                        v-model="editedItem.imgFile"
+                        label="Profile picture"
+                        type="file"
+                      />
+                    </v-col>
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -116,7 +127,7 @@
               <v-card-actions>
                 <v-spacer />
                 <v-btn
-                  color="primary darken-1"
+                  color="secondary darken-1"
                   text
                   @click="close"
                 >
@@ -135,8 +146,10 @@
           <v-dialog v-model="dialogDelete" max-width="800px">
             <v-card>
               <v-card-title class="headline">
-                <b>Cet action est irreversible.</b><br>
-                Etes-vous sur de vouloir supprimer ?
+                <p class="admin-big">
+                  <b>Cet action est irreversible.</b><br>
+                  Etes-vous sur de vouloir supprimer ?
+                </p>
               </v-card-title>
               <v-card-actions>
                 <v-spacer />
@@ -153,14 +166,16 @@
           <v-dialog v-model="dialogGrant" max-width="800px">
             <v-card>
               <v-card-title class="headline">
-                Etes-vous sur de vouloir accorder les privileges administrateur ?
+                <p class="admin-big">
+                  <b>Etes-vous sur de vouloir accorder les privileges administrateur a l'utilisateur : {{ editedItem.firstName + ' ' + editedItem.lastName }} ?</b>
+                </p>
               </v-card-title>
               <v-card-actions>
                 <v-spacer />
-                <v-btn color="primary darken-1" text @click="closeGrant">
+                <v-btn color="secondary darken-1" text @click="closeGrant">
                   Annuler
                 </v-btn>
-                <v-btn color="secondary darken-1" text @click="grantItemConfirm">
+                <v-btn color="primary darken-1" text @click="grantItemConfirm">
                   Oui, passer admin
                 </v-btn>
                 <v-spacer />
@@ -171,20 +186,23 @@
       </template>
       <template v-slot:item.actions="{ item }">
         <v-icon
-          small
+          medium
+          color="primary"
           @click="grantItem(item)"
         >
           mdi-arrow-up-bold
         </v-icon>
         <v-icon
-          small
+          medium
+          color="blue darken-1"
           class="mr-2"
           @click="editItem(item)"
         >
           mdi-pencil
         </v-icon>
         <v-icon
-          small
+          medium
+          color="secondary"
           @click="deleteItem(item)"
         >
           mdi-delete
@@ -224,7 +242,7 @@ export default {
       mail: '',
       phone: '',
       password: '',
-      imgUrl: ''
+      imgFile: null
     },
     defaultItem: {
       firstName: '',
@@ -347,8 +365,10 @@ export default {
       })
     },
 
-    save () {
+    async save () {
       if (this.editedIndex > -1) {
+        // To-Do : Add the possibility to update profile picture
+        this.editedItem.imgUrl = this.users[this.editedIndex].imgUrl
         Object.assign(this.users[this.editedIndex], this.editedItem)
         this.$axios
           .put('/user/', this.editedItem)
@@ -364,20 +384,34 @@ export default {
             })
           ))
       } else {
-        this.users.push(this.editedItem)
-        this.$axios
-          .post('/user/', this.editedItem)
+        const user = {
+          firstName: this.editedItem.firstName,
+          lastName: this.editedItem.lastName,
+          mail: this.editedItem.mail,
+          password: this.editedItem.password,
+          phone: this.editedItem.phone
+        }
+        const formData = new FormData()
+        formData.append('img', this.editedItem.imgFile)
+        formData.append('user', JSON.stringify(user))
+        await this.$axios.post('user', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
               message: 'User cree avec success !'
-            }))
+            })
+          )
           .catch(error => (
             this.$store.commit('sendNotification', {
               status: 'error',
               message: error
             })
           ))
+        this.initialize()
       }
       this.close()
     }

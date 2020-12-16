@@ -45,7 +45,7 @@
       <hr>
       <p>Documentation</p>
       <li>
-        <a href="https://mycalendapp.github.io/Wiki/">
+        <a href="https://mycalendapp.github.io/Wiki/" target="_blank">
           <span class="icon-nuxt-dot-js" /> Docs
         </a>
       </li>
