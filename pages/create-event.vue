@@ -4,70 +4,82 @@
       Cree mon evenement
     </h1>
     <div class="register-container">
-      <form method="post" @submit.prevent="register">
-        <label>Nom</label>
+      <form method="post" @submit.prevent="saveEvent">
+        <label>Titre</label>
         <input
-          v-model="lastName"
+          v-model="title"
           type="text"
-          name="username"
-          placeholder="Nom"
+          placeholder="Titre"
           required
         >
-        <label>Prénom</label>
+        <label>Contenu</label>
         <input
-          v-model="firstName"
+          v-model="description"
           type="text"
-          name="username"
-          placeholder="Prénom"
+          placeholder="Contenu"
           required
         >
-        <label>Adresse mail</label>
-        <input
-          v-model="mail"
-          type="email"
-          name="mail"
-          placeholder="Adresse mail"
-          required
+        <label>Date de debut</label>
+        <v-menu
+          ref="menuDateStart"
+          v-model="menuDateStart"
+          :close-on-content-click="false"
+          transition="scale-transition"
+          offset-y
+          min-width="290px"
         >
-        <label>Numéro de telephone</label>
-        <input
-          v-model="phone"
-          type="text"
-          name="username"
-          placeholder="Numéro de telephone"
-          required
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="dateStart"
+              placeholder="Date de debut"
+              label="Date de debut"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            />
+          </template>
+          <v-date-picker
+            ref="picker"
+            v-model="dateStart"
+            :min="Date().now"
+            @change="menuDateStart = false"
+          />
+        </v-menu>
+        <label>Date de fin</label>
+        <v-menu
+          ref="menu"
+          v-model="menuDateEnd"
+          :close-on-content-click="false"
+          transition="scale-transition"
+          offset-y
+          min-width="290px"
         >
-        <label>Mot de passe</label>
-        <input
-          v-model="password"
-          type="password"
-          name="password"
-          placeholder="Mot de passe"
-          required
-        >
-        <label>Confirmer le mots de passe</label>
-        <input
-          v-model="passwordConfirmation"
-          type="password"
-          name="passwordConfirmation"
-          placeholder="Confirmer le mots de passe"
-          required
-        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="dateEnd"
+              placeholder="Date de fin"
+              label="Date de Fin"
+              prepend-icon="mdi-calendar"
+              readonly
+              v-bind="attrs"
+              v-on="on"
+            />
+          </template>
+          <v-date-picker
+            ref="picker"
+            v-model="dateEnd"
+            :min="dateStart"
+            @change="menuDateEnd = false"
+          />
+        </v-menu>
         <input
           type="file"
-          name="imag"
-          placeholder="Confirmer le mots de passe"
+          name="image"
           @change="onFileChange"
         >
-        <Button anchor="S'inscrire" type="submit" custom="large" />
+        <Button anchor="Cree !" type="submit" custom="large" />
       </form>
-      <hr>
-      <p>
-        Vous avez deja un compte ?
-      </p>
-      <nuxt-link to="/login">
-        Se Connecter
-      </nuxt-link>
     </div>
   </section>
 </template>
@@ -82,14 +94,14 @@ export default {
 
   data () {
     return {
-      firstName: '',
-      lastName: '',
-      mail: '',
-      password: '',
-      passwordConfirmation: '',
-      phone: '',
-      profilePict: null,
-      error: null
+      title: '',
+      description: '',
+      dateStart: '',
+      dateEnd: '',
+      creator: '',
+      eventPict: null,
+      menuDateStart: false,
+      menuDateEnd: false
     }
   },
 
@@ -97,48 +109,35 @@ export default {
     onFileChange (e) {
       const files = e.target.files || e.dataTransfer.files
       if (!files.length) { return }
-      this.profilePict = files[0]
+      this.eventPict = files[0]
     },
-    async register () {
-      if (this.password !== this.passwordConfirmation) {
+    async saveEvent () {
+      try {
+        const event = {
+          title: this.title,
+          description: this.description,
+          dateStart: this.dateStart,
+          dateEnd: this.dateEnd,
+          creator: this.$auth.user._id
+        }
+        const formData = new FormData()
+        formData.append('img', this.eventPict)
+        formData.append('event', JSON.stringify(event))
+        await this.$axios.post('event', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        await this.$store.commit('sendNotification', {
+          status: 'success',
+          message: 'Vous avez cree votre evenement  !'
+        })
+        this.$router.push('/events')
+      } catch (e) {
         await this.$store.commit('sendNotification', {
           status: 'error',
-          message: 'Les mots de passe que vous avez renseigner ne sont pas identique  !'
+          message: e.response.data.message
         })
-      } else {
-        try {
-          const user = {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            mail: this.mail,
-            password: this.password,
-            phone: this.phone
-          }
-          const formData = new FormData()
-          formData.append('img', this.profilePict)
-          formData.append('user', JSON.stringify(user))
-          await this.$axios.post('user', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
-          })
-          await this.$auth.loginWith('local', {
-            data: {
-              mail: this.mail,
-              password: this.password
-            }
-          })
-          await this.$store.commit('sendNotification', {
-            status: 'success',
-            message: 'Vous vous etes désormais inscrit a MyCalendApp  !'
-          })
-          this.$router.push('/profile')
-        } catch (e) {
-          await this.$store.commit('sendNotification', {
-            status: 'error',
-            message: e.response.data.message
-          })
-        }
       }
     }
   }
