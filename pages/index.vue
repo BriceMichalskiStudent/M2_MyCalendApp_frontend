@@ -49,8 +49,13 @@ export default {
   components: { Button },
   transition: 'opacity',
   async fetch () {
-    await this.$axios
-      .get('/event')
+    const today = Date.now()
+
+    await this.$axios.get('/event',
+      {
+        params:
+          { q: { dateStart: { $gte: today } } }
+      })
       .then(response => (this.events = response.data))
   },
   data () {
