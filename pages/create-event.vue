@@ -70,9 +70,24 @@
             ref="picker"
             v-model="dateEnd"
             :min="dateStart"
+            required
             @change="menuDateEnd = false"
           />
         </v-menu>
+        <p v-if="$fetchState.pending">
+          Récupération en cours...
+        </p>
+        <p v-else-if="$fetchState.error">
+          Une erreur est survenue :(
+        </p>
+        <v-select
+          v-else
+          v-model="tags"
+          :items="items"
+          attach
+          label="Tags"
+          multiple
+        />
         <input
           type="file"
           name="image"
@@ -91,6 +106,17 @@ export default {
   middleware: 'connected',
   transition: 'opacity',
   components: { Button },
+  async fetch () {
+    await this.$axios
+      .get('/tag')
+      .then((response) => {
+        this.objectList = response.data
+        for (let i = 0; response.data.length > i; i++) {
+          this.items.push(response.data[i].name)
+        }
+      }
+      )
+  },
 
   data () {
     return {
@@ -101,7 +127,10 @@ export default {
       creator: '',
       eventPict: null,
       menuDateStart: false,
-      menuDateEnd: false
+      menuDateEnd: false,
+      items: [],
+      objectList: [],
+      tags: []
     }
   },
 
@@ -111,14 +140,23 @@ export default {
       if (!files.length) { return }
       this.eventPict = files[0]
     },
+
     async saveEvent () {
       try {
+        const tempTable = []
+        for (let i = 0; this.tags.length > i; i++) {
+          const resultat = this.objectList.find(tag => tag.name === this.tags[i])
+          tempTable.push(resultat._id)
+        }
+        this.tags = tempTable
+
         const event = {
           title: this.title,
           description: this.description,
           dateStart: this.dateStart,
           dateEnd: this.dateEnd,
-          creator: this.$auth.user._id
+          creator: this.$auth.user._id,
+          tags: this.tags
         }
         const formData = new FormData()
         formData.append('img', this.eventPict)
