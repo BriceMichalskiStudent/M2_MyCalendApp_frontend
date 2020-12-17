@@ -16,7 +16,7 @@
           </nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/profile">
+          <nuxt-link to="/profile/events">
             Mes évènements
           </nuxt-link>
         </li>

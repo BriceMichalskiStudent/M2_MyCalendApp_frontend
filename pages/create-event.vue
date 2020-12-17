@@ -19,6 +19,20 @@
           placeholder="Contenu"
           required
         >
+        <label>Adresse</label>
+        <input
+          v-model="address"
+          type="text"
+          placeholder="Address"
+          required
+        >
+        <label>Ville</label>
+        <input
+          v-model="city"
+          type="text"
+          placeholder="Ville"
+          required
+        >
         <label>Date de debut</label>
         <v-menu
           ref="menuDateStart"
@@ -125,6 +139,9 @@ export default {
       dateStart: '',
       dateEnd: '',
       creator: '',
+      address: '',
+      city: '',
+      location: null,
       eventPict: null,
       menuDateStart: false,
       menuDateEnd: false,
@@ -150,12 +167,20 @@ export default {
         }
         this.tags = tempTable
 
+        const addressToFind = this.address + ' ' + this.city
+        if (addressToFind.replaceAll(' ', '') !== '') {
+          await this.convertAddressToPoint(addressToFind)
+        }
+
         const event = {
           title: this.title,
           description: this.description,
           dateStart: this.dateStart,
           dateEnd: this.dateEnd,
+          address: this.address,
+          city: this.city,
           creator: this.$auth.user._id,
+          location: this.location,
           tags: this.tags
         }
         const formData = new FormData()
@@ -170,12 +195,24 @@ export default {
           status: 'success',
           message: 'Vous avez cree votre evenement  !'
         })
-        this.$router.push('/events')
       } catch (e) {
         await this.$store.commit('sendNotification', {
           status: 'error',
           message: e.response.data.message
         })
+      }
+      this.$router.push('/profile/events')
+    },
+    async convertAddressToPoint (address) {
+      const query = address.replaceAll(' ', '+').toLowerCase()
+      const response = await this.$axios.get('/helper/address', {
+        params: {
+          q: query
+        }
+      })
+      this.location = {
+        coordinates: [response.data.features[0].geometry.coordinates[1], response.data.features[0].geometry.coordinates[0]],
+        type: 'Point'
       }
     }
   }

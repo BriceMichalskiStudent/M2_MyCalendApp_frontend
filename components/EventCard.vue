@@ -16,7 +16,7 @@
       </div>
     </section>
     <p class="event-position">
-      {{ event.address }} <span class="icon-location_on" />
+      {{ event.city }} <span class="icon-location_on" />
     </p>
   </nuxt-link>
 </template>
@@ -33,7 +33,7 @@ export default {
           dateEnd: '2020-02-24 2:00',
           dateStart: '2020-02-23 21:00',
           imgUrl: 'img/placeholder-animation-banner.jpg',
-          address: 'Musée d\'art contemporain, villeurbanne',
+          city: 'Musée d\'art contemporain, villeurbanne',
           posts: [
             { '{Post}': '{Post}' }
           ],
