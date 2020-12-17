@@ -1,6 +1,6 @@
 <template>
   <p v-if="$fetchState.pending">
-    Récupération en cours... ⛰️
+    Récupération en cours...️
   </p>
   <p v-else-if="$fetchState.error">
     Une erreur est survenue :(
@@ -10,7 +10,8 @@
       <h1>{{ event.title }}</h1>
       <EventInfoBar v-if="event.tags !== 'undefined' && event.tags.length !== 0" :tag="event.tags[0].name" :place="event.address" :date="$moment(event.dateStart).format(&quot;DD / MM / YYYY&quot;)" />
       <EventInfoBar v-else :place="event.address" :date="$moment(event.dateStart).format(&quot;DD / MM / YYYY&quot;)" />
-      <img :src="event.image">
+      <img v-if="event.imgUrl === '' || event.imgUrl === undefined " class="event-image" src="/img/placeholder-animation-banner.jpg">
+      <img v-else :src="event.imgUrl">
       <p>
         {{ event.description }}
       </p>

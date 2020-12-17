@@ -131,7 +131,7 @@
                   text
                   @click="close"
                 >
-                  Anuller
+                  Annuler
                 </v-btn>
                 <v-btn
                   color="primary darken-1"
@@ -154,7 +154,7 @@
               <v-card-actions>
                 <v-spacer />
                 <v-btn color="primary darken-1" text @click="closeDelete">
-                  Anuller
+                  Annuler
                 </v-btn>
                 <v-btn color="secondary darken-1" text @click="deleteItemConfirm">
                   Oui, supprimer
@@ -375,7 +375,7 @@ export default {
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
-              message: 'User modifier avec success !'
+              message: 'User modifier avec succès !'
             }))
           .catch(error => (
             this.$store.commit('sendNotification', {
@@ -402,7 +402,7 @@ export default {
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
-              message: 'User cree avec success !'
+              message: 'User cree avec succès !'
             })
           )
           .catch(error => (

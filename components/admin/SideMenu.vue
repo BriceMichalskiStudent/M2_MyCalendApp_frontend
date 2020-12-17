@@ -29,7 +29,12 @@
       </li>
       <li>
         <nuxt-link to="/admin/user">
-          <span class="icon-user-group" /> Utilisateur
+          <span class="icon-user-group" /> Utilisateurs
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/admin/tag">
+          <span class="icon-tag" /> Tags
         </nuxt-link>
       </li>
       <li>

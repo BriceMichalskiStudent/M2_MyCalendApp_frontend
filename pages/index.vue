@@ -19,7 +19,7 @@
       <h2>Futurs évènements !</h2>
       <Button link="/" anchor="Voir tous" custom="primary" />
       <p v-if="$fetchState.pending">
-        Récupération en cours... ⛰️
+        Récupération en cours...
       </p>
       <p v-else-if="$fetchState.error">
         Une erreur est survenue :(
@@ -49,8 +49,13 @@ export default {
   components: { Button },
   transition: 'opacity',
   async fetch () {
-    await this.$axios
-      .get('/event')
+    const today = Date.now()
+
+    await this.$axios.get('/event',
+      {
+        params:
+          { q: { dateStart: { $gte: today } } }
+      })
       .then(response => (this.events = response.data))
   },
   data () {

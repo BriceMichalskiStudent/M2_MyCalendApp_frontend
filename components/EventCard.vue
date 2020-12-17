@@ -4,7 +4,8 @@
       {{ event.tags[0].name }}
     </p>
     <span class="icon-arrow-right" />
-    <img class="event-image" :src="event.image">
+    <img v-if="event.imgUrl === '' || event.imgUrl === undefined " class="event-image" src="/img/placeholder-animation-banner.jpg">
+    <img v-else class="event-image" :src="event.imgUrl">
     <section class="event-info">
       <p class="event-date">
         {{ $moment(event.dateStart).format("MMM DD") }}
@@ -31,7 +32,7 @@ export default {
           description: 'Grosser soirée D&D Rdv Musée d\'art contemporain, villeurbanne wjbxsakm dewjdksxb scjkwbcwb jckcwe we dwe od',
           dateEnd: '2020-02-24 2:00',
           dateStart: '2020-02-23 21:00',
-          image: 'img/placeholder-animation-banner.jpg',
+          imgUrl: 'img/placeholder-animation-banner.jpg',
           address: 'Musée d\'art contemporain, villeurbanne',
           posts: [
             { '{Post}': '{Post}' }

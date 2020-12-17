@@ -31,7 +31,7 @@ export default {
             description: 'Grosser soirée D&D Rdv Musée d\'art contemporain, villeurbanne wjbxsakm dewjdksxb scjkwbcwb jckcwe we dwe od',
             dateEnd: '2020-02-24 2:00',
             dateStart: '2020-02-23 21:00',
-            image: 'img/placeholder-animation-banner.jpg',
+            imgUrl: 'img/placeholder-animation-banner.jpg',
             address: 'Musée d\'art contemporain, villeurbanne',
             posts: [
               { '{Post}': '{Post}' }
