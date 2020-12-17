@@ -172,6 +172,9 @@ form{
     width: calc(50% - 13px);
     margin: 10px 5px;
     display: inline-flex;
+    &:last-of-type{
+      margin-right: calc(50% + 5px);
+    }
     @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
       width: 100%;
       margin: 10px 0;
