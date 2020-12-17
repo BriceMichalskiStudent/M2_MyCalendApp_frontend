@@ -366,31 +366,55 @@ export default {
     },
 
     async save () {
+      const user = {
+        _id: this.editedItem._id,
+        firstName: this.editedItem.firstName,
+        lastName: this.editedItem.lastName,
+        mail: this.editedItem.mail,
+        password: this.editedItem.password,
+        phone: this.editedItem.phone
+      }
+
       if (this.editedIndex > -1) {
-        // To-Do : Add the possibility to update profile picture
-        this.editedItem.imgUrl = this.users[this.editedIndex].imgUrl
-        Object.assign(this.users[this.editedIndex], this.editedItem)
-        this.$axios
-          .put('/user/', this.editedItem)
-          .then(
-            this.$store.commit('sendNotification', {
-              status: 'success',
-              message: 'User modifier avec succès !'
-            }))
-          .catch(error => (
-            this.$store.commit('sendNotification', {
-              status: 'error',
-              message: error
-            })
-          ))
-      } else {
-        const user = {
-          firstName: this.editedItem.firstName,
-          lastName: this.editedItem.lastName,
-          mail: this.editedItem.mail,
-          password: this.editedItem.password,
-          phone: this.editedItem.phone
+        if (this.editedItem.imgFile !== undefined) {
+          const formData = new FormData()
+          formData.append('img', this.editedItem.imgFile)
+          formData.append('user', JSON.stringify(user))
+          await this.$axios.put('/user', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
+            .then(
+              this.$store.commit('sendNotification', {
+                status: 'success',
+                message: 'User modifier avec succès !'
+              }))
+            .catch(error => (
+              this.$store.commit('sendNotification', {
+                status: 'error',
+                message: error
+              })
+            ))
+          this.initialize()
+        } else {
+          this.editedItem.imgUrl = this.users[this.editedIndex].imgUrl
+          Object.assign(this.users[this.editedIndex], this.editedItem)
+          this.$axios
+            .patch('/user/' + this.editedItem._id, user)
+            .then(
+              this.$store.commit('sendNotification', {
+                status: 'success',
+                message: 'User modifier avec succès !'
+              }))
+            .catch(error => (
+              this.$store.commit('sendNotification', {
+                status: 'error',
+                message: error
+              })
+            ))
         }
+      } else {
         const formData = new FormData()
         formData.append('img', this.editedItem.imgFile)
         formData.append('user', JSON.stringify(user))
