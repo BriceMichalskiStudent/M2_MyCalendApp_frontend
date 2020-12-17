@@ -71,9 +71,33 @@
                       sm="6"
                       md="12"
                     >
+                      <v-text-field
+                        v-model="editedItem.city"
+                        label="Ville"
+                        :rules="[rules.required]"
+                      />
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="12"
+                    >
+                      <v-text-field
+                        v-model="editedItem.address"
+                        label="Adresse"
+                        :rules="[rules.required]"
+                      />
+                    </v-col>
+
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="12"
+                    >
                       <v-menu
-                        ref="menu-start"
-                        v-model="menu1"
+                        ref="menu-start-date"
+                        v-model="menuStartDate"
                         :close-on-content-click="false"
                         transition="scale-transition"
                         offset-y
@@ -82,7 +106,7 @@
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
                             v-model="editedItem.dateStart"
-                            label="Debut"
+                            label="Date de Debut"
                             prepend-icon="mdi-calendar"
                             readonly
                             v-bind="attrs"
@@ -93,7 +117,39 @@
                           ref="picker"
                           v-model="editedItem.dateStart"
                           locale="fr"
-                          @change="menu1 = false"
+                          :rules="[rules.required]"
+                          @change="menuStartDate = false"
+                        />
+                      </v-menu>
+
+                      <v-menu
+                        ref="menuStartTime"
+                        v-model="menuStartTime"
+                        :close-on-content-click="false"
+                        :nudge-right="40"
+                        :return-value.sync="editedItem.hourStart"
+                        transition="scale-transition"
+                        offset-y
+                        max-width="290px"
+                        min-width="290px"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="editedItem.hourStart"
+                            label="Heure de debut"
+                            prepend-icon="mdi-clock-time-four-outline"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                          />
+                        </template>
+                        <v-time-picker
+                          v-if="menuStartTime"
+                          v-model="editedItem.hourStart"
+                          format="24hr"
+                          full-width
+                          :rules="[rules.required]"
+                          @click:minute="$refs.menuStartTime.save(editedItem.hourStart)"
                         />
                       </v-menu>
                     </v-col>
@@ -105,7 +161,7 @@
                     >
                       <v-menu
                         ref="menu-end"
-                        v-model="menu2"
+                        v-model="menuEndDate"
                         :close-on-content-click="false"
                         transition="scale-transition"
                         offset-y
@@ -115,7 +171,7 @@
                           <v-text-field
                             v-model="editedItem.dateEnd"
                             value=""
-                            label="Fin"
+                            label="Date de Fin"
                             prepend-icon="mdi-calendar"
                             readonly
                             v-bind="attrs"
@@ -126,7 +182,39 @@
                           ref="picker"
                           v-model="editedItem.dateEnd"
                           locale="fr"
-                          @change="menu2 = false"
+                          :rules="[rules.required]"
+                          @change="menuEndDate = false"
+                        />
+                      </v-menu>
+
+                      <v-menu
+                        ref="menuEndTime"
+                        v-model="menuEndTime"
+                        :close-on-content-click="false"
+                        :nudge-right="40"
+                        :return-value.sync="editedItem.hourEnd"
+                        transition="scale-transition"
+                        offset-y
+                        max-width="290px"
+                        min-width="290px"
+                      >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-text-field
+                            v-model="editedItem.hourEnd"
+                            label="Heure de Fin"
+                            prepend-icon="mdi-clock-time-four-outline"
+                            readonly
+                            v-bind="attrs"
+                            v-on="on"
+                          />
+                        </template>
+                        <v-time-picker
+                          v-if="menuEndTime"
+                          v-model="editedItem.hourEnd"
+                          format="24hr"
+                          full-width
+                          :rules="[rules.required]"
+                          @click:minute="$refs.menuEndTime.save(editedItem.hourEnd)"
                         />
                       </v-menu>
                     </v-col>
@@ -200,15 +288,21 @@
   </div>
 </template>
 <script>
-import moment from 'moment'
 
 export default {
   layout: 'admin',
   data: () => ({
+    rules: {
+      required: value => !!value || 'Required.'
+    },
+    adrress: '',
+    coordinates: {},
     dialog: false,
     dialogDelete: false,
-    menu1: false,
-    menu2: false,
+    menuStartDate: false,
+    menuEndDate: false,
+    menuStartTime: false,
+    menuEndTime: false,
     headers: [
       { text: 'Titre', value: 'title' },
       { text: 'Description', value: 'description' },
@@ -222,8 +316,14 @@ export default {
       title: '',
       description: '',
       dateStart: '',
+      hourStart: '',
+      dateEnd: '',
+      hourEnd: '',
       creator: '',
-      dateEnd: ''
+      address: '',
+      city: '',
+      location: [],
+      imgFile: null
     },
     defaultItem: {
       title: '',
@@ -236,14 +336,6 @@ export default {
   computed: {
     formTitle () {
       return this.editedIndex === -1 ? 'Nouvel Event' : 'Editer l\'event'
-    },
-
-    editedItemDateStartFormated () {
-      return this.editedItem.dateStart ? moment(this.editedItem.dateStart).format('dddd, MMMM Do YYYY') : ''
-    },
-
-    editedItemDateEndFormated () {
-      return this.editedItem.dateEnd ? moment(this.editedItem.dateEnd).format('dddd, MMMM Do YYYY') : ''
     }
   },
 
@@ -264,14 +356,24 @@ export default {
     initialize () {
       this.$axios
         .get('/event')
-        .then(response => (this.events = response.data))
+        .then((response) => {
+          this.events = response.data
+          console.log(response.data)
+        })
     },
 
     editItem (item) {
       this.editedIndex = this.events.indexOf(item)
       this.editedItem = Object.assign({}, item)
-      this.editedItem.dateStart = new Date(this.editedItem.dateStart).toISOString().substr(0, 10)
-      this.editedItem.dateEnd = new Date(this.editedItem.dateEnd).toISOString().substr(0, 10)
+      const startDate = new Date(this.editedItem.dateStart)
+      const endDate = new Date(this.editedItem.dateEnd)
+
+      this.editedItem.hourStart = startDate.getHours().toString().padStart(2, '0') + ':' + startDate.getMinutes().toString().padStart(2, '0')
+      this.editedItem.dateStart = startDate.getFullYear() + '-' + (startDate.getMonth() + 1).toString().padStart(2, '0') + '-' + startDate.getDate().toString().padStart(2, '0')
+
+      this.editedItem.hourEnd = endDate.getHours().toString().padStart(2, '0') + ':' + endDate.getMinutes().toString().padStart(2, '0')
+      this.editedItem.dateEnd = endDate.getFullYear() + '-' + (endDate.getMonth() + 1).toString().padStart(2, '0') + '-' + endDate.getDate().toString().padStart(2, '0')
+
       this.dialog = true
     },
 
@@ -309,16 +411,42 @@ export default {
       })
     },
 
-    save () {
+    async save () {
+      const timeStartSplit = this.editedItem.hourStart.split(':')
+      this.editedItem.dateStart = new Date(this.editedItem.dateStart)
+      this.editedItem.dateStart.setHours(timeStartSplit[0], timeStartSplit[1], 0, 0)
+
+      const timeEndSplit = this.editedItem.hourEnd.split(':')
+      this.editedItem.dateEnd = new Date(this.editedItem.dateEnd)
+      this.editedItem.dateEnd.setHours(timeEndSplit[0], timeEndSplit[1], 0, 0)
+
+      const addressToFind = this.editedItem.address + ' ' + this.editedItem.city
+
+      if (addressToFind.replaceAll(' ', '') !== '') {
+        await this.convertAddressToPoint(addressToFind)
+      }
+
+      console.log('save: ', this.editedItem.dateStart)
+
+      const formData = new FormData()
+      formData.append('img', this.editedItem.imgFile)
+      formData.append('event', JSON.stringify(this.editedItem))
+
       if (this.editedIndex > -1) {
         Object.assign(this.events[this.editedIndex], this.editedItem)
         this.$axios
-          .put('/event/', this.editedItem)
+          .put('/event/', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
               message: 'Event modifier avec success !'
-            }))
+            }),
+            this.editedItem = Object.assign({}, this.defaultItem)
+          )
           .catch(error => (
             this.$store.commit('sendNotification', {
               status: 'error',
@@ -327,14 +455,20 @@ export default {
           ))
       } else {
         this.editedItem.creator = this.$auth.user._id
-        this.events.push(this.editedItem)
         this.$axios
-          .post('/event/', this.editedItem)
+          .post('/event/', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data'
+            }
+          })
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
               message: 'Event cree avec success !'
-            }))
+            }),
+            this.events.push(this.editedItem),
+            this.editedItem = Object.assign({}, this.defaultItem)
+          )
           .catch(error => (
             this.$store.commit('sendNotification', {
               status: 'error',
@@ -343,6 +477,21 @@ export default {
           ))
       }
       this.close()
+    },
+
+    async convertAddressToPoint (address) {
+      const query = address.replaceAll(' ', '+').toLowerCase()
+      const response = await this.$axios.get('/helper/address', {
+        params: {
+          q: query
+        }
+      })
+      console.log(response.data)
+      this.editedItem.location = {
+        coordinates: [response.data.features[0].geometry.coordinates[1], response.data.features[0].geometry.coordinates[0]],
+        type: 'point'
+      }
+      console.log(this.editedItem.location)
     }
   }
 }
