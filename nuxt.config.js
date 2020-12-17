@@ -47,7 +47,6 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/style-resources',
-    'nuxt-clipboard2',
     '@nuxtjs/auth',
     ['nuxt-gmaps', {
       key: process.env.API_KEY_Gmap
