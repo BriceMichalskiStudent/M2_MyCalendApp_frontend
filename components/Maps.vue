@@ -51,25 +51,7 @@ export default {
           elementType: 'labels.text.fill',
           stylers: [
             {
-              color: '#ffffff'
-            }
-          ]
-        },
-        {
-          featureType: 'all',
-          elementType: 'labels.text.stroke',
-          stylers: [
-            {
-              visibility: 'on'
-            },
-            {
-              color: '#3e606f'
-            },
-            {
-              weight: 2
-            },
-            {
-              gamma: 0.84
+              color: '#000000'
             }
           ]
         },
@@ -99,7 +81,7 @@ export default {
           elementType: 'geometry',
           stylers: [
             {
-              color: '#44a688'
+              color: '#F6C9C8'
             }
           ]
         },
@@ -108,7 +90,7 @@ export default {
           elementType: 'geometry',
           stylers: [
             {
-              color: '#13876c'
+              color: '#ff645f'
             }
           ]
         },
@@ -117,7 +99,7 @@ export default {
           elementType: 'geometry.stroke',
           stylers: [
             {
-              color: '#f5e4e4'
+              color: '#ff645f'
             },
             {
               visibility: 'off'
@@ -141,7 +123,7 @@ export default {
           elementType: 'geometry',
           stylers: [
             {
-              color: '#13876c'
+              color: '#f18d8a'
             },
             {
               visibility: 'simplified'
@@ -153,10 +135,7 @@ export default {
           elementType: 'geometry',
           stylers: [
             {
-              color: '#067372'
-            },
-            {
-              lightness: '-20'
+              color: '#fa8482'
             }
           ]
         },
@@ -165,7 +144,7 @@ export default {
           elementType: 'geometry',
           stylers: [
             {
-              color: '#357374'
+              color: '#fa8482'
             }
           ]
         },
@@ -174,7 +153,7 @@ export default {
           elementType: 'geometry',
           stylers: [
             {
-              color: '#004757'
+              color: '#f5e4e4'
             }
           ]
         }
