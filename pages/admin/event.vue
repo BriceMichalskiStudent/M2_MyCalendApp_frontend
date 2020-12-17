@@ -82,7 +82,6 @@
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
                             v-model="editedItem.dateStart"
-                            :value="editedItemDateStartFormated"
                             label="Debut"
                             prepend-icon="mdi-calendar"
                             readonly
@@ -115,7 +114,7 @@
                         <template v-slot:activator="{ on, attrs }">
                           <v-text-field
                             v-model="editedItem.dateEnd"
-                            :value="editedItemDateEndFormated"
+                            value=""
                             label="Fin"
                             prepend-icon="mdi-calendar"
                             readonly
@@ -223,6 +222,7 @@ export default {
       title: '',
       description: '',
       dateStart: '',
+      creator: '',
       dateEnd: ''
     },
     defaultItem: {
@@ -270,6 +270,8 @@ export default {
     editItem (item) {
       this.editedIndex = this.events.indexOf(item)
       this.editedItem = Object.assign({}, item)
+      this.editedItem.dateStart = new Date(this.editedItem.dateStart).toISOString().substr(0, 10)
+      this.editedItem.dateEnd = new Date(this.editedItem.dateEnd).toISOString().substr(0, 10)
       this.dialog = true
     },
 
@@ -324,6 +326,7 @@ export default {
             })
           ))
       } else {
+        this.editedItem.creator = this.$auth.user._id
         this.events.push(this.editedItem)
         this.$axios
           .post('/event/', this.editedItem)
