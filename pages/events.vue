@@ -7,13 +7,19 @@
       </h1>
       <div class="search" />
     </section>
-    <section class="events-content col-md-10">
-      <h2>Wow ! Nice slider !</h2>
+    <p v-if="$fetchState.pending">
+      Récupération en cours...️
+    </p>
+    <p v-else-if="$fetchState.error">
+      Une erreur est survenue :(
+    </p>
+    <section v-else class="events-content col-md-10">
+      <h2>Tous les évènements !</h2>
       <Button link="/" anchor="Voir tous" custom="primary" />
-      <EventCarousel :events="events" />
-      <h2>OMG ! An other one !</h2>
+      <EventCarousel :events="eventsAll" />
+      <h2>évènements appartenant au TAG : {{ tag.name }} !</h2>
       <Button link="/" anchor="Voir tous" custom="primary" />
-      <EventCarousel />
+      <EventCarousel :events="eventsTag" />
     </section>
   </div>
 </template>
@@ -25,11 +31,28 @@ import Button from '~/components/Button'
 export default {
   components: { Button, EventCarousel },
   transition: 'opacity',
+  fetch () {
+    this.$axios.get('/event')
+      .then(response => (this.eventsAll = response.data))
+
+    this.$axios.get('/tag')
+      .then((response) => {
+        const rand = Math.floor(Math.random() * response.data.length)
+        this.tag = response.data[rand]
+        this.$axios.get('/event',
+          {
+            params:
+              { q: { tags: this.tag._id } }
+          })
+          .then(response => (this.eventsTag = response.data))
+      })
+  },
   data () {
     return {
       title: 'Page events',
       meta_desc: 'Je suis le magnifique content',
-      events: [
+      tag: '',
+      eventsAll: [
         {
           id: 0,
           name: 'Nowel',
@@ -53,88 +76,9 @@ export default {
           localization: {
             '2DSPHERE': '2DSPHERE'
           }
-        },
-        {
-          id: 1,
-          name: 'Road to 2021',
-          description: 'Go se bourer la gueule mais toujours dans le respect des geste barrière, confiner ensemble toutes la sainte journee !!!',
-          dateEnd: '2020-12-31 12:00',
-          dateStart: '2021-01-02 00:00',
-          image: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-          address: 'Chez, la gouinfre',
-          posts: [
-            { '{Post}': '{Post}' }
-          ],
-          creator: {
-            '{User}': '{User}'
-          },
-          tags: [
-            {
-              code: 'ALCOOL',
-              name: 'Biere'
-            }
-          ],
-          localization: {
-            '2DSPHERE': '2DSPHERE'
-          }
-        },
-        {
-          id: 2,
-          name: 'Soirée D&D',
-          description: 'Grosser soirée D&D Rdv Musée d\'art contemporain, villeurbanne wjbxsakm dewjdksxb scjkwbcwb jckcwe we dwe od',
-          dateEnd: '2020-02-24 2:00',
-          dateStart: '2020-02-23 21:00',
-          image: 'img/placeholder-animation-banner.jpg',
-          address: 'villeurbanne',
-          posts: [
-            { '{Post}': '{Post}' }
-          ],
-          creator: {
-            '{User}': '{User}'
-          },
-          tags: [
-            {
-              code: 'KITCHEN',
-              name: 'Cuisine'
-            },
-            {
-              code: 'SPORT',
-              name: 'PISCINE'
-            }
-          ],
-          localization: {
-            '2DSPHERE': '2DSPHERE'
-          }
-        },
-        {
-          id: 3,
-          name: 'Oupla',
-          description: 'Grosser dossier lo',
-          dateEnd: '2020-07-02 2:00',
-          dateStart: '2020-07-02 21:00',
-          image: 'https://images.unsplash.com/photo-1572914339448-b0479ad30fd5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-          address: 'Chez, moi',
-          posts: [
-            { '{Post}': '{Post}' }
-          ],
-          creator: {
-            '{User}': '{User}'
-          },
-          tags: [
-            {
-              code: 'KITCHEN',
-              name: 'Fiesta'
-            },
-            {
-              code: 'SPORT',
-              name: 'PISCINE'
-            }
-          ],
-          localization: {
-            '2DSPHERE': '2DSPHERE'
-          }
         }
-      ]
+      ],
+      eventsTag: []
     }
   },
   head () {

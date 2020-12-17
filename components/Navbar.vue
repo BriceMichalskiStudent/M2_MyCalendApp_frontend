@@ -44,7 +44,7 @@
         </nuxt-link>
       </li>
       <li @click="triggerMenu">
-        <Button link="/" anchor="Cree mon évènement" custom="primary" />
+        <Button link="/create-event" anchor="Cree mon évènement" custom="primary" />
       </li>
     </ul>
   </nav>
