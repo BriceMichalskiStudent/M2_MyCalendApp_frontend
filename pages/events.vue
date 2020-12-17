@@ -31,22 +31,21 @@ import Button from '~/components/Button'
 export default {
   components: { Button, EventCarousel },
   transition: 'opacity',
-  async fetch () {
-    await this.$axios.get('/event')
+  fetch () {
+    this.$axios.get('/event')
       .then(response => (this.eventsAll = response.data))
 
-    await this.$axios.get('/tag')
+    this.$axios.get('/tag')
       .then((response) => {
         const rand = Math.floor(Math.random() * response.data.length)
         this.tag = response.data[rand]
+        this.$axios.get('/event',
+          {
+            params:
+              { q: { tags: this.tag._id } }
+          })
+          .then(response => (this.eventsTag = response.data))
       })
-
-    await this.$axios.get('/event',
-      {
-        params:
-            { q: { tags: this.tag._id } }
-      })
-      .then(response => (this.eventsTag = response.data))
   },
   data () {
     return {

@@ -19,7 +19,7 @@
       <h2>Futurs évènements !</h2>
       <Button link="/" anchor="Voir tous" custom="primary" />
       <p v-if="$fetchState.pending">
-        Récupération en cours... ⛰️
+        Récupération en cours...
       </p>
       <p v-else-if="$fetchState.error">
         Une erreur est survenue :(
