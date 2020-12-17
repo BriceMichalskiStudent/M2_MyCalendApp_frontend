@@ -1,41 +1,21 @@
 <template>
   <section :class="[$store.state.notificationStatus,'notification',{visible:$store.state.notification}, {visibleOut:$store.state.notificationOutAnimation}]">
     <div class="notification-icon">
-      <svg
-        v-if="$store.state.notificationStatus === 'error'"
-        xmlns="http://www.w3.org/2000/svg"
-        width="48"
-        height="48"
-        viewBox="0 0 24 24"
-        class="eva eva-alert-circle-outline"
-        fill="#ffffff"
-      ><g data-name="Layer 2"><g data-name="alert-circle"><rect width="24" height="24" opacity="0" /><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" /><circle cx="12" cy="16" r="1" /><path d="M12 7a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0V8a1 1 0 0 0-1-1z" /></g></g>
-      </svg>
-      <svg
+      <span v-if="$store.state.notificationStatus === 'error'" class="icon-error" />
+      <span
         v-else-if="$store.state.notificationStatus === 'success' "
-        xmlns="http://www.w3.org/2000/svg"
-        width="48"
-        height="48"
-        viewBox="0 0 24 24"
-        class="eva eva-checkmark-circle-outline"
-        fill="#ffffff"
-      ><g data-name="Layer 2"><g data-name="checkmark-circle"><rect width="24" height="24" opacity="0" /><path d="M9.71 11.29a1 1 0 0 0-1.42 1.42l3 3A1 1 0 0 0 12 16a1 1 0 0 0 .72-.34l7-8a1 1 0 0 0-1.5-1.32L12 13.54z" /><path d="M21 11a1 1 0 0 0-1 1 8 8 0 0 1-8 8A8 8 0 0 1 6.33 6.36 7.93 7.93 0 0 1 12 4a8.79 8.79 0 0 1 1.9.22 1 1 0 1 0 .47-1.94A10.54 10.54 0 0 0 12 2a10 10 0 0 0-7 17.09A9.93 9.93 0 0 0 12 22a10 10 0 0 0 10-10 1 1 0 0 0-1-1z" /></g></g>
-      </svg>
-      <svg
+        class="icon-success"
+      />
+      <span
         v-else
-        xmlns="http://www.w3.org/2000/svg"
-        width="48"
-        height="48"
-        viewBox="0 0 24 24"
-        class="eva eva-info-outline"
-        fill="#ffffff"
-      ><g data-name="Layer 2"><g data-name="info"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0" /><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" /><circle cx="12" cy="8" r="1" /><path d="M12 10a1 1 0 0 0-1 1v5a1 1 0 0 0 2 0v-5a1 1 0 0 0-1-1z" /></g></g></svg>
+        class="icon-info"
+      />
     </div>
     <p class="notification-message">
       {{ $store.state.notificationMessage }}
     </p>
     <div class="notification-close" @click="hideNotifications()">
-      <span class="icon-close" />
+      <span class="icon-clear" />
     </div>
   </section>
 </template>
@@ -55,7 +35,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped >
-
+.notification-icon{
+  span{
+    font-size: 50px;
+  }
+}
 .notification {
   position: fixed;
   top: 0;
