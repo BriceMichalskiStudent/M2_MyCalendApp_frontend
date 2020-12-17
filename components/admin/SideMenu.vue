@@ -60,7 +60,7 @@
         </a>
       </li>
       <li class="deconexion">
-        <a href="/">
+        <a @click="logout">
           <span class="icon-log-out" /> Deconexion
         </a>
       </li>
@@ -351,6 +351,10 @@ export default {
   methods: {
     triggerMenu () {
       this.isActive = !this.isActive
+    },
+    async logout () {
+      await this.$auth.logout()
+      await this.$router.push('/')
     }
   }
 }
