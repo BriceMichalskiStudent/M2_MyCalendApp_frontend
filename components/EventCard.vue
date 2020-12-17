@@ -15,7 +15,7 @@
       </div>
     </section>
     <p class="event-position">
-      {{ event.address }} <span class="icon-location_pin" />
+      {{ event.address }} <span class="icon-location_on" />
     </p>
   </nuxt-link>
 </template>

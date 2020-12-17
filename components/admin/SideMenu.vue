@@ -12,19 +12,24 @@
     <ul>
       <li>
         <nuxt-link to="/">
-          <span class="icon-home" /> Accueil
+          <span class="icon-home3" /> Accueil
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/profile">
+          <span class="icon-user" /> Mon compte
         </nuxt-link>
       </li>
       <hr>
       <p>Administration</p>
       <li>
         <nuxt-link to="/admin">
-          <span class="icon-home" /> Dashboard
+          <span class="icon-home3" /> Dashboard
         </nuxt-link>
       </li>
       <li>
         <nuxt-link to="/admin/user">
-          <span class="icon-user" /> Utilisateur
+          <span class="icon-user-group" /> Utilisateur
         </nuxt-link>
       </li>
       <li>
@@ -32,27 +37,26 @@
           <span class="icon-line_style" /> Style guide
         </nuxt-link>
       </li>
-      <li>
-        <nuxt-link to="/admin/icons">
-          <span class="icon-emoji_symbols" /> Icones
-        </nuxt-link>
-      </li>
-      <li>
-        <nuxt-link to="/admin/vutify-test">
-          <span class="icon-table_chart" /> Tables examples
-        </nuxt-link>
-      </li>
       <hr>
       <p>Documentation</p>
       <li>
+        <a href="https://github.com/MyCalendApp" target="_blank">
+          <span class="icon-github" /> Code source
+        </a>
+      </li>
+      <li>
+        <a href="https://api-mycalendapp.herokuapp.com/status" target="_blank">
+          <span class="icon-activity" /> Status
+        </a>
+      </li>
+      <li>
         <a href="https://mycalendapp.github.io/Wiki/" target="_blank">
-          <span class="icon-nuxt-dot-js" /> Docs
+          <span class="icon-insert_drive_file" /> Docs
         </a>
       </li>
       <li>
         <a href="">
-          <span class="icon-api-platforme"><span class="path1" /><span class="path2" /><span class="path3" /><span class="path4" /><span class="path5" /><span class="path6" /><span class="path7" /><span class="path8" /><span class="path9" /><span class="path10" /><span class="path11" /><span class="path12" /><span class="path13" /><span class="path14" /><span class="path15" /><span class="path16" /><span class="path17" /><span class="path18" /><span class="path19" /><span class="path20" /><span class="path21" /><span class="path22" /><span class="path23" /><span class="path24" /><span class="path25" /><span class="path26" /><span class="path27" /><span class="path28" /><span class="path29" /><span class="path30" /><span class="path31" /><span class="path32" /><span class="path33" /><span class="path34" /></span>
-          API
+          <span class="icon-swagger" /> API
         </a>
       </li>
       <li class="deconexion">
@@ -81,17 +85,26 @@ span {
   &[class*=icon-] {
     color: $default;
   }
-  &.icon-home {
+  &.icon-home3 {
     color: $primary;
   }
-  &.icon-line_style {
+  &.icon-user {
     color: $pink;
+  }
+  &.icon-user-group {
+    color: $blue;
+  }
+  &.icon-line_style {
+    color: $indigo;
   }
   &.icon-emoji_symbols{
     color: $orange;
   }
-  &.icon-table_chart{
+  &.icon-insert_drive_file{
     color: $teal;
+  }
+  &.icon-activity{
+    color: $red;
   }
 }
 
@@ -276,7 +289,7 @@ span {
             left: -10px;
             top: 0;
             border-radius: 0 2px 2px 0;
-            height: 40px;
+            height: 46px;
             background-color: white;
             transition-duration: 0.4s;
             transition-timing-function: ease;
