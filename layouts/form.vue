@@ -8,7 +8,7 @@
     >
       <div class="form-container col-md-8 offset-md-2">
         <nuxt-link to="/" class="to-home">
-          <span class="icon-close" />
+          <span class="icon-clear" />
         </nuxt-link>
         <Nuxt />
       </div>

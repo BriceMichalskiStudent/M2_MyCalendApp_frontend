@@ -3,10 +3,10 @@
     <p class="big">
       <span class="icon-calendar" /> {{ date }}
     </p><p class="big">
-      <span class="icon-location_pin" /> {{ place }}
+      <span class="icon-map-pin" /> {{ place }}
     </p>
     <p class="big">
-      <span class="icon-bars" /> {{ tag }}
+      <span class="icon-tag" /> {{ tag }}
     </p>
   </section>
 </template>

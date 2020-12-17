@@ -90,6 +90,11 @@
     line-height: 28px;
   }
 }
+.v-application p.admin-big {
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  line-height: 30px;
+}
 .v-application a, .v-application button {
   text-decoration: none;
   font-family: "Montserrat Bold", sans-serif;
