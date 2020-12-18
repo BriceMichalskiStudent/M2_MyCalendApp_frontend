@@ -6,6 +6,24 @@
       sort-by="date"
       class="elevation-1"
     >
+      <template v-slot:item.imgUrl="{ item }">
+        <v-img
+          v-if="item.imgUrl !== ''"
+          :src="item.imgUrl"
+          contain
+          class="img_preview"
+          height="70px"
+          width="70px"
+        />
+        <v-img
+          v-else
+          src="/img/placeholder-profile.png"
+          contain
+          class="img_preview"
+          height="70px"
+          width="70px"
+        />
+      </template>
       <template v-slot:item.dateStart="{ item }">
         <span>{{ new Date(item.dateStart).toLocaleString() }}</span>
       </template>
@@ -317,8 +335,10 @@ export default {
     menuStartTime: false,
     menuEndTime: false,
     headers: [
+      { text: 'Illustration', value: 'imgUrl' },
       { text: 'Titre', value: 'title' },
       { text: 'Description', value: 'description' },
+      { text: 'Ville', value: 'city' },
       { text: 'Debut', value: 'dateStart' },
       { text: 'Fin', value: 'dateEnd' },
       { text: 'Actions', value: 'actions', sortable: false }
@@ -440,7 +460,7 @@ export default {
       })
     },
 
-    save () {
+    async save () {
       let item = Object.assign({}, this.editedItem)
 
       // Fucking Date
@@ -460,7 +480,7 @@ export default {
       if (this.editedIndex > -1) {
         formData.append('event', JSON.stringify(item))
         Object.assign(this.events[this.editedIndex], item)
-        this.$axios
+        await this.$axios
           .put('/event/', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
@@ -479,10 +499,11 @@ export default {
               message: error
             })
           ))
+        this.initialize()
       } else {
         item.creator = this.$auth.user._id
         formData.append('event', JSON.stringify(item))
-        this.$axios
+        await this.$axios
           .post('/event/', formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
@@ -493,7 +514,6 @@ export default {
               status: 'success',
               message: 'Evennement cree avec success !'
             }),
-            this.events.push(item),
             item = Object.assign({}, this.defaultItem)
           )
           .catch(error => (
@@ -502,6 +522,8 @@ export default {
               message: error
             })
           ))
+
+        this.initialize()
       }
       this.close()
     },
