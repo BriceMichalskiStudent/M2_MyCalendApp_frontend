@@ -11,7 +11,7 @@
     </h1>
     <div class="content col-md-8 offset-md-2">
       <img :src="user.imgUrl" class="profile">
-      <form @submit.prevent="updateUser">
+      <form method="post" @submit.prevent="updateAccount">
         <div class="input-group">
           <label>Prenom</label>
           <input type="text" :value="user.firstName" :v-model="editedUser.firstName">
@@ -37,12 +37,22 @@
           <label>Validation mots de passe</label>
           <input type="password" :v-model="editedUser.validatePassword">
         </div>
-        <Button type="subbmit" custom="primari large" anchor="Mettre a jour !" />
+        <Button type="submit" custom="primary large" anchor="Mettre a jour !" />
+      </form>
+      <hr>
+      <h2> Zone de danger !</h2>
+      <form method="post" @submit.prevent="deleteAccount">
+        <Button type="submit" custom="Secondary large" anchor="Supprimer mon compte !" />
       </form>
     </div>
   </section>
 </template>
 <style lang="scss" scoped>
+@media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+  .row{
+    margin: 0;
+  }
+}
 .profile{
   width: 100px;
   height: 100px;
@@ -68,6 +78,10 @@ form{
     }
     margin: 0 20px;
     width: calc(50% - 40px);
+    @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
+      margin: 0 10px;
+      width: calc(100% - 20px);
+    }
   }
   h2{
     width: calc(100% - 40px);
@@ -103,19 +117,37 @@ export default {
       }
     }
   },
-  updatedUser () {
-    try {
-      this.$store.commit('sendNotification', {
-        status: 'success',
-        message: 'Votre profile a ete modifier avec succès !'
-      })
-      this.$router.push('/profile')
-    } catch (e) {
-      this.$store.commit('sendNotification', {
-        status: 'error',
-        message: e
-      })
-      this.$router.push('/login')
+  methods: {
+    updateAccount () {
+      try {
+        this.$store.commit('sendNotification', {
+          status: 'success',
+          message: 'Votre profile a ete modifier avec succès !'
+        })
+        this.$router.push('/profile')
+      } catch (e) {
+        this.$store.commit('sendNotification', {
+          status: 'error',
+          message: e
+        })
+        this.$router.push('/login')
+      }
+    },
+    async deleteAccount () {
+      await this.$axios
+        .delete('/user/' + this.user._id)
+        .then(
+          this.$store.commit('sendNotification', {
+            status: 'success',
+            message: 'Votre compte a ete supprimer avec succès !'
+          }))
+        .catch(error => (
+          this.$store.commit('sendNotification', {
+            status: 'error',
+            message: error
+          })
+        ))
+      this.$router.push('/')
     }
   }
 }
