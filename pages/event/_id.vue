@@ -90,6 +90,7 @@ export default {
             message: error
           })
         ))
+      this.alreadySubscribe = true
     },
     async unSubscribe () {
       await this.$axios.put('/event/' + this.event._id + '/unjoin/' + this.$auth.user._id)
@@ -104,6 +105,7 @@ export default {
             message: error
           })
         ))
+      this.alreadySubscribe = false
     }
   },
   head () {
