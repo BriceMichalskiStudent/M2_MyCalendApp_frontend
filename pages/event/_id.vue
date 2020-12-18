@@ -1,11 +1,5 @@
 <template>
-  <p v-if="$fetchState.pending">
-    Récupération en cours...️
-  </p>
-  <p v-else-if="$fetchState.error">
-    Une erreur est survenue :(
-  </p>
-  <section v-else class="col-md-10 offset-md-1 row">
+  <section class="col-md-10 offset-md-1 row">
     <div class="col-md-6 single-event-content">
       <h1>{{ event.title }}</h1>
       <EventInfoBar v-if="event.tags !== 'undefined' && event.tags.length !== 0" :tag="event.tags[0].name" :place="event.address" :date="$moment(event.dateStart).format(&quot;DD / MM / YYYY&quot;)" />
