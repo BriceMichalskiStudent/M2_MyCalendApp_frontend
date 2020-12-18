@@ -5,7 +5,7 @@
       <img v-else src="/img/placeholder-profile.png">
       <div class="data">
         <p>{{ loggedInUser.firstName }} {{ loggedInUser.lastName }}</p>
-        <p><span>2</span> évènements a venir</p>
+        <p><span>{{ nbEvents }}</span> évènements a venir</p>
       </div>
     </div>
     <div :class="['action', {active : profileActivate}]">
@@ -39,6 +39,7 @@ export default {
   },
   data () {
     return {
+      nbEvents: this.$auth.user.events.length(),
       profileActivate: false
     }
   },
