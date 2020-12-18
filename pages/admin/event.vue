@@ -75,6 +75,7 @@
                         v-model="editedItem.city"
                         label="Ville"
                         :rules="[rules.required]"
+                        @change="convertAddressToPoint"
                       />
                     </v-col>
 
@@ -87,6 +88,7 @@
                         v-model="editedItem.address"
                         label="Adresse"
                         :rules="[rules.required]"
+                        @change="convertAddressToPoint"
                       />
                     </v-col>
 
@@ -329,7 +331,14 @@ export default {
       title: '',
       description: '',
       dateStart: '',
-      dateEnd: ''
+      hourStart: '',
+      dateEnd: '',
+      hourEnd: '',
+      creator: '',
+      address: '',
+      city: '',
+      location: [],
+      imgFile: null
     }
   }),
 
@@ -380,6 +389,15 @@ export default {
     deleteItem (item) {
       this.editedIndex = this.events.indexOf(item)
       this.editedItem = Object.assign({}, item)
+      const startDate = new Date(this.editedItem.dateStart)
+      const endDate = new Date(this.editedItem.dateEnd)
+
+      this.editedItem.hourStart = startDate.getHours().toString().padStart(2, '0') + ':' + startDate.getMinutes().toString().padStart(2, '0')
+      this.editedItem.dateStart = startDate.getFullYear() + '-' + (startDate.getMonth() + 1).toString().padStart(2, '0') + '-' + startDate.getDate().toString().padStart(2, '0')
+
+      this.editedItem.hourEnd = endDate.getHours().toString().padStart(2, '0') + ':' + endDate.getMinutes().toString().padStart(2, '0')
+      this.editedItem.dateEnd = endDate.getFullYear() + '-' + (endDate.getMonth() + 1).toString().padStart(2, '0') + '-' + endDate.getDate().toString().padStart(2, '0')
+
       this.dialogDelete = true
     },
 
@@ -411,29 +429,26 @@ export default {
       })
     },
 
-    async save () {
-      const timeStartSplit = this.editedItem.hourStart.split(':')
-      this.editedItem.dateStart = new Date(this.editedItem.dateStart)
-      this.editedItem.dateStart.setHours(timeStartSplit[0], timeStartSplit[1], 0, 0)
+    save () {
+      let item = Object.assign({}, this.editedItem)
 
-      const timeEndSplit = this.editedItem.hourEnd.split(':')
-      this.editedItem.dateEnd = new Date(this.editedItem.dateEnd)
-      this.editedItem.dateEnd.setHours(timeEndSplit[0], timeEndSplit[1], 0, 0)
+      // Fucking Date
+      const timeStartSplit = item.hourStart.split(':')
+      item.dateStart = new Date(item.dateStart)
+      item.dateStart.setHours(timeStartSplit[0], timeStartSplit[1], 0, 0)
+      item.dateStart = JSON.stringify(item.dateStart).replaceAll('"', '')
 
-      const addressToFind = this.editedItem.address + ' ' + this.editedItem.city
-
-      if (addressToFind.replaceAll(' ', '') !== '') {
-        await this.convertAddressToPoint(addressToFind)
-      }
-
-      console.log('save: ', this.editedItem.dateStart)
+      const timeEndSplit = item.hourEnd.split(':')
+      item.dateEnd = new Date(item.dateEnd)
+      item.dateEnd.setHours(timeEndSplit[0], timeEndSplit[1], 0, 0)
+      item.dateEnd = JSON.stringify(item.dateEnd).replaceAll('"', '')
 
       const formData = new FormData()
-      formData.append('img', this.editedItem.imgFile)
-      formData.append('event', JSON.stringify(this.editedItem))
+      formData.append('img', item.imgFile)
 
       if (this.editedIndex > -1) {
-        Object.assign(this.events[this.editedIndex], this.editedItem)
+        formData.append('event', JSON.stringify(item))
+        Object.assign(this.events[this.editedIndex], item)
         this.$axios
           .put('/event/', formData, {
             headers: {
@@ -443,9 +458,9 @@ export default {
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
-              message: 'Event modifier avec success !'
-            }),
-            this.editedItem = Object.assign({}, this.defaultItem)
+              message: 'Evennement modifier avec success !'
+            })
+
           )
           .catch(error => (
             this.$store.commit('sendNotification', {
@@ -454,7 +469,8 @@ export default {
             })
           ))
       } else {
-        this.editedItem.creator = this.$auth.user._id
+        item.creator = this.$auth.user._id
+        formData.append('event', JSON.stringify(item))
         this.$axios
           .post('/event/', formData, {
             headers: {
@@ -464,10 +480,10 @@ export default {
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
-              message: 'Event cree avec success !'
+              message: 'Evennement cree avec success !'
             }),
-            this.events.push(this.editedItem),
-            this.editedItem = Object.assign({}, this.defaultItem)
+            this.events.push(item),
+            item = Object.assign({}, this.defaultItem)
           )
           .catch(error => (
             this.$store.commit('sendNotification', {
@@ -479,7 +495,8 @@ export default {
       this.close()
     },
 
-    async convertAddressToPoint (address) {
+    async convertAddressToPoint () {
+      const address = this.editedItem.address + ' ' + this.editedItem.city
       const query = address.replaceAll(' ', '+').toLowerCase()
       const response = await this.$axios.get('/helper/address', {
         params: {
@@ -489,7 +506,7 @@ export default {
       console.log(response.data)
       this.editedItem.location = {
         coordinates: [response.data.features[0].geometry.coordinates[1], response.data.features[0].geometry.coordinates[0]],
-        type: 'point'
+        type: 'Point'
       }
       console.log(this.editedItem.location)
     }
