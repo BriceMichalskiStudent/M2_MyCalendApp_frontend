@@ -13,10 +13,18 @@
     <p v-else-if="$fetchState.error">
       Une erreur est survenue :(
     </p>
-    <section v-else class="events-content col-md-10">
+    <section v-else-if="eventsAll !== []" class="events-content col-md-10">
       <h2>Tous les évènements !</h2>
       <Button link="/" anchor="Voir tous" custom="primary" />
       <EventCarousel :events="eventsAll" />
+    </section>
+    <p v-if="$fetchState.pending">
+      Récupération en cours...️
+    </p>
+    <p v-else-if="$fetchState.error">
+      Une erreur est survenue :(
+    </p>
+    <section v-else-if="eventsTag !== []" class="events-content col-md-10">
       <h2>évènements appartenant au TAG : {{ tag.name }} !</h2>
       <Button link="/" anchor="Voir tous" custom="primary" />
       <EventCarousel :events="eventsTag" />
@@ -31,21 +39,34 @@ import Button from '~/components/Button'
 export default {
   components: { Button, EventCarousel },
   transition: 'opacity',
-  fetch () {
-    this.$axios.get('/event')
+  async fetch () {
+    await this.$axios.get('/event')
       .then(response => (this.eventsAll = response.data))
 
-    this.$axios.get('/tag')
-      .then((response) => {
-        const rand = Math.floor(Math.random() * response.data.length)
-        this.tag = response.data[rand]
-        this.$axios.get('/event',
-          {
-            params:
-              { q: { tags: this.tag._id } }
-          })
-          .then(response => (this.eventsTag = response.data))
-      })
+    let tag = null
+    let eventsEmpty = true
+    while (eventsEmpty === true) {
+      await this.$axios.get('/tag')
+        .then((response) => {
+          const rand = Math.floor(Math.random() * response.data.length)
+          tag = response.data[rand]
+          this.tag = response.data[rand]
+        })
+
+      await this.$axios.get('/event',
+        {
+          params:
+            { q: { tags: tag } }
+        })
+        .then((response) => {
+          if (response.data.length === 0) {
+            eventsEmpty = true
+          } else {
+            eventsEmpty = false
+            this.eventsTag = response.data
+          }
+        })
+    }
   },
   data () {
     return {
