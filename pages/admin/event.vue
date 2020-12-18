@@ -398,7 +398,6 @@ export default {
         .get('/event')
         .then((response) => {
           this.events = response.data
-          console.log(response.data)
         })
     },
 
@@ -536,12 +535,10 @@ export default {
           q: query
         }
       })
-      console.log(response.data)
       this.editedItem.location = {
         coordinates: [response.data.features[0].geometry.coordinates[1], response.data.features[0].geometry.coordinates[0]],
         type: 'Point'
       }
-      console.log(this.editedItem.location)
     }
   }
 }
