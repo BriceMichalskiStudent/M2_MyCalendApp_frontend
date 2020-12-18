@@ -50,6 +50,17 @@
                       sm="6"
                       md="12"
                     >
+                      <v-file-input
+                        v-model="editedItem.imgFile"
+                        label="Illustration de l'evennement"
+                        type="file"
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                      md="12"
+                    >
                       <v-text-field
                         v-model="editedItem.title"
                         label="Title"
