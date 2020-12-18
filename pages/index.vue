@@ -15,16 +15,16 @@
       </p>
     </div>
     <img class="col-md-4" src="/img/mobie-home.png">
-    <div class="col-md-10 home-discover">
+    <p v-if="$fetchState.pending">
+      Récupération en cours...
+    </p>
+    <p v-else-if="$fetchState.error">
+      Une erreur est survenue :(
+    </p>
+    <div v-else-if="events !== []" class="col-md-10 home-discover">
       <h2>Futurs évènements !</h2>
       <Button link="/" anchor="Voir tous" custom="primary" />
-      <p v-if="$fetchState.pending">
-        Récupération en cours...
-      </p>
-      <p v-else-if="$fetchState.error">
-        Une erreur est survenue :(
-      </p>
-      <EventCarousel v-else :events="events" />
+      <EventCarousel :events="events" />
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" class="light-red-bg" viewBox="0 0 1319.759 1132.776">
       <path
