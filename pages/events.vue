@@ -59,9 +59,7 @@ export default {
             { q: { tags: tag } }
         })
         .then((response) => {
-          if (response.data.length === 0) {
-            eventsEmpty = true
-          } else {
+          if (response.data.length !== 0) {
             eventsEmpty = false
             this.eventsTag = response.data
           }

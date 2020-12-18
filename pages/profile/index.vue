@@ -10,7 +10,8 @@
       Mon Compte
     </h1>
     <div class="content col-md-8 offset-md-2">
-      <img :src="user.imgUrl" class="profile">
+      <img v-if="editedUser.imgUrl !== undefined && editedUser.imgUrl !== ''" :src="loggedInUser.imgUrl" class="profile">
+      <img v-else src="/img/placeholder-profile.png" class="profile">
       <form method="post" @submit.prevent="updateAccount">
         <div class="input-group">
           <label>Prenom</label>
@@ -123,7 +124,6 @@ export default {
   },
   methods: {
     async updateAccount () {
-      console.log(this.editedUser)
       if (this.editedUser.password !== '' && this.editedUser.validatePassword !== '') {
         if (this.editedUser.password !== this.editedUser.validatePassword) {
           this.$store.commit('sendNotification', {
