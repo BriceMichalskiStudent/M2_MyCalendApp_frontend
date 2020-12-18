@@ -107,7 +107,7 @@
           name="image"
           @change="onFileChange"
         >
-        <Button anchor="Cree !" type="submit" custom="large" />
+        <Button anchor="Cree !" type="submit" custom="large primary" />
       </form>
     </div>
   </section>
