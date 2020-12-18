@@ -74,6 +74,12 @@ export default {
     baseURL: process.env.backend_url || 'http://localhost:3001'
   },
   auth: {
+    cookie: {
+      prefix: 'auth.',
+      options: {
+        expires: 30
+      }
+    },
     strategies: {
       local: {
         endpoints: {
