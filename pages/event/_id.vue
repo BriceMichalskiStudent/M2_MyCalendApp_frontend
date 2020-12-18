@@ -15,7 +15,12 @@
       <p>
         {{ event.description }}
       </p>
-      <Button anchor="S'inscrire !" custom="primary" type="submit" />
+      <button v-if="loggedInUser !== false && alreadySubscribe === false" class="primary button" @click="subscribe">
+        S'inscrire !
+      </button>
+      <button v-else-if="alreadySubscribe === true" class="button" @click="unSubscribe">
+        Se désinscrire !
+      </button>
     </div>
     <div class="col-md-5 event-map">
       <Maps :location="event.location" />
@@ -40,24 +45,65 @@
 </template>
 
 <script>
-import Button from '~/components/Button'
+import { mapGetters } from 'vuex'
 import EventInfoBar from '~/components/EventInfoBar'
 import Maps from '~/components/Maps'
 export default {
-  components: { Button, EventInfoBar, Maps },
+  components: { EventInfoBar, Maps },
   transition: 'opacity',
   async fetch () {
-    this.event_id = this.$route.params.id
+    const eventId = this.$route.params.id
     await this.$axios
-      .get('/event/' + this.event_id)
+      .get('/event/' + eventId)
       .then(response => (this.event = response.data))
+
+    for (let i = 0; this.$auth.user.events.length > i; i++) {
+      if (this.$auth.user.events[i] === eventId) {
+        this.alreadySubscribe = true
+      }
+    }
   },
   data () {
     return {
       title: 'Page index',
       meta_desc: 'Je suis le magnifique content',
-      event_id: 0,
+      alreadySubscribe: false,
       event: {}
+    }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser'])
+  },
+  methods: {
+    async subscribe () {
+      await this.$axios.put('/event/' + this.event._id + '/join/' + this.$auth.user._id)
+        .then(
+          this.$store.commit('sendNotification', {
+            status: 'success',
+            message: 'Vous etes désormais inscrit a l\'evenement : ' + this.event.title
+          }))
+        .catch(error => (
+          this.$store.commit('sendNotification', {
+            status: 'error',
+            message: error
+          })
+        ))
+      window.location.reload(true)
+    },
+    async unSubscribe () {
+      await this.$axios.put('/event/' + this.event._id + '/unjoin/' + this.$auth.user._id)
+        .then(
+          this.$store.commit('sendNotification', {
+            status: 'success',
+            message: 'Vous n\'etes plus inscrit a l\'evenement : ' + this.event.title
+          }))
+        .catch(error => (
+          this.$store.commit('sendNotification', {
+            status: 'error',
+            message: error
+          })
+        ))
+      window.location.reload(true)
     }
   },
   head () {
@@ -123,5 +169,43 @@ export default {
     height: 100vh;
     top: 80px;
   }
+}
+.button{
+  z-index: 2;
+  padding: 10px 30px;
+  background-color: $secondary!important;
+  color: white;
+  border-radius: 10px;
+  position: relative;
+  text-align: center;
+  &::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    background-color: $secondary!important;;
+    opacity: 0.35;
+    z-index: -1;
+    border-radius: 10px;
+    transform: rotate(0);
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+  }
+  &:hover{
+    &::after{
+      transform: rotate(5deg);
+    }
+  }
+}
+.primary{
+  background-color: $primary!important;
+  &::after{
+    background-color: $primary!important;;
+  }
+}
+.large{
+  padding: 10px 10%;
 }
 </style>

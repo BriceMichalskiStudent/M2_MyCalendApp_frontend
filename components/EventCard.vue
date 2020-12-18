@@ -236,7 +236,7 @@ export default {
     width: 100%;
     margin: 0;
     height: 230px;
-    object-fit: fill;
+    object-fit: cover;
     @media only screen and (max-width: map-get($grid-breakpoints, 'md')) {
       height: 190px;
     }
