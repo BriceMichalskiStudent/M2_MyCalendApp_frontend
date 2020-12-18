@@ -37,9 +37,12 @@ export default {
   directives: {
     clickOutside: vClickOutside.directive
   },
+  fetch () {
+    this.nbEvents = this.$auth.user.events.length
+  },
   data () {
     return {
-      nbEvents: this.$auth.user.events.length(),
+      nbEvents: 0,
       profileActivate: false
     }
   },

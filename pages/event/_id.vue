@@ -15,11 +15,11 @@
       <p>
         {{ event.description }}
       </p>
-      <button v-if="loggedInUser !== false && this.alreadySubscribe === false" class="primary button large" @click="subscribe">
+      <button v-if="loggedInUser !== false && alreadySubscribe === false" class="primary button" @click="subscribe">
         S'inscrire !
       </button>
-      <button v-else-if="this.alreadySubscribe === true" class="button large" @click="unSubscribe">
-        S'inscrire !
+      <button v-else-if="alreadySubscribe === true" class="button" @click="unSubscribe">
+        Se désinscrire !
       </button>
     </div>
     <div class="col-md-5 event-map">
@@ -57,8 +57,7 @@ export default {
       .get('/event/' + eventId)
       .then(response => (this.event = response.data))
 
-    console.log(this.$auth.user)
-    for (let i = 0; this.$auth.user.events > i; i++) {
+    for (let i = 0; this.$auth.user.events.length > i; i++) {
       if (this.$auth.user.events[i] === eventId) {
         this.alreadySubscribe = true
       }
@@ -81,7 +80,7 @@ export default {
         .then(
           this.$store.commit('sendNotification', {
             status: 'success',
-            message: 'Vous etes désormais inscrit a l\'evenement :' + this.event.title
+            message: 'Vous etes désormais inscrit a l\'evenement : ' + this.event.title
           }))
         .catch(error => (
           this.$store.commit('sendNotification', {
@@ -89,6 +88,22 @@ export default {
             message: error
           })
         ))
+      window.location.reload(true)
+    },
+    async unSubscribe () {
+      await this.$axios.put('/event/' + this.event._id + '/unjoin/' + this.$auth.user._id)
+        .then(
+          this.$store.commit('sendNotification', {
+            status: 'success',
+            message: 'Vous n\'etes plus inscrit a l\'evenement : ' + this.event.title
+          }))
+        .catch(error => (
+          this.$store.commit('sendNotification', {
+            status: 'error',
+            message: error
+          })
+        ))
+      window.location.reload(true)
     }
   },
   head () {
