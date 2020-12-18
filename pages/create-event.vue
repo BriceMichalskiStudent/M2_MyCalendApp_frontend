@@ -47,7 +47,6 @@
               v-model="dateStart"
               placeholder="Date de debut"
               label="Date de debut"
-              prepend-icon="mdi-calendar"
               readonly
               v-bind="attrs"
               v-on="on"
@@ -74,7 +73,6 @@
               v-model="dateEnd"
               placeholder="Date de fin"
               label="Date de Fin"
-              prepend-icon="mdi-calendar"
               readonly
               v-bind="attrs"
               v-on="on"
@@ -100,11 +98,13 @@
           :items="items"
           attach
           label="Tags"
+          placeholder="Choisissez vos tags"
           multiple
         />
         <input
           type="file"
           name="image"
+          placeholder="Uploader une image de couverture"
           @change="onFileChange"
         >
         <Button anchor="Cree !" type="submit" custom="large primary" />
