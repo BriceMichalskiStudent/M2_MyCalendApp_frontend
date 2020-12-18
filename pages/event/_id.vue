@@ -15,7 +15,7 @@
       <p>
         {{ event.description }}
       </p>
-      <button v-if="loggedInUser !== false && alreadySubscribe === false" class="primary button" @click="subscribe">
+      <button v-if="loggedInUser !== null && alreadySubscribe === false" class="primary button" @click="subscribe">
         S'inscrire !
       </button>
       <button v-else-if="alreadySubscribe === true" class="button" @click="unSubscribe">
@@ -90,6 +90,7 @@ export default {
             message: error
           })
         ))
+      this.alreadySubscribe = true
     },
     async unSubscribe () {
       await this.$axios.put('/event/' + this.event._id + '/unjoin/' + this.$auth.user._id)
@@ -104,6 +105,7 @@ export default {
             message: error
           })
         ))
+      this.alreadySubscribe = false
     }
   },
   head () {

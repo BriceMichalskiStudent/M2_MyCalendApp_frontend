@@ -39,7 +39,7 @@
       </li>
       <li>
         <nuxt-link to="/admin/event">
-          <span class="icon-user" /> Event
+          <span class="icon-calendar" /> Event
         </nuxt-link>
       </li>
       <hr>
@@ -101,6 +101,12 @@ span {
   }
   &.icon-line_style {
     color: $indigo;
+  }
+  &.icon-tag {
+    color: $green;
+  }
+  &.icon-calendar {
+    color: $teal;
   }
   &.icon-emoji_symbols{
     color: $orange;

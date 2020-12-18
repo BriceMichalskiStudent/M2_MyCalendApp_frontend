@@ -260,7 +260,7 @@
                   text
                   @click="close"
                 >
-                  Anuller
+                  Annuler
                 </v-btn>
                 <v-btn
                   color="primary darken-1"
@@ -281,7 +281,7 @@
               <v-card-actions>
                 <v-spacer />
                 <v-btn color="primary darken-1" text @click="closeDelete">
-                  Anuller
+                  Annuler
                 </v-btn>
                 <v-btn color="secondary darken-1" text @click="deleteItemConfirm">
                   Oui, supprimer
@@ -294,14 +294,16 @@
       </template>
       <template v-slot:item.actions="{ item }">
         <v-icon
-          small
+          medium
+          color="blue darken-1"
           class="mr-2"
           @click="editItem(item)"
         >
           mdi-pencil
         </v-icon>
         <v-icon
-          small
+          medium
+          color="secondary"
           @click="deleteItem(item)"
         >
           mdi-delete
