@@ -398,8 +398,8 @@ export default {
             ))
           this.initialize()
         } else {
-          this.editedItem.imgUrl = this.users[this.editedIndex].imgUrl
-          Object.assign(this.users[this.editedIndex], this.editedItem)
+          // this.editedItem.imgUrl = this.users[this.editedIndex].imgUrl
+          // Object.assign(this.users[this.editedIndex], this.editedItem)
           this.$axios
             .patch('/user/' + this.editedItem._id, user)
             .then(

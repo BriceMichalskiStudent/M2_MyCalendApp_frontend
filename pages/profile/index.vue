@@ -14,28 +14,28 @@
       <form method="post" @submit.prevent="updateAccount">
         <div class="input-group">
           <label>Prenom</label>
-          <input type="text" :value="user.firstName" :v-model="editedUser.firstName">
+          <input v-model="editedUser.firstName" type="text" required>
         </div>
         <div class="input-group">
           <label>Nom</label>
-          <input type="text" :value="user.lastName" :v-model="editedUser.lastName">
+          <input v-model="editedUser.lastName" type="text" required>
         </div>
         <div class="input-group">
           <label>Numero de telephone</label>
-          <input type="text" :value="user.phone" :v-model="editedUser.phone">
+          <input v-model="editedUser.phone" type="text" required>
         </div>
         <div class="input-group">
           <label>Adresse email</label>
-          <input type="email" :value="user.mail" :v-model="editedUser.mail">
+          <input v-model="editedUser.mail" type="email" required>
         </div>
         <h2> Changer de mots de passe </h2>
         <div class="input-group">
           <label>Mots de passe</label>
-          <input type="password" :v-model="editedUser.password">
+          <input v-model="editedUser.password" type="password">
         </div>
         <div class="input-group">
           <label>Validation mots de passe</label>
-          <input type="password" :v-model="editedUser.validatePassword">
+          <input v-model="editedUser.validatePassword" type="password">
         </div>
         <Button type="submit" custom="primary large" anchor="Mettre a jour !" />
       </form>
@@ -101,6 +101,10 @@ export default {
   transition: 'opacity',
   fetch () {
     Object.assign(this.user, this.$auth.user)
+    this.editedUser.firstName = this.user.firstName
+    this.editedUser.lastName = this.user.lastName
+    this.editedUser.phone = this.user.phone
+    this.editedUser.mail = this.user.mail
   },
   data () {
     return {
@@ -118,20 +122,36 @@ export default {
     }
   },
   methods: {
-    updateAccount () {
-      try {
-        this.$store.commit('sendNotification', {
-          status: 'success',
-          message: 'Votre profile a ete modifier avec succès !'
-        })
-        this.$router.push('/profile')
-      } catch (e) {
-        this.$store.commit('sendNotification', {
-          status: 'error',
-          message: e
-        })
-        this.$router.push('/login')
+    async updateAccount () {
+      console.log(this.editedUser)
+      if (this.editedUser.password !== '' && this.editedUser.validatePassword !== '') {
+        if (this.editedUser.password !== this.editedUser.validatePassword) {
+          this.$store.commit('sendNotification', {
+            status: 'error',
+            message: 'Les mots de passe que vous avez renseigner ne sont pas identique  !'
+          })
+        } else {
+          delete this.editedUser.validatePassword
+        }
+      } else {
+        delete this.editedUser.password
+        delete this.editedUser.validatePassword
       }
+      await this.$axios
+        .patch('/user/' + this.$auth.user._id, this.editedUser)
+        .then(
+          this.$store.commit('sendNotification', {
+            status: 'success',
+            message: 'Votre compte a ete modifier avec succès !'
+          }))
+        .catch(error => (
+          this.$store.commit('sendNotification', {
+            status: 'error',
+            message: error
+          })
+        ))
+      this.$auth.fetchUser()
+      this.$router.push('/profile')
     },
     async deleteAccount () {
       await this.$axios
