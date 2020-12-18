@@ -227,9 +227,9 @@ export default {
     dialogDelete: false,
     dialogGrant: false,
     headers: [
-      { text: 'Profile picture', value: 'imgUrl' },
-      { text: 'Name', value: 'lastName' },
-      { text: 'Surname', value: 'firstName' },
+      { text: 'Photo de profile', value: 'imgUrl' },
+      { text: 'Nom', value: 'lastName' },
+      { text: 'Prenom', value: 'firstName' },
       { text: 'Email', value: 'mail' },
       { text: 'Telephone', value: 'phone' },
       { text: 'Actions', value: 'actions', sortable: false }
