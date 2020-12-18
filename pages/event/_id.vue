@@ -15,7 +15,10 @@
       <p>
         {{ event.description }}
       </p>
-      <button class="primary button large" @click="subscribe">
+      <button v-if="loggedInUser !== false && this.alreadySubscribe === false" class="primary button large" @click="subscribe">
+        S'inscrire !
+      </button>
+      <button v-else-if="this.alreadySubscribe === true" class="button large" @click="unSubscribe">
         S'inscrire !
       </button>
     </div>
@@ -42,24 +45,35 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import EventInfoBar from '~/components/EventInfoBar'
 import Maps from '~/components/Maps'
 export default {
   components: { EventInfoBar, Maps },
   transition: 'opacity',
   async fetch () {
-    this.event_id = this.$route.params.id
+    const eventId = this.$route.params.id
     await this.$axios
-      .get('/event/' + this.event_id)
+      .get('/event/' + eventId)
       .then(response => (this.event = response.data))
+
+    console.log(this.$auth.user)
+    for (let i = 0; this.$auth.user.events > i; i++) {
+      if (this.$auth.user.events[i] === eventId) {
+        this.alreadySubscribe = true
+      }
+    }
   },
   data () {
     return {
       title: 'Page index',
       meta_desc: 'Je suis le magnifique content',
-      event_id: 0,
+      alreadySubscribe: false,
       event: {}
     }
+  },
+  computed: {
+    ...mapGetters(['loggedInUser'])
   },
   methods: {
     async subscribe () {
