@@ -91,3 +91,5 @@ sw.*
 
 # Sass cache
 .sass-cache
+
+yarn.*

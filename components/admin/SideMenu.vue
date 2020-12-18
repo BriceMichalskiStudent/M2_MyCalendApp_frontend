@@ -38,8 +38,8 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/admin/style-guide">
-          <span class="icon-line_style" /> Style guide
+        <nuxt-link to="/admin/event">
+          <span class="icon-user" /> Event
         </nuxt-link>
       </li>
       <hr>
