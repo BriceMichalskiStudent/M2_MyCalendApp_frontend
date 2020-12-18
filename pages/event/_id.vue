@@ -57,7 +57,7 @@ export default {
       .get('/event/' + eventId)
       .then(response => (this.event = response.data))
 
-    if (this.loggedInUser !== false) {
+    if (this.loggedInUser !== null) {
       for (let i = 0; this.$auth.user.events.length > i; i++) {
         if (this.$auth.user.events[i] === eventId) {
           this.alreadySubscribe = true
