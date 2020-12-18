@@ -57,9 +57,11 @@ export default {
       .get('/event/' + eventId)
       .then(response => (this.event = response.data))
 
-    for (let i = 0; this.$auth.user.events.length > i; i++) {
-      if (this.$auth.user.events[i] === eventId) {
-        this.alreadySubscribe = true
+    if (this.loggedInUser !== false) {
+      for (let i = 0; this.$auth.user.events.length > i; i++) {
+        if (this.$auth.user.events[i] === eventId) {
+          this.alreadySubscribe = true
+        }
       }
     }
   },
@@ -88,7 +90,6 @@ export default {
             message: error
           })
         ))
-      window.location.reload(true)
     },
     async unSubscribe () {
       await this.$axios.put('/event/' + this.event._id + '/unjoin/' + this.$auth.user._id)
@@ -103,7 +104,6 @@ export default {
             message: error
           })
         ))
-      window.location.reload(true)
     }
   },
   head () {
