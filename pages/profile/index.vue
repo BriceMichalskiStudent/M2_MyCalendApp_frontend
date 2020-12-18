@@ -10,7 +10,7 @@
       Mon Compte
     </h1>
     <div class="content col-md-8 offset-md-2">
-      <img v-if="editedUser.imgUrl !== undefined && editedUser.imgUrl !== ''" :src="loggedInUser.imgUrl" class="profile">
+      <img v-if="this.$auth.user.imgUrl !== undefined && this.$auth.user.imgUrl !== ''" :src="this.$auth.user.imgUrl" class="profile">
       <img v-else src="/img/placeholder-profile.png" class="profile">
       <form method="post" @submit.prevent="updateAccount">
         <div class="input-group">
@@ -167,6 +167,7 @@ export default {
             message: error
           })
         ))
+      await this.$auth.logout()
       this.$router.push('/')
     }
   }
