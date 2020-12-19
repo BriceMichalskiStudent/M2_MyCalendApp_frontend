@@ -15,10 +15,10 @@
       <p>
         {{ event.description }}
       </p>
-      <button v-if="loggedInUser !== null && alreadySubscribe === false" class="primary button" @click="subscribe">
+      <button v-if="loggedInUser !== null && alreadySubscribe === false && owner === false" class="primary button large" @click="subscribe">
         S'inscrire !
       </button>
-      <button v-else-if="alreadySubscribe === true" class="button" @click="unSubscribe">
+      <button v-else-if="alreadySubscribe === true" class="button large" @click="unSubscribe">
         Se désinscrire !
       </button>
     </div>
@@ -46,22 +46,29 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import EventInfoBar from '~/components/EventInfoBar'
+import EventInfoBar from '~/components/events/InfoBar'
 import Maps from '~/components/Maps'
 export default {
   components: { EventInfoBar, Maps },
   transition: 'opacity',
   async fetch () {
     const eventId = this.$route.params.id
+    let currentEvent = {}
     await this.$axios
       .get('/event/' + eventId)
-      .then(response => (this.event = response.data))
+      .then((response) => {
+        this.event = response.data
+        currentEvent = response.data
+      })
 
     if (this.loggedInUser !== null) {
       for (let i = 0; this.$auth.user.events.length > i; i++) {
         if (this.$auth.user.events[i] === eventId) {
           this.alreadySubscribe = true
         }
+      }
+      if (this.$auth.user._id === currentEvent.creator._id) {
+        this.owner = true
       }
     }
   },
@@ -70,6 +77,7 @@ export default {
       title: 'Page index',
       meta_desc: 'Je suis le magnifique content',
       alreadySubscribe: false,
+      owner: false,
       event: {}
     }
   },
@@ -139,7 +147,6 @@ export default {
   button{
     margin: 10px 0;
     float: right;
-    width: 200px;
   }
 }
 .event-map{

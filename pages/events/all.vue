@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-10 offset-md-1 container">
     <h1 class="col-md-6">
-      Mes évènements !
+      Tous les évènements  !
     </h1>
     <p v-if="$fetchState.pending">
       Récupération en cours...️
@@ -9,22 +9,9 @@
     <p v-else-if="$fetchState.error">
       Une erreur est survenue :(
     </p>
-    <section v-else-if="eventsCreated !== []" class="events-content col-md-11">
-      <h2>Évènements cree </h2>
+    <section v-else-if="events !== []" class="events-content col-md-11">
       <section class="events-container">
-        <EventCard v-for="event in eventsCreated" :key="'created_'+event._id" :event="event" />
-      </section>
-    </section>
-    <p v-if="$fetchState.pending">
-      Récupération en cours...️
-    </p>
-    <p v-else-if="$fetchState.error">
-      Une erreur est survenue :(
-    </p>
-    <section v-else-if="eventsParticipation !== []" class="events-content col-md-11">
-      <h2>Vos inscription : </h2>
-      <section class="events-container">
-        <EventCard v-for="event in eventsParticipation" :key="'participate_'+event._id" :event="event" />
+        <EventCard v-for="event in events" :key="event._id" :event="event" />
       </section>
     </section>
   </div>
@@ -37,23 +24,14 @@ export default {
   components: { EventCard },
   transition: 'opacity',
   async fetch () {
-    await this.$axios.get('/event',
-      {
-        params:
-          { q: { creator: this.$auth.user._id } }
-      })
-      .then(response => (this.eventsCreated = response.data))
-
-    await this.$axios.get('/user/' + this.$auth.user._id + '/events/')
-      .then(response => (this.eventsParticipation = response.data.events))
+    await this.$axios.get('/event')
+      .then(response => (this.events = response.data))
   },
   data () {
     return {
       title: 'Page events',
       meta_desc: 'Je suis le magnifique content',
-      tag: '',
-      eventsCreated: [],
-      eventsParticipation: []
+      events: []
     }
   },
   head () {

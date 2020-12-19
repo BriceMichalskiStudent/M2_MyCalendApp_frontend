@@ -48,6 +48,7 @@
                         v-model="editedItem.code"
                         label="Code"
                         type="text"
+                        :rules="[rules.required]"
                       />
                     </v-col>
                     <v-col
@@ -59,6 +60,7 @@
                         v-model="editedItem.name"
                         label="name"
                         type="text"
+                        :rules="[rules.required]"
                       />
                     </v-col>
                   </v-row>
@@ -138,6 +140,9 @@
 export default {
   layout: 'admin',
   data: () => ({
+    rules: {
+      required: value => !!value || 'Required.'
+    },
     dialog: false,
     dialogDelete: false,
     dialogGrant: false,
