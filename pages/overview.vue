@@ -15,7 +15,7 @@
     </p>
     <section v-else-if="eventsAll !== []" class="events-content col-md-10">
       <h2>Tous les évènements !</h2>
-      <Button link="/" anchor="Voir tous" custom="primary" />
+      <Button link="/events/all" anchor="Voir tous" custom="primary" />
       <EventCarousel :events="eventsAll" />
     </section>
     <p v-if="$fetchState.pending">
@@ -26,7 +26,7 @@
     </p>
     <section v-else-if="eventsTag !== []" class="events-content col-md-10">
       <h2>évènements appartenant au TAG : {{ tag.name }} !</h2>
-      <Button link="/" anchor="Voir tous" custom="primary" />
+      <Button :link="'/tag/'+ tag._id" anchor="Voir tous" custom="primary" />
       <EventCarousel :events="eventsTag" />
     </section>
   </div>

@@ -23,7 +23,7 @@
     </p>
     <div v-else-if="events !== []" class="col-md-10 home-discover">
       <h2>Futurs évènements !</h2>
-      <Button link="/" anchor="Voir tous" custom="primary" />
+      <Button link="/events/futur" anchor="Voir tous" custom="primary" />
       <EventCarousel :events="events" />
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" class="light-red-bg" viewBox="0 0 1319.759 1132.776">

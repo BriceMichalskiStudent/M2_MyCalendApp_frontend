@@ -21,7 +21,7 @@
         </nuxt-link>
       </li>
       <li @click="triggerMenu">
-        <nuxt-link to="/events">
+        <nuxt-link to="/overview">
           Évènements
         </nuxt-link>
       </li>
