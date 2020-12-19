@@ -65,6 +65,7 @@
                       <v-text-field
                         v-model="editedItem.firstName"
                         label="First name"
+                        :rules="[rules.required]"
                       />
                     </v-col>
                     <v-col
@@ -75,6 +76,7 @@
                       <v-text-field
                         v-model="editedItem.lastName"
                         label="Last name"
+                        :rules="[rules.required]"
                       />
                     </v-col>
                     <v-col
@@ -85,6 +87,7 @@
                       <v-text-field
                         v-model="editedItem.phone"
                         label="Telephone"
+                        :rules="[rules.required]"
                       />
                     </v-col>
                     <v-col
@@ -96,6 +99,7 @@
                         v-model="editedItem.mail"
                         label="Email"
                         type="email"
+                        :rules="[rules.required]"
                       />
                     </v-col>
                     <v-col
@@ -107,6 +111,7 @@
                         v-model="editedItem.password"
                         label="Password"
                         type="password"
+                        :rules="[rules.required]"
                       />
                     </v-col>
                     <v-col
@@ -223,6 +228,9 @@
 export default {
   layout: 'admin',
   data: () => ({
+    rules: {
+      required: value => !!value || 'Required.'
+    },
     dialog: false,
     dialogDelete: false,
     dialogGrant: false,
@@ -388,7 +396,7 @@ export default {
             .then(
               this.$store.commit('sendNotification', {
                 status: 'success',
-                message: 'User modifier avec succès !'
+                message: 'Utilisateur modifier avec succès !'
               }))
             .catch(error => (
               this.$store.commit('sendNotification', {
@@ -398,14 +406,12 @@ export default {
             ))
           this.initialize()
         } else {
-          // this.editedItem.imgUrl = this.users[this.editedIndex].imgUrl
-          // Object.assign(this.users[this.editedIndex], this.editedItem)
           this.$axios
             .patch('/user/' + this.editedItem._id, user)
             .then(
               this.$store.commit('sendNotification', {
                 status: 'success',
-                message: 'User modifier avec succès !'
+                message: 'Utilisateur modifier avec succès !'
               }))
             .catch(error => (
               this.$store.commit('sendNotification', {
@@ -413,6 +419,7 @@ export default {
                 message: error
               })
             ))
+          this.initialize()
         }
       } else {
         const formData = new FormData()
@@ -426,7 +433,7 @@ export default {
           .then(
             this.$store.commit('sendNotification', {
               status: 'success',
-              message: 'User cree avec succès !'
+              message: 'Utilisateur cree avec succès !'
             })
           )
           .catch(error => (
