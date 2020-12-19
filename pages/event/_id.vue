@@ -15,7 +15,7 @@
       <p>
         {{ event.description }}
       </p>
-      <button v-if="loggedInUser !== null && alreadySubscribe === false" class="primary button" @click="subscribe">
+      <button v-if="loggedInUser !== null && alreadySubscribe === false && owner === false" class="primary button" @click="subscribe">
         S'inscrire !
       </button>
       <button v-else-if="alreadySubscribe === true" class="button" @click="unSubscribe">
@@ -53,15 +53,22 @@ export default {
   transition: 'opacity',
   async fetch () {
     const eventId = this.$route.params.id
+    let currentEvent = {}
     await this.$axios
       .get('/event/' + eventId)
-      .then(response => (this.event = response.data))
+      .then((response) => {
+        this.event = response.data
+        currentEvent = response.data
+      })
 
     if (this.loggedInUser !== null) {
       for (let i = 0; this.$auth.user.events.length > i; i++) {
         if (this.$auth.user.events[i] === eventId) {
           this.alreadySubscribe = true
         }
+      }
+      if (this.$auth.user._id === currentEvent.creator._id) {
+        this.owner = true
       }
     }
   },
@@ -70,6 +77,7 @@ export default {
       title: 'Page index',
       meta_desc: 'Je suis le magnifique content',
       alreadySubscribe: false,
+      owner: false,
       event: {}
     }
   },
