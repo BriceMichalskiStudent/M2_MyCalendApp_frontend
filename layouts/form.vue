@@ -36,7 +36,8 @@ export default {
   overflow: hidden;
   @media only screen and (max-width: map-get($grid-breakpoints, 'md')){
     height: auto;
-    overflow: unset;
+    overflow: hidden;
+    background-color: white;
   }
   &::after{
     overflow: hidden;
