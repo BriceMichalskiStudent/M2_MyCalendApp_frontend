@@ -45,8 +45,9 @@
 
 <script>
 import Button from '~/components/Button'
+import EventCarousel from '~/components/events/Carousel'
 export default {
-  components: { Button },
+  components: { EventCarousel, Button },
   transition: 'opacity',
   async fetch () {
     const today = Date.now()

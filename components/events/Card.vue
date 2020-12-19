@@ -4,7 +4,7 @@
       {{ event.tags[0].name }}
     </p>
     <span class="icon-arrow-right" />
-    <img v-if="event.imgUrl === '' || event.imgUrl === undefined " class="event-image" src="/img/placeholder-animation-banner.jpg">
+    <img v-if="event.imgUrl === '' || event.imgUrl === undefined " class="event-image" src="/static/img/placeholder-animation-banner.jpg">
     <img v-else class="event-image" :src="event.imgUrl">
     <section class="event-info">
       <p class="event-date">

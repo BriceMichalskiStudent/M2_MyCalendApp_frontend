@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import EventCarousel from '~/components/EventCarousel'
+import EventCarousel from '~/components/events/Carousel'
 import Button from '~/components/Button'
 
 export default {
